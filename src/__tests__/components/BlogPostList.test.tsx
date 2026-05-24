@@ -12,6 +12,7 @@ vi.mock( "next/link", () => ({
     <a href={ href } { ...props }>{ children }</a>
   ),
 }) );
+// Forward `priority` to a data attribute so tests can assert which card got firstCardPriority (LCP boost in the real Picture component).
 vi.mock( "@/components/Picture", () => ({
   default: ({ alt, priority }: { alt: string; priority?: boolean }) => (
     <img alt={ alt } data-priority={ priority ? "true" : "false" } />

@@ -10,6 +10,7 @@ export interface TikTokOembed {
 
 const OEMBED_ENDPOINT = "https://www.tiktok.com/oembed";
 
+// Strip here — React won't execute <script> tags inlined via raw-HTML props; TikTokEmbed re-appends embed.js client-side.
 function stripScriptTags( html: string ): string {
   const dom = new JSDOM( html );
   const scripts = dom.window.document.querySelectorAll( "script" );
