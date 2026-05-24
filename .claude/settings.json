@@ -1,8 +1,8 @@
 {
   "permissions": {
     "deny": [
-      "Read(./.env)",
-      "Read(./dist)"
+      "Read(.env)",
+      "Read(dist)"
     ]
   },
   "enabledPlugins": {
