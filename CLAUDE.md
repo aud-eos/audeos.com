@@ -66,11 +66,8 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 
 ## Code style
 
-- Run `yarn format` after every file change to keep code conformant with the ESLint styleguide, then run `yarn test` to confirm nothing is broken.
-- Do not use single-character variable names — use descriptive names even for short-lived variables (e.g., `post` not `p`, `index` not `i`).
-- Never use `eslint-disable` or `eslint-disable-next-line` comments to suppress ESLint errors — fix the underlying code instead.
+- Use `yarn format` as the project formatter (ESLint with auto-fix); follow it with `yarn test` to confirm nothing is broken.
 - Enforce required environment variables at module scope using `import { strict as assert } from "assert"` followed by `assert( !!VAR )`. This ensures the build fails immediately if a variable is missing. See `src/utils/contentfulUtils.ts` for the canonical example. Never defer these checks to function-level.
-- Never use TypeScript `as` type assertions — they bypass the type checker and hide bugs. Use type guards, narrowing, or `satisfies` instead. See [why `as` is harmful](https://dev.to/alexanderop/the-problem-with-as-in-typescript-why-its-a-shortcut-we-should-avoid-2km4).
 
 ## Architecture
 
@@ -83,6 +80,8 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 - Search (`src/pages/search.tsx`) is fully client-side using Fuse.js — all posts are embedded in the page as props and searched in-browser.
 - Spotify integration (`src/utils/spotify/`) fetches data at build time and is embedded statically. Playlist JSON is cached in `data/spotify/{playlistId}.json` (committed to git). On build, only the lightweight `snapshot_id` is fetched from Spotify — the full playlist is only re-fetched when the snapshot changes. API calls use `retryRequest` with exponential backoff to handle 429 rate limits.
 - Feeds are generated in `src/lib/generateFeeds.ts` and called from `getStaticProps` in `src/pages/index.tsx`.
+- **Editorial SEO copy lives on categories, not tags.** Per-category title/description/OG image is configured in `data/categories.json`; tag pages render generic SEO (e.g. `Posts tagged {id} | Audeos.com`) by design. The per-tag JSON config (`data/tags.json`, `src/types/tagConfig.ts`, `src/utils/tagSeoConfig.ts`) was deleted in PR #89 because per-tag editorial copy didn't scale. Do not re-introduce it — if a tag needs prominence, consider whether it should be a category instead.
+- **`NowPlayingCard` is intentionally client-only** — it polls `audeos.fm/api/now-playing/main` via `useEffect` + `fetch`, with no `getStaticProps` involvement. This decouples the static export from `audeos.fm`'s availability and keeps live-stream state out of the build cache. Resist the instinct to migrate it to the build-time fetch pattern used elsewhere; it would break the live behavior.
 
 ### Routing
 
@@ -113,6 +112,13 @@ TypeScript types for Contentful content models live in `src/types/contentful/`. 
 make types
 ```
 This first exports the full space to `contentful/export.json` (intermediate file, gitignored), then generates types with JSDoc, type guards, and response variants. Do not use `yarn cf-content-types-generator` directly — it skips the export step and produces a stripped-down format.
+
+## Invariants
+
+These rules must hold across changes to this repo. They encode decisions that aren't visible from any single source file — break them and you'll either ship a security hole or a broken build.
+
+- **Reject and rebuild third-party iframe `src`** — when integrating an oEmbed provider (SoundCloud, YouTube, Vimeo, Mixcloud, etc.), never render the provider's `html` field via React's raw-HTML escape hatch. Instead, parse the iframe `src` out, validate the host against a hardcoded allowlist constant (see `ALLOWED_IFRAME_HOST` in `src/components/SoundCloudEmbed.tsx` and `YouTubeEmbed.tsx`), and render a fresh `<iframe>` with explicit `allow` / `allowFullScreen` attributes. **TikTok is the documented exception**: its `embed.js` hydrates the blockquote, so the oEmbed HTML *is* injected — but `<script>` tags are scrubbed via JSDOM in `src/utils/tiktok/getOembed.ts` before reaching the component, and a fresh script element is appended client-side from `TikTokEmbed.tsx`.
+- **Dynamic routes use `fallback: false`** — Next.js static export does not support `fallback: true` or `'blocking'`. Any `getStaticPaths` over a Contentful content type must guarantee every entry has the field used as the path param populated *before* merging the route. The build error names the missing entry only by opaque sys ID, so the trap is easier to avoid than to debug.
 
 ## Environment variables
 
