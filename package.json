@@ -37,7 +37,7 @@
   },
   "resolutions": {
     "tmp": ">=0.2.4",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.25",
     "uuid": "^14.0.0"
   },
   "devDependencies": {
