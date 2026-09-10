@@ -6,18 +6,18 @@
   },
   "followers": {
     "href": null,
-    "total": 2
+    "total": 3
   },
   "href": "https://api.spotify.com/v1/playlists/6UTdVyZu47k5SLyOl4Im0P",
   "id": "6UTdVyZu47k5SLyOl4Im0P",
   "images": [
     {
       "height": null,
-      "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84e627c30533b5e1ada92766fc",
+      "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84e627c30533b5e1ada92766fc",
       "width": null
     }
   ],
-  "name": "🌞 Day Party 1 🌊 🏄🏾 🌴",
+  "name": "Day Party 1 🌊 🏄🏾 🌴🌞 ",
   "owner": {
     "display_name": "Benny @audeos",
     "external_urls": {
@@ -30,7 +30,7 @@
   },
   "primary_color": null,
   "public": true,
-  "snapshot_id": "AAABwmwvPdzuSWNrJjSN74j9qAlPfIQS",
+  "snapshot_id": "AAABw84qeRgs9/u7TKVnVkNQ7RPh18PU",
   "tracks": {
     "href": "https://api.spotify.com/v1/playlists/6UTdVyZu47k5SLyOl4Im0P/tracks?offset=0&limit=100",
     "items": [
@@ -490,7 +490,7 @@
           "href": "https://api.spotify.com/v1/tracks/4j3GWI86JvSaF0BLdmgcfF",
           "id": "4j3GWI86JvSaF0BLdmgcfF",
           "name": "Summertime Magic",
-          "popularity": 61,
+          "popularity": 63,
           "uri": "spotify:track:4j3GWI86JvSaF0BLdmgcfF",
           "is_local": false
         },
@@ -937,7 +937,7 @@
           "href": "https://api.spotify.com/v1/tracks/4j3GWI86JvSaF0BLdmgcfF",
           "id": "4j3GWI86JvSaF0BLdmgcfF",
           "name": "Summertime Magic",
-          "popularity": 61,
+          "popularity": 63,
           "uri": "spotify:track:4j3GWI86JvSaF0BLdmgcfF",
           "is_local": false
         },
@@ -1443,7 +1443,7 @@
           "href": "https://api.spotify.com/v1/tracks/2ruNaiZLwzRXnM7vJ2y1RZ",
           "id": "2ruNaiZLwzRXnM7vJ2y1RZ",
           "name": "To The Max",
-          "popularity": 40,
+          "popularity": 46,
           "uri": "spotify:track:2ruNaiZLwzRXnM7vJ2y1RZ",
           "is_local": false
         },
@@ -1932,7 +1932,7 @@
           "href": "https://api.spotify.com/v1/tracks/2ruNaiZLwzRXnM7vJ2y1RZ",
           "id": "2ruNaiZLwzRXnM7vJ2y1RZ",
           "name": "To The Max",
-          "popularity": 40,
+          "popularity": 46,
           "uri": "spotify:track:2ruNaiZLwzRXnM7vJ2y1RZ",
           "is_local": false
         },
@@ -2400,7 +2400,7 @@
           "href": "https://api.spotify.com/v1/tracks/7p1eW7fO6UWUg2AM4xqWtZ",
           "id": "7p1eW7fO6UWUg2AM4xqWtZ",
           "name": "Boomerang",
-          "popularity": 44,
+          "popularity": 47,
           "uri": "spotify:track:7p1eW7fO6UWUg2AM4xqWtZ",
           "is_local": false
         },
@@ -2851,7 +2851,7 @@
           "href": "https://api.spotify.com/v1/tracks/7p1eW7fO6UWUg2AM4xqWtZ",
           "id": "7p1eW7fO6UWUg2AM4xqWtZ",
           "name": "Boomerang",
-          "popularity": 44,
+          "popularity": 47,
           "uri": "spotify:track:7p1eW7fO6UWUg2AM4xqWtZ",
           "is_local": false
         },
@@ -3502,7 +3502,7 @@
           "href": "https://api.spotify.com/v1/tracks/5f5KGCBUtnR3dTSdNfRcZG",
           "id": "5f5KGCBUtnR3dTSdNfRcZG",
           "name": "I Think Of You",
-          "popularity": 45,
+          "popularity": 47,
           "uri": "spotify:track:5f5KGCBUtnR3dTSdNfRcZG",
           "is_local": false
         },
@@ -3961,7 +3961,7 @@
           "href": "https://api.spotify.com/v1/tracks/5f5KGCBUtnR3dTSdNfRcZG",
           "id": "5f5KGCBUtnR3dTSdNfRcZG",
           "name": "I Think Of You",
-          "popularity": 45,
+          "popularity": 47,
           "uri": "spotify:track:5f5KGCBUtnR3dTSdNfRcZG",
           "is_local": false
         },
@@ -4445,7 +4445,7 @@
           "href": "https://api.spotify.com/v1/tracks/2iFv0UG8PhaNUNQA9RqMZY",
           "id": "2iFv0UG8PhaNUNQA9RqMZY",
           "name": "Wild Thoughts - Bee's Knees Dance Remix",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:2iFv0UG8PhaNUNQA9RqMZY",
           "is_local": false
         },
@@ -4912,7 +4912,7 @@
           "href": "https://api.spotify.com/v1/tracks/2iFv0UG8PhaNUNQA9RqMZY",
           "id": "2iFv0UG8PhaNUNQA9RqMZY",
           "name": "Wild Thoughts - Bee's Knees Dance Remix",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:2iFv0UG8PhaNUNQA9RqMZY",
           "is_local": false
         },
@@ -5015,10 +5015,6 @@
             "JO",
             "PS",
             "IN",
-            "BY",
-            "KZ",
-            "MD",
-            "UA",
             "AL",
             "BA",
             "HR",
@@ -5207,10 +5203,6 @@
               "JO",
               "PS",
               "IN",
-              "BY",
-              "KZ",
-              "MD",
-              "UA",
               "AL",
               "BA",
               "HR",
@@ -5420,7 +5412,7 @@
           "href": "https://api.spotify.com/v1/tracks/0P6AWOA4LG1XOctzaVu5tt",
           "id": "0P6AWOA4LG1XOctzaVu5tt",
           "name": "The Weekend - Funk Wav Remix",
-          "popularity": 70,
+          "popularity": 72,
           "uri": "spotify:track:0P6AWOA4LG1XOctzaVu5tt",
           "is_local": false
         },
@@ -5506,10 +5498,6 @@
             "JO",
             "PS",
             "IN",
-            "BY",
-            "KZ",
-            "MD",
-            "UA",
             "AL",
             "BA",
             "HR",
@@ -5698,10 +5686,6 @@
               "JO",
               "PS",
               "IN",
-              "BY",
-              "KZ",
-              "MD",
-              "UA",
               "AL",
               "BA",
               "HR",
@@ -5911,7 +5895,7 @@
           "href": "https://api.spotify.com/v1/tracks/0P6AWOA4LG1XOctzaVu5tt",
           "id": "0P6AWOA4LG1XOctzaVu5tt",
           "name": "The Weekend - Funk Wav Remix",
-          "popularity": 70,
+          "popularity": 72,
           "uri": "spotify:track:0P6AWOA4LG1XOctzaVu5tt",
           "is_local": false
         },
@@ -6859,7 +6843,7 @@
           "href": "https://api.spotify.com/v1/tracks/042SU58HqnUp6dPoiRJ3xO",
           "id": "042SU58HqnUp6dPoiRJ3xO",
           "name": "On the Regular (feat. Elujay, Mr. Carmack & Mikos Da Gawd)",
-          "popularity": 11,
+          "popularity": 12,
           "uri": "spotify:track:042SU58HqnUp6dPoiRJ3xO",
           "is_local": false
         },
@@ -7340,7 +7324,7 @@
           "href": "https://api.spotify.com/v1/tracks/042SU58HqnUp6dPoiRJ3xO",
           "id": "042SU58HqnUp6dPoiRJ3xO",
           "name": "On the Regular (feat. Elujay, Mr. Carmack & Mikos Da Gawd)",
-          "popularity": 11,
+          "popularity": 12,
           "uri": "spotify:track:042SU58HqnUp6dPoiRJ3xO",
           "is_local": false
         },
@@ -7983,7 +7967,7 @@
           "href": "https://api.spotify.com/v1/tracks/3q8AgabNzK1mPJdI8egIcn",
           "id": "3q8AgabNzK1mPJdI8egIcn",
           "name": "Inspiration Information",
-          "popularity": 46,
+          "popularity": 48,
           "uri": "spotify:track:3q8AgabNzK1mPJdI8egIcn",
           "is_local": false
         },
@@ -8434,7 +8418,7 @@
           "href": "https://api.spotify.com/v1/tracks/3q8AgabNzK1mPJdI8egIcn",
           "id": "3q8AgabNzK1mPJdI8egIcn",
           "name": "Inspiration Information",
-          "popularity": 46,
+          "popularity": 48,
           "uri": "spotify:track:3q8AgabNzK1mPJdI8egIcn",
           "is_local": false
         },
@@ -9107,7 +9091,7 @@
           "href": "https://api.spotify.com/v1/tracks/5iwb2YMVfNU5zGliOdwbcj",
           "id": "5iwb2YMVfNU5zGliOdwbcj",
           "name": "Cruzin' (feat. St Rulez)",
-          "popularity": 34,
+          "popularity": 36,
           "uri": "spotify:track:5iwb2YMVfNU5zGliOdwbcj",
           "is_local": false
         },
@@ -9568,7 +9552,7 @@
           "href": "https://api.spotify.com/v1/tracks/5iwb2YMVfNU5zGliOdwbcj",
           "id": "5iwb2YMVfNU5zGliOdwbcj",
           "name": "Cruzin' (feat. St Rulez)",
-          "popularity": 34,
+          "popularity": 36,
           "uri": "spotify:track:5iwb2YMVfNU5zGliOdwbcj",
           "is_local": false
         },
@@ -10056,7 +10040,7 @@
           "href": "https://api.spotify.com/v1/tracks/55FDPlcXV33jgoVnz7y99u",
           "id": "55FDPlcXV33jgoVnz7y99u",
           "name": "Wake Up (feat. Nate Dogg & N.U.N.E.)",
-          "popularity": 42,
+          "popularity": 44,
           "uri": "spotify:track:55FDPlcXV33jgoVnz7y99u",
           "is_local": false
         },
@@ -10527,7 +10511,7 @@
           "href": "https://api.spotify.com/v1/tracks/55FDPlcXV33jgoVnz7y99u",
           "id": "55FDPlcXV33jgoVnz7y99u",
           "name": "Wake Up (feat. Nate Dogg & N.U.N.E.)",
-          "popularity": 42,
+          "popularity": 44,
           "uri": "spotify:track:55FDPlcXV33jgoVnz7y99u",
           "is_local": false
         },
@@ -10993,7 +10977,7 @@
           "href": "https://api.spotify.com/v1/tracks/13Mzo1l88eZPohxdl5T1qv",
           "id": "13Mzo1l88eZPohxdl5T1qv",
           "name": "Round & Round",
-          "popularity": 51,
+          "popularity": 52,
           "uri": "spotify:track:13Mzo1l88eZPohxdl5T1qv",
           "is_local": false
         },
@@ -11442,7 +11426,7 @@
           "href": "https://api.spotify.com/v1/tracks/13Mzo1l88eZPohxdl5T1qv",
           "id": "13Mzo1l88eZPohxdl5T1qv",
           "name": "Round & Round",
-          "popularity": 51,
+          "popularity": 52,
           "uri": "spotify:track:13Mzo1l88eZPohxdl5T1qv",
           "is_local": false
         },
@@ -11918,7 +11902,7 @@
           "href": "https://api.spotify.com/v1/tracks/6dw5cCtf3KtRNauKUERzR2",
           "id": "6dw5cCtf3KtRNauKUERzR2",
           "name": "Ups & Downs - Album Version (Explicit) w/o interlude",
-          "popularity": 46,
+          "popularity": 47,
           "uri": "spotify:track:6dw5cCtf3KtRNauKUERzR2",
           "is_local": false
         },
@@ -12377,7 +12361,7 @@
           "href": "https://api.spotify.com/v1/tracks/6dw5cCtf3KtRNauKUERzR2",
           "id": "6dw5cCtf3KtRNauKUERzR2",
           "name": "Ups & Downs - Album Version (Explicit) w/o interlude",
-          "popularity": 46,
+          "popularity": 47,
           "uri": "spotify:track:6dw5cCtf3KtRNauKUERzR2",
           "is_local": false
         },
@@ -13515,7 +13499,7 @@
           "href": "https://api.spotify.com/v1/tracks/5A0aUvnfAEcmUx3hoXjI8R",
           "id": "5A0aUvnfAEcmUx3hoXjI8R",
           "name": "I'm So Into You",
-          "popularity": 61,
+          "popularity": 64,
           "uri": "spotify:track:5A0aUvnfAEcmUx3hoXjI8R",
           "is_local": false
         },
@@ -13966,7 +13950,7 @@
           "href": "https://api.spotify.com/v1/tracks/5A0aUvnfAEcmUx3hoXjI8R",
           "id": "5A0aUvnfAEcmUx3hoXjI8R",
           "name": "I'm So Into You",
-          "popularity": 61,
+          "popularity": 64,
           "uri": "spotify:track:5A0aUvnfAEcmUx3hoXjI8R",
           "is_local": false
         },
@@ -14442,7 +14426,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Wsg4syE5YPbpgxQ6G6JXl",
           "id": "5Wsg4syE5YPbpgxQ6G6JXl",
           "name": "I Want You Back - Z-Trip Remix",
-          "popularity": 27,
+          "popularity": 30,
           "uri": "spotify:track:5Wsg4syE5YPbpgxQ6G6JXl",
           "is_local": false
         },
@@ -14901,7 +14885,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Wsg4syE5YPbpgxQ6G6JXl",
           "id": "5Wsg4syE5YPbpgxQ6G6JXl",
           "name": "I Want You Back - Z-Trip Remix",
-          "popularity": 27,
+          "popularity": 30,
           "uri": "spotify:track:5Wsg4syE5YPbpgxQ6G6JXl",
           "is_local": false
         },
@@ -15377,7 +15361,7 @@
           "href": "https://api.spotify.com/v1/tracks/1UEJm8b2o7hz7lHSc7lyv2",
           "id": "1UEJm8b2o7hz7lHSc7lyv2",
           "name": "Signed, Sealed, Delivered (I'm Yours) - DJ Smash Essential Funk Mix",
-          "popularity": 26,
+          "popularity": 32,
           "uri": "spotify:track:1UEJm8b2o7hz7lHSc7lyv2",
           "is_local": false
         },
@@ -15836,7 +15820,7 @@
           "href": "https://api.spotify.com/v1/tracks/1UEJm8b2o7hz7lHSc7lyv2",
           "id": "1UEJm8b2o7hz7lHSc7lyv2",
           "name": "Signed, Sealed, Delivered (I'm Yours) - DJ Smash Essential Funk Mix",
-          "popularity": 26,
+          "popularity": 32,
           "uri": "spotify:track:1UEJm8b2o7hz7lHSc7lyv2",
           "is_local": false
         },
@@ -16302,7 +16286,7 @@
           "href": "https://api.spotify.com/v1/tracks/00ovV8FIZewk6NmLd8kZhi",
           "id": "00ovV8FIZewk6NmLd8kZhi",
           "name": "Feel so Good",
-          "popularity": 42,
+          "popularity": 45,
           "uri": "spotify:track:00ovV8FIZewk6NmLd8kZhi",
           "is_local": false
         },
@@ -16751,7 +16735,7 @@
           "href": "https://api.spotify.com/v1/tracks/00ovV8FIZewk6NmLd8kZhi",
           "id": "00ovV8FIZewk6NmLd8kZhi",
           "name": "Feel so Good",
-          "popularity": 42,
+          "popularity": 45,
           "uri": "spotify:track:00ovV8FIZewk6NmLd8kZhi",
           "is_local": false
         },
@@ -17219,7 +17203,7 @@
           "href": "https://api.spotify.com/v1/tracks/5cvMzT7kEvcxcdtcJz1vQY",
           "id": "5cvMzT7kEvcxcdtcJz1vQY",
           "name": "After Party",
-          "popularity": 56,
+          "popularity": 57,
           "uri": "spotify:track:5cvMzT7kEvcxcdtcJz1vQY",
           "is_local": false
         },
@@ -17670,7 +17654,7 @@
           "href": "https://api.spotify.com/v1/tracks/5cvMzT7kEvcxcdtcJz1vQY",
           "id": "5cvMzT7kEvcxcdtcJz1vQY",
           "name": "After Party",
-          "popularity": 56,
+          "popularity": 57,
           "uri": "spotify:track:5cvMzT7kEvcxcdtcJz1vQY",
           "is_local": false
         },
@@ -18078,17 +18062,17 @@
             "id": "2AAKJcJfC2KSGZfR9W9nR4",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b27342ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d0000b273497e06afa8a8147e9e4cc35e",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e0242ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00001e02497e06afa8a8147e9e4cc35e",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d0000485142ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00004851497e06afa8a8147e9e4cc35e",
                 "width": 64,
                 "height": 64
               }
@@ -18138,7 +18122,7 @@
           "href": "https://api.spotify.com/v1/tracks/22P9q4YxqhWcTOVMar9TT0",
           "id": "22P9q4YxqhWcTOVMar9TT0",
           "name": "Ha Ha, Hee Hee",
-          "popularity": 41,
+          "popularity": 42,
           "uri": "spotify:track:22P9q4YxqhWcTOVMar9TT0",
           "is_local": false
         },
@@ -18529,17 +18513,17 @@
             "id": "2AAKJcJfC2KSGZfR9W9nR4",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b27342ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d0000b273497e06afa8a8147e9e4cc35e",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e0242ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00001e02497e06afa8a8147e9e4cc35e",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d0000485142ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00004851497e06afa8a8147e9e4cc35e",
                 "width": 64,
                 "height": 64
               }
@@ -18589,7 +18573,7 @@
           "href": "https://api.spotify.com/v1/tracks/22P9q4YxqhWcTOVMar9TT0",
           "id": "22P9q4YxqhWcTOVMar9TT0",
           "name": "Ha Ha, Hee Hee",
-          "popularity": 41,
+          "popularity": 42,
           "uri": "spotify:track:22P9q4YxqhWcTOVMar9TT0",
           "is_local": false
         },
@@ -20340,7 +20324,7 @@
           "href": "https://api.spotify.com/v1/tracks/1VNZ7LWT495ICAO4CvOaTX",
           "id": "1VNZ7LWT495ICAO4CvOaTX",
           "name": "DX7 - Indastudio 10",
-          "popularity": 63,
+          "popularity": 64,
           "uri": "spotify:track:1VNZ7LWT495ICAO4CvOaTX",
           "is_local": false
         },
@@ -20797,7 +20781,7 @@
           "href": "https://api.spotify.com/v1/tracks/1VNZ7LWT495ICAO4CvOaTX",
           "id": "1VNZ7LWT495ICAO4CvOaTX",
           "name": "DX7 - Indastudio 10",
-          "popularity": 63,
+          "popularity": 64,
           "uri": "spotify:track:1VNZ7LWT495ICAO4CvOaTX",
           "is_local": false
         },
@@ -21440,7 +21424,7 @@
           "href": "https://api.spotify.com/v1/tracks/3KihGfmADhGI6nbo6fCwrV",
           "id": "3KihGfmADhGI6nbo6fCwrV",
           "name": "Can't Help the Way I Feel",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:3KihGfmADhGI6nbo6fCwrV",
           "is_local": false
         },
@@ -21891,7 +21875,7 @@
           "href": "https://api.spotify.com/v1/tracks/3KihGfmADhGI6nbo6fCwrV",
           "id": "3KihGfmADhGI6nbo6fCwrV",
           "name": "Can't Help the Way I Feel",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:3KihGfmADhGI6nbo6fCwrV",
           "is_local": false
         },
@@ -22359,7 +22343,7 @@
           "href": "https://api.spotify.com/v1/tracks/2n2C5eahczWXA8mY08TqgR",
           "id": "2n2C5eahczWXA8mY08TqgR",
           "name": "Island Girl",
-          "popularity": 35,
+          "popularity": 37,
           "uri": "spotify:track:2n2C5eahczWXA8mY08TqgR",
           "is_local": false
         },
@@ -22810,7 +22794,7 @@
           "href": "https://api.spotify.com/v1/tracks/2n2C5eahczWXA8mY08TqgR",
           "id": "2n2C5eahczWXA8mY08TqgR",
           "name": "Island Girl",
-          "popularity": 35,
+          "popularity": 37,
           "uri": "spotify:track:2n2C5eahczWXA8mY08TqgR",
           "is_local": false
         },
@@ -23278,7 +23262,7 @@
           "href": "https://api.spotify.com/v1/tracks/4JgGx231CejQHPwboTVTe6",
           "id": "4JgGx231CejQHPwboTVTe6",
           "name": "Jooze! (Remix)",
-          "popularity": 16,
+          "popularity": 18,
           "uri": "spotify:track:4JgGx231CejQHPwboTVTe6",
           "is_local": false
         },
@@ -23729,7 +23713,7 @@
           "href": "https://api.spotify.com/v1/tracks/4JgGx231CejQHPwboTVTe6",
           "id": "4JgGx231CejQHPwboTVTe6",
           "name": "Jooze! (Remix)",
-          "popularity": 16,
+          "popularity": 18,
           "uri": "spotify:track:4JgGx231CejQHPwboTVTe6",
           "is_local": false
         },
@@ -25176,7 +25160,7 @@
           "href": "https://api.spotify.com/v1/tracks/6aSI5qgrJU9gsjUTfXlx5q",
           "id": "6aSI5qgrJU9gsjUTfXlx5q",
           "name": "You're Still the One",
-          "popularity": 32,
+          "popularity": 35,
           "uri": "spotify:track:6aSI5qgrJU9gsjUTfXlx5q",
           "is_local": false
         },
@@ -25627,7 +25611,7 @@
           "href": "https://api.spotify.com/v1/tracks/6aSI5qgrJU9gsjUTfXlx5q",
           "id": "6aSI5qgrJU9gsjUTfXlx5q",
           "name": "You're Still the One",
-          "popularity": 32,
+          "popularity": 35,
           "uri": "spotify:track:6aSI5qgrJU9gsjUTfXlx5q",
           "is_local": false
         },
@@ -26115,7 +26099,7 @@
           "href": "https://api.spotify.com/v1/tracks/4mfinnQbFNKiREfNlUgi2Q",
           "id": "4mfinnQbFNKiREfNlUgi2Q",
           "name": "Benny & Lil' Ze",
-          "popularity": 24,
+          "popularity": 26,
           "uri": "spotify:track:4mfinnQbFNKiREfNlUgi2Q",
           "is_local": false
         },
@@ -26586,7 +26570,7 @@
           "href": "https://api.spotify.com/v1/tracks/4mfinnQbFNKiREfNlUgi2Q",
           "id": "4mfinnQbFNKiREfNlUgi2Q",
           "name": "Benny & Lil' Ze",
-          "popularity": 24,
+          "popularity": 26,
           "uri": "spotify:track:4mfinnQbFNKiREfNlUgi2Q",
           "is_local": false
         },
@@ -27422,7 +27406,7 @@
           "href": "https://api.spotify.com/v1/tracks/7v8YDCoM60xCPuSbXerImD",
           "id": "7v8YDCoM60xCPuSbXerImD",
           "name": "Hello Stranger",
-          "popularity": 58,
+          "popularity": 59,
           "uri": "spotify:track:7v8YDCoM60xCPuSbXerImD",
           "is_local": false
         },
@@ -27871,7 +27855,7 @@
           "href": "https://api.spotify.com/v1/tracks/7v8YDCoM60xCPuSbXerImD",
           "id": "7v8YDCoM60xCPuSbXerImD",
           "name": "Hello Stranger",
-          "popularity": 58,
+          "popularity": 59,
           "uri": "spotify:track:7v8YDCoM60xCPuSbXerImD",
           "is_local": false
         },
@@ -28345,7 +28329,7 @@
           "href": "https://api.spotify.com/v1/tracks/4j3GWI86JvSaF0BLdmgcfF",
           "id": "4j3GWI86JvSaF0BLdmgcfF",
           "name": "Summertime Magic",
-          "popularity": 61,
+          "popularity": 63,
           "uri": "spotify:track:4j3GWI86JvSaF0BLdmgcfF",
           "is_local": false
         },
@@ -28792,7 +28776,7 @@
           "href": "https://api.spotify.com/v1/tracks/4j3GWI86JvSaF0BLdmgcfF",
           "id": "4j3GWI86JvSaF0BLdmgcfF",
           "name": "Summertime Magic",
-          "popularity": 61,
+          "popularity": 63,
           "uri": "spotify:track:4j3GWI86JvSaF0BLdmgcfF",
           "is_local": false
         },
@@ -29298,7 +29282,7 @@
           "href": "https://api.spotify.com/v1/tracks/2ruNaiZLwzRXnM7vJ2y1RZ",
           "id": "2ruNaiZLwzRXnM7vJ2y1RZ",
           "name": "To The Max",
-          "popularity": 40,
+          "popularity": 46,
           "uri": "spotify:track:2ruNaiZLwzRXnM7vJ2y1RZ",
           "is_local": false
         },
@@ -29787,7 +29771,7 @@
           "href": "https://api.spotify.com/v1/tracks/2ruNaiZLwzRXnM7vJ2y1RZ",
           "id": "2ruNaiZLwzRXnM7vJ2y1RZ",
           "name": "To The Max",
-          "popularity": 40,
+          "popularity": 46,
           "uri": "spotify:track:2ruNaiZLwzRXnM7vJ2y1RZ",
           "is_local": false
         },
@@ -30255,7 +30239,7 @@
           "href": "https://api.spotify.com/v1/tracks/7p1eW7fO6UWUg2AM4xqWtZ",
           "id": "7p1eW7fO6UWUg2AM4xqWtZ",
           "name": "Boomerang",
-          "popularity": 44,
+          "popularity": 47,
           "uri": "spotify:track:7p1eW7fO6UWUg2AM4xqWtZ",
           "is_local": false
         },
@@ -30706,7 +30690,7 @@
           "href": "https://api.spotify.com/v1/tracks/7p1eW7fO6UWUg2AM4xqWtZ",
           "id": "7p1eW7fO6UWUg2AM4xqWtZ",
           "name": "Boomerang",
-          "popularity": 44,
+          "popularity": 47,
           "uri": "spotify:track:7p1eW7fO6UWUg2AM4xqWtZ",
           "is_local": false
         },
@@ -31357,7 +31341,7 @@
           "href": "https://api.spotify.com/v1/tracks/5f5KGCBUtnR3dTSdNfRcZG",
           "id": "5f5KGCBUtnR3dTSdNfRcZG",
           "name": "I Think Of You",
-          "popularity": 45,
+          "popularity": 47,
           "uri": "spotify:track:5f5KGCBUtnR3dTSdNfRcZG",
           "is_local": false
         },
@@ -31816,7 +31800,7 @@
           "href": "https://api.spotify.com/v1/tracks/5f5KGCBUtnR3dTSdNfRcZG",
           "id": "5f5KGCBUtnR3dTSdNfRcZG",
           "name": "I Think Of You",
-          "popularity": 45,
+          "popularity": 47,
           "uri": "spotify:track:5f5KGCBUtnR3dTSdNfRcZG",
           "is_local": false
         },
@@ -32300,7 +32284,7 @@
           "href": "https://api.spotify.com/v1/tracks/2iFv0UG8PhaNUNQA9RqMZY",
           "id": "2iFv0UG8PhaNUNQA9RqMZY",
           "name": "Wild Thoughts - Bee's Knees Dance Remix",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:2iFv0UG8PhaNUNQA9RqMZY",
           "is_local": false
         },
@@ -32767,7 +32751,7 @@
           "href": "https://api.spotify.com/v1/tracks/2iFv0UG8PhaNUNQA9RqMZY",
           "id": "2iFv0UG8PhaNUNQA9RqMZY",
           "name": "Wild Thoughts - Bee's Knees Dance Remix",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:2iFv0UG8PhaNUNQA9RqMZY",
           "is_local": false
         },
@@ -32870,10 +32854,6 @@
             "JO",
             "PS",
             "IN",
-            "BY",
-            "KZ",
-            "MD",
-            "UA",
             "AL",
             "BA",
             "HR",
@@ -33062,10 +33042,6 @@
               "JO",
               "PS",
               "IN",
-              "BY",
-              "KZ",
-              "MD",
-              "UA",
               "AL",
               "BA",
               "HR",
@@ -33275,7 +33251,7 @@
           "href": "https://api.spotify.com/v1/tracks/0P6AWOA4LG1XOctzaVu5tt",
           "id": "0P6AWOA4LG1XOctzaVu5tt",
           "name": "The Weekend - Funk Wav Remix",
-          "popularity": 70,
+          "popularity": 72,
           "uri": "spotify:track:0P6AWOA4LG1XOctzaVu5tt",
           "is_local": false
         },
@@ -33361,10 +33337,6 @@
             "JO",
             "PS",
             "IN",
-            "BY",
-            "KZ",
-            "MD",
-            "UA",
             "AL",
             "BA",
             "HR",
@@ -33553,10 +33525,6 @@
               "JO",
               "PS",
               "IN",
-              "BY",
-              "KZ",
-              "MD",
-              "UA",
               "AL",
               "BA",
               "HR",
@@ -33766,7 +33734,7 @@
           "href": "https://api.spotify.com/v1/tracks/0P6AWOA4LG1XOctzaVu5tt",
           "id": "0P6AWOA4LG1XOctzaVu5tt",
           "name": "The Weekend - Funk Wav Remix",
-          "popularity": 70,
+          "popularity": 72,
           "uri": "spotify:track:0P6AWOA4LG1XOctzaVu5tt",
           "is_local": false
         },
@@ -34714,7 +34682,7 @@
           "href": "https://api.spotify.com/v1/tracks/042SU58HqnUp6dPoiRJ3xO",
           "id": "042SU58HqnUp6dPoiRJ3xO",
           "name": "On the Regular (feat. Elujay, Mr. Carmack & Mikos Da Gawd)",
-          "popularity": 11,
+          "popularity": 12,
           "uri": "spotify:track:042SU58HqnUp6dPoiRJ3xO",
           "is_local": false
         },
@@ -35195,7 +35163,7 @@
           "href": "https://api.spotify.com/v1/tracks/042SU58HqnUp6dPoiRJ3xO",
           "id": "042SU58HqnUp6dPoiRJ3xO",
           "name": "On the Regular (feat. Elujay, Mr. Carmack & Mikos Da Gawd)",
-          "popularity": 11,
+          "popularity": 12,
           "uri": "spotify:track:042SU58HqnUp6dPoiRJ3xO",
           "is_local": false
         },
@@ -35838,7 +35806,7 @@
           "href": "https://api.spotify.com/v1/tracks/3q8AgabNzK1mPJdI8egIcn",
           "id": "3q8AgabNzK1mPJdI8egIcn",
           "name": "Inspiration Information",
-          "popularity": 46,
+          "popularity": 48,
           "uri": "spotify:track:3q8AgabNzK1mPJdI8egIcn",
           "is_local": false
         },
@@ -36289,7 +36257,7 @@
           "href": "https://api.spotify.com/v1/tracks/3q8AgabNzK1mPJdI8egIcn",
           "id": "3q8AgabNzK1mPJdI8egIcn",
           "name": "Inspiration Information",
-          "popularity": 46,
+          "popularity": 48,
           "uri": "spotify:track:3q8AgabNzK1mPJdI8egIcn",
           "is_local": false
         },
@@ -36962,7 +36930,7 @@
           "href": "https://api.spotify.com/v1/tracks/5iwb2YMVfNU5zGliOdwbcj",
           "id": "5iwb2YMVfNU5zGliOdwbcj",
           "name": "Cruzin' (feat. St Rulez)",
-          "popularity": 34,
+          "popularity": 36,
           "uri": "spotify:track:5iwb2YMVfNU5zGliOdwbcj",
           "is_local": false
         },
@@ -37423,7 +37391,7 @@
           "href": "https://api.spotify.com/v1/tracks/5iwb2YMVfNU5zGliOdwbcj",
           "id": "5iwb2YMVfNU5zGliOdwbcj",
           "name": "Cruzin' (feat. St Rulez)",
-          "popularity": 34,
+          "popularity": 36,
           "uri": "spotify:track:5iwb2YMVfNU5zGliOdwbcj",
           "is_local": false
         },
@@ -37911,7 +37879,7 @@
           "href": "https://api.spotify.com/v1/tracks/55FDPlcXV33jgoVnz7y99u",
           "id": "55FDPlcXV33jgoVnz7y99u",
           "name": "Wake Up (feat. Nate Dogg & N.U.N.E.)",
-          "popularity": 42,
+          "popularity": 44,
           "uri": "spotify:track:55FDPlcXV33jgoVnz7y99u",
           "is_local": false
         },
@@ -38382,7 +38350,7 @@
           "href": "https://api.spotify.com/v1/tracks/55FDPlcXV33jgoVnz7y99u",
           "id": "55FDPlcXV33jgoVnz7y99u",
           "name": "Wake Up (feat. Nate Dogg & N.U.N.E.)",
-          "popularity": 42,
+          "popularity": 44,
           "uri": "spotify:track:55FDPlcXV33jgoVnz7y99u",
           "is_local": false
         },
@@ -38848,7 +38816,7 @@
           "href": "https://api.spotify.com/v1/tracks/13Mzo1l88eZPohxdl5T1qv",
           "id": "13Mzo1l88eZPohxdl5T1qv",
           "name": "Round & Round",
-          "popularity": 51,
+          "popularity": 52,
           "uri": "spotify:track:13Mzo1l88eZPohxdl5T1qv",
           "is_local": false
         },
@@ -39297,7 +39265,7 @@
           "href": "https://api.spotify.com/v1/tracks/13Mzo1l88eZPohxdl5T1qv",
           "id": "13Mzo1l88eZPohxdl5T1qv",
           "name": "Round & Round",
-          "popularity": 51,
+          "popularity": 52,
           "uri": "spotify:track:13Mzo1l88eZPohxdl5T1qv",
           "is_local": false
         },
@@ -39773,7 +39741,7 @@
           "href": "https://api.spotify.com/v1/tracks/6dw5cCtf3KtRNauKUERzR2",
           "id": "6dw5cCtf3KtRNauKUERzR2",
           "name": "Ups & Downs - Album Version (Explicit) w/o interlude",
-          "popularity": 46,
+          "popularity": 47,
           "uri": "spotify:track:6dw5cCtf3KtRNauKUERzR2",
           "is_local": false
         },
@@ -40232,7 +40200,7 @@
           "href": "https://api.spotify.com/v1/tracks/6dw5cCtf3KtRNauKUERzR2",
           "id": "6dw5cCtf3KtRNauKUERzR2",
           "name": "Ups & Downs - Album Version (Explicit) w/o interlude",
-          "popularity": 46,
+          "popularity": 47,
           "uri": "spotify:track:6dw5cCtf3KtRNauKUERzR2",
           "is_local": false
         },
@@ -41370,7 +41338,7 @@
           "href": "https://api.spotify.com/v1/tracks/5A0aUvnfAEcmUx3hoXjI8R",
           "id": "5A0aUvnfAEcmUx3hoXjI8R",
           "name": "I'm So Into You",
-          "popularity": 61,
+          "popularity": 64,
           "uri": "spotify:track:5A0aUvnfAEcmUx3hoXjI8R",
           "is_local": false
         },
@@ -41821,7 +41789,7 @@
           "href": "https://api.spotify.com/v1/tracks/5A0aUvnfAEcmUx3hoXjI8R",
           "id": "5A0aUvnfAEcmUx3hoXjI8R",
           "name": "I'm So Into You",
-          "popularity": 61,
+          "popularity": 64,
           "uri": "spotify:track:5A0aUvnfAEcmUx3hoXjI8R",
           "is_local": false
         },
@@ -42297,7 +42265,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Wsg4syE5YPbpgxQ6G6JXl",
           "id": "5Wsg4syE5YPbpgxQ6G6JXl",
           "name": "I Want You Back - Z-Trip Remix",
-          "popularity": 27,
+          "popularity": 30,
           "uri": "spotify:track:5Wsg4syE5YPbpgxQ6G6JXl",
           "is_local": false
         },
@@ -42756,7 +42724,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Wsg4syE5YPbpgxQ6G6JXl",
           "id": "5Wsg4syE5YPbpgxQ6G6JXl",
           "name": "I Want You Back - Z-Trip Remix",
-          "popularity": 27,
+          "popularity": 30,
           "uri": "spotify:track:5Wsg4syE5YPbpgxQ6G6JXl",
           "is_local": false
         },
@@ -43232,7 +43200,7 @@
           "href": "https://api.spotify.com/v1/tracks/1UEJm8b2o7hz7lHSc7lyv2",
           "id": "1UEJm8b2o7hz7lHSc7lyv2",
           "name": "Signed, Sealed, Delivered (I'm Yours) - DJ Smash Essential Funk Mix",
-          "popularity": 26,
+          "popularity": 32,
           "uri": "spotify:track:1UEJm8b2o7hz7lHSc7lyv2",
           "is_local": false
         },
@@ -43691,7 +43659,7 @@
           "href": "https://api.spotify.com/v1/tracks/1UEJm8b2o7hz7lHSc7lyv2",
           "id": "1UEJm8b2o7hz7lHSc7lyv2",
           "name": "Signed, Sealed, Delivered (I'm Yours) - DJ Smash Essential Funk Mix",
-          "popularity": 26,
+          "popularity": 32,
           "uri": "spotify:track:1UEJm8b2o7hz7lHSc7lyv2",
           "is_local": false
         },
@@ -44157,7 +44125,7 @@
           "href": "https://api.spotify.com/v1/tracks/00ovV8FIZewk6NmLd8kZhi",
           "id": "00ovV8FIZewk6NmLd8kZhi",
           "name": "Feel so Good",
-          "popularity": 42,
+          "popularity": 45,
           "uri": "spotify:track:00ovV8FIZewk6NmLd8kZhi",
           "is_local": false
         },
@@ -44606,7 +44574,7 @@
           "href": "https://api.spotify.com/v1/tracks/00ovV8FIZewk6NmLd8kZhi",
           "id": "00ovV8FIZewk6NmLd8kZhi",
           "name": "Feel so Good",
-          "popularity": 42,
+          "popularity": 45,
           "uri": "spotify:track:00ovV8FIZewk6NmLd8kZhi",
           "is_local": false
         },
@@ -45074,7 +45042,7 @@
           "href": "https://api.spotify.com/v1/tracks/5cvMzT7kEvcxcdtcJz1vQY",
           "id": "5cvMzT7kEvcxcdtcJz1vQY",
           "name": "After Party",
-          "popularity": 56,
+          "popularity": 57,
           "uri": "spotify:track:5cvMzT7kEvcxcdtcJz1vQY",
           "is_local": false
         },
@@ -45525,7 +45493,7 @@
           "href": "https://api.spotify.com/v1/tracks/5cvMzT7kEvcxcdtcJz1vQY",
           "id": "5cvMzT7kEvcxcdtcJz1vQY",
           "name": "After Party",
-          "popularity": 56,
+          "popularity": 57,
           "uri": "spotify:track:5cvMzT7kEvcxcdtcJz1vQY",
           "is_local": false
         },
@@ -45933,17 +45901,17 @@
             "id": "2AAKJcJfC2KSGZfR9W9nR4",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b27342ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d0000b273497e06afa8a8147e9e4cc35e",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e0242ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00001e02497e06afa8a8147e9e4cc35e",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d0000485142ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00004851497e06afa8a8147e9e4cc35e",
                 "width": 64,
                 "height": 64
               }
@@ -45993,7 +45961,7 @@
           "href": "https://api.spotify.com/v1/tracks/22P9q4YxqhWcTOVMar9TT0",
           "id": "22P9q4YxqhWcTOVMar9TT0",
           "name": "Ha Ha, Hee Hee",
-          "popularity": 41,
+          "popularity": 42,
           "uri": "spotify:track:22P9q4YxqhWcTOVMar9TT0",
           "is_local": false
         },
@@ -46384,17 +46352,17 @@
             "id": "2AAKJcJfC2KSGZfR9W9nR4",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b27342ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d0000b273497e06afa8a8147e9e4cc35e",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e0242ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00001e02497e06afa8a8147e9e4cc35e",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d0000485142ac7d1f3a3e9a9d79fa3d08",
+                "url": "https://i.scdn.co/image/ab67616d00004851497e06afa8a8147e9e4cc35e",
                 "width": 64,
                 "height": 64
               }
@@ -46444,7 +46412,7 @@
           "href": "https://api.spotify.com/v1/tracks/22P9q4YxqhWcTOVMar9TT0",
           "id": "22P9q4YxqhWcTOVMar9TT0",
           "name": "Ha Ha, Hee Hee",
-          "popularity": 41,
+          "popularity": 42,
           "uri": "spotify:track:22P9q4YxqhWcTOVMar9TT0",
           "is_local": false
         },
@@ -48195,7 +48163,7 @@
           "href": "https://api.spotify.com/v1/tracks/1VNZ7LWT495ICAO4CvOaTX",
           "id": "1VNZ7LWT495ICAO4CvOaTX",
           "name": "DX7 - Indastudio 10",
-          "popularity": 63,
+          "popularity": 64,
           "uri": "spotify:track:1VNZ7LWT495ICAO4CvOaTX",
           "is_local": false
         },
@@ -48652,7 +48620,7 @@
           "href": "https://api.spotify.com/v1/tracks/1VNZ7LWT495ICAO4CvOaTX",
           "id": "1VNZ7LWT495ICAO4CvOaTX",
           "name": "DX7 - Indastudio 10",
-          "popularity": 63,
+          "popularity": 64,
           "uri": "spotify:track:1VNZ7LWT495ICAO4CvOaTX",
           "is_local": false
         },
@@ -49295,7 +49263,7 @@
           "href": "https://api.spotify.com/v1/tracks/3KihGfmADhGI6nbo6fCwrV",
           "id": "3KihGfmADhGI6nbo6fCwrV",
           "name": "Can't Help the Way I Feel",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:3KihGfmADhGI6nbo6fCwrV",
           "is_local": false
         },
@@ -49746,7 +49714,7 @@
           "href": "https://api.spotify.com/v1/tracks/3KihGfmADhGI6nbo6fCwrV",
           "id": "3KihGfmADhGI6nbo6fCwrV",
           "name": "Can't Help the Way I Feel",
-          "popularity": 31,
+          "popularity": 32,
           "uri": "spotify:track:3KihGfmADhGI6nbo6fCwrV",
           "is_local": false
         },
@@ -50214,7 +50182,7 @@
           "href": "https://api.spotify.com/v1/tracks/2n2C5eahczWXA8mY08TqgR",
           "id": "2n2C5eahczWXA8mY08TqgR",
           "name": "Island Girl",
-          "popularity": 35,
+          "popularity": 37,
           "uri": "spotify:track:2n2C5eahczWXA8mY08TqgR",
           "is_local": false
         },
@@ -50665,7 +50633,7 @@
           "href": "https://api.spotify.com/v1/tracks/2n2C5eahczWXA8mY08TqgR",
           "id": "2n2C5eahczWXA8mY08TqgR",
           "name": "Island Girl",
-          "popularity": 35,
+          "popularity": 37,
           "uri": "spotify:track:2n2C5eahczWXA8mY08TqgR",
           "is_local": false
         },
@@ -51133,7 +51101,7 @@
           "href": "https://api.spotify.com/v1/tracks/4JgGx231CejQHPwboTVTe6",
           "id": "4JgGx231CejQHPwboTVTe6",
           "name": "Jooze! (Remix)",
-          "popularity": 16,
+          "popularity": 18,
           "uri": "spotify:track:4JgGx231CejQHPwboTVTe6",
           "is_local": false
         },
@@ -51584,7 +51552,7 @@
           "href": "https://api.spotify.com/v1/tracks/4JgGx231CejQHPwboTVTe6",
           "id": "4JgGx231CejQHPwboTVTe6",
           "name": "Jooze! (Remix)",
-          "popularity": 16,
+          "popularity": 18,
           "uri": "spotify:track:4JgGx231CejQHPwboTVTe6",
           "is_local": false
         },
@@ -53031,7 +52999,7 @@
           "href": "https://api.spotify.com/v1/tracks/6aSI5qgrJU9gsjUTfXlx5q",
           "id": "6aSI5qgrJU9gsjUTfXlx5q",
           "name": "You're Still the One",
-          "popularity": 32,
+          "popularity": 35,
           "uri": "spotify:track:6aSI5qgrJU9gsjUTfXlx5q",
           "is_local": false
         },
@@ -53482,7 +53450,7 @@
           "href": "https://api.spotify.com/v1/tracks/6aSI5qgrJU9gsjUTfXlx5q",
           "id": "6aSI5qgrJU9gsjUTfXlx5q",
           "name": "You're Still the One",
-          "popularity": 32,
+          "popularity": 35,
           "uri": "spotify:track:6aSI5qgrJU9gsjUTfXlx5q",
           "is_local": false
         },
@@ -53970,7 +53938,7 @@
           "href": "https://api.spotify.com/v1/tracks/4mfinnQbFNKiREfNlUgi2Q",
           "id": "4mfinnQbFNKiREfNlUgi2Q",
           "name": "Benny & Lil' Ze",
-          "popularity": 24,
+          "popularity": 26,
           "uri": "spotify:track:4mfinnQbFNKiREfNlUgi2Q",
           "is_local": false
         },
@@ -54441,7 +54409,7 @@
           "href": "https://api.spotify.com/v1/tracks/4mfinnQbFNKiREfNlUgi2Q",
           "id": "4mfinnQbFNKiREfNlUgi2Q",
           "name": "Benny & Lil' Ze",
-          "popularity": 24,
+          "popularity": 26,
           "uri": "spotify:track:4mfinnQbFNKiREfNlUgi2Q",
           "is_local": false
         },
@@ -55277,7 +55245,7 @@
           "href": "https://api.spotify.com/v1/tracks/7v8YDCoM60xCPuSbXerImD",
           "id": "7v8YDCoM60xCPuSbXerImD",
           "name": "Hello Stranger",
-          "popularity": 58,
+          "popularity": 59,
           "uri": "spotify:track:7v8YDCoM60xCPuSbXerImD",
           "is_local": false
         },
@@ -55726,7 +55694,7 @@
           "href": "https://api.spotify.com/v1/tracks/7v8YDCoM60xCPuSbXerImD",
           "id": "7v8YDCoM60xCPuSbXerImD",
           "name": "Hello Stranger",
-          "popularity": 58,
+          "popularity": 59,
           "uri": "spotify:track:7v8YDCoM60xCPuSbXerImD",
           "is_local": false
         },
