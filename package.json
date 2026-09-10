@@ -55,7 +55,7 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.1",
     "jsdom": "^29.0.1",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.11"
   },
   "packageManager": "yarn@4.14.1"
 }
