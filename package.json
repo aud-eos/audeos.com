@@ -39,7 +39,7 @@
     "tmp": ">=0.2.6",
     "postcss": "^8.5.23",
     "uuid": "^14.0.0",
-    "vite": ">=8.0.16"
+    "vite": "^8.0.16"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
