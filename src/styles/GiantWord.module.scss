@@ -1,3 +1,5 @@
+@use "giant-type";
+
 .giant {
   width: 100%;
   overflow: clip;
@@ -12,14 +14,10 @@
 
 .word {
   display: inline-block;
-  font-family: var(--font-mona-sans), sans-serif;
+  @include giant-type.giant-type;
   font-size: 30vw;
-  font-weight: 900;
-  font-stretch: 82%;
-  letter-spacing: -0.105em;
   padding-right: 0.105em;
   line-height: 1;
-  text-transform: uppercase;
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
   view-transition-name: giant-word;
@@ -54,6 +52,11 @@
     margin-inline: auto;
     color: var(--ink);
   }
+}
+
+// A view transition already animates the word in; skip the load animation so they do not stack.
+:global(:root:active-view-transition) .word {
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

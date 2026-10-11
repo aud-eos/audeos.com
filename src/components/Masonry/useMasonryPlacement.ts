@@ -1,5 +1,6 @@
 import { RefObject, useEffect } from "react";
 import { placeCards } from "@/components/Masonry/placeCards";
+import { onFontsReady } from "@/utils/onFontsReady";
 
 const ROW_UNIT_PX = 1;
 const PLACED_ATTRIBUTE = "data-placed";
@@ -25,7 +26,6 @@ export function useMasonryPlacement( gridRef: RefObject<HTMLElement | null>, lay
 
     let lastWidth = 0;
     let lastHeights: number[] = [];
-    let cancelled = false;
 
     const measureHeights = () => items.map( item => item.getBoundingClientRect().height );
 
@@ -56,15 +56,13 @@ export function useMasonryPlacement( gridRef: RefObject<HTMLElement | null>, lay
     };
 
     layout();
-    void document.fonts?.ready.then( () => {
-      if( !cancelled ) layout();
-    });
+    const cancelFontsReady = onFontsReady( layout );
 
     const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver( layoutIfChanged );
     resizeObserver?.observe( grid );
     items.forEach( item => resizeObserver?.observe( item ) );
     return () => {
-      cancelled = true;
+      cancelFontsReady();
       resizeObserver?.disconnect();
     };
   }, [ gridRef, layoutKey ] );
