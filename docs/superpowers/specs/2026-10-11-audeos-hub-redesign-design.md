@@ -49,9 +49,10 @@ The redesign keeps the live site's existing fonts and drops everything else.
 
 A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, LIFESTYLE.
 
-- Mona Sans at weight 900 and about 82% width, with negative letter spacing so neighboring letters overlap. This mirrors the owner's AUDEOS logo, used for the favicon. The overlap amount approved in the mockup is about -0.075em.
-- **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled.
-- **Phone, AUDEOS only:** on Home and About, AUDEOS stacks as AUD over EOS with overlapping lines, matching the logo. The whole mark is centered on its visible ink, so the left and right gaps match, and EOS sits slightly inset under AUD. Negative letter spacing also shortens each line's box after its last letter, which shifts centered text right. Each line therefore gets trailing space equal to the letter spacing, about 0.075em, so its box matches its ink. The approved mockup measured within two pixels of center. The stack is sized to leave a small margin on each side, as the logo does. AUDEOS is the only word that ever splits.
+- **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
+- **Overlaps flip to black,** as in the owner's logo. Each letter is its own element with `mix-blend-mode: difference` inside an isolated container, so white over white renders black. The word keeps its full text as an accessible label for screen readers and search engines, and the per-letter elements are hidden from assistive technology. If two letter edges only just touch and leave a hairline seam, the planned spacing is adjusted for that word rather than accepting the seam.
+- **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled. This applies to AUDEOS too, because the logo artwork exists only in its stacked form.
+- **Phone, AUDEOS only:** on Home and About, the stacked AUD over EOS is the owner's actual logo artwork, not live text, so it matches the favicon exactly. Use an SVG exported from the Affinity source file, `Dropbox/Audeos/Brand/Audeos-Logo.af`. The white transparent PNG in the same folder is the fallback until the SVG exists. The image is labeled "Audeos" and sized to leave a small margin on each side. AUDEOS is the only word that ever splits.
 - **Phone, every other word:** EVENTS, MUSIC, LIFESTYLE and any future word stay on one line, scaled so the whole word fills the container width edge to edge. Nothing is cropped, so short words render taller and long words shorter. The sizing method is a planning decision: container-query units with a per-word ratio, or a maintained fit-text library.
 - Trim the text box to the capital height and baseline with `text-box: trim-both cap alphabetic`, then apply equal padding above and below. Browsers without support keep the word, with slightly uneven spacing.
 - Post pages do not use the giant word. They use a large title.
@@ -228,7 +229,7 @@ Tests made redundant by the change are deleted in the same PR, including `Catego
 
 ## Reference mockups
 
-The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B, and the centered stack is `stack-centered-v3.html`. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
+The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the flipped row at -0.105em, with the logo artwork as the phone hero. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
 
 ## Out of scope
 
