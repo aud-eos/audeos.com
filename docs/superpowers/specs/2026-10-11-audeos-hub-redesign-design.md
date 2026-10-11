@@ -52,7 +52,11 @@ A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, L
 - **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
 - **Overlaps are solid.** Where letters overlap they merge into one white shape. Words are plain text in a single element, with no per-letter markup and no blend effects. All words share the one -0.105em spacing, with no per-word adjustments.
 - **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled. This applies to AUDEOS too, because the logo artwork exists only in its stacked form.
-- **Phone, AUDEOS only:** on Home and About, the stacked AUD over EOS is the owner's actual logo artwork, not live text, so it matches the favicon exactly. Use an SVG exported from the Affinity source file, `Dropbox/Audeos/Brand/Audeos-Logo.af`. The white transparent PNG in the same folder is the fallback until the SVG exists. The image is labeled "Audeos" and sized to leave a small margin on each side. AUDEOS is the only word that ever splits.
+- **Phone, AUDEOS only:** on Home and About, AUDEOS stacks as AUD over EOS, in the same live text as every other giant word, so no image is downloaded. The owner chose text over the logo artwork to keep the page light.
+  - Each row is trimmed to its capital height and baseline, so the rows touch without overlapping, as in the logo.
+  - The stack is centered on its visible letters. Negative letter spacing shortens each row's box after its last letter, which would shift centered text right, so each row gets trailing space equal to the letter spacing, 0.105em.
+  - It is sized to leave a small margin on each side, as the logo does.
+  - AUDEOS is the only word that ever splits.
 - **Phone, every other word:** EVENTS, MUSIC, LIFESTYLE and any future word stay on one line, scaled so the whole word fills the container width edge to edge. Nothing is cropped, so short words render taller and long words shorter. The sizing method is a planning decision: container-query units with a per-word ratio, or a maintained fit-text library.
 - Trim the text box to the capital height and baseline with `text-box: trim-both cap alphabetic`, then apply equal padding above and below. Browsers without support keep the word, with slightly uneven spacing.
 - Post pages do not use the giant word. They use a large title.
@@ -229,7 +233,7 @@ Tests made redundant by the change are deleted in the same PR, including `Catego
 
 ## Reference mockups
 
-The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, with the logo artwork as the phone hero. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
+The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, and the phone stack is `stack-text-final.html`. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
 
 ## Out of scope
 
