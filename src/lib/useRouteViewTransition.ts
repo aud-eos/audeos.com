@@ -8,16 +8,14 @@ interface RouteChangeOptions {
 /**
  * Wraps each page navigation in a View Transition so the shared `giant-word`
  * element morphs between pages. The transition is held open until Next.js
- * reports the new route as rendered (or failed). Navigation is never blocked:
- * unsupported browsers, reduced-motion users and transition errors all fall
- * back to a normal route change.
+ * reports the new route as rendered (or failed). Unsupported browsers and
+ * reduced-motion users get a normal route change.
  */
 export function useRouteViewTransition(): void {
   const router = useRouter();
 
   useEffect( () => {
     if( !( "startViewTransition" in document ) ) return;
-    if( window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches ) return;
 
     let finishTransition: ( () => void ) | null = null;
 
@@ -28,17 +26,18 @@ export function useRouteViewTransition(): void {
 
     const handleStart = ( _url: string, options?: RouteChangeOptions ) => {
       if( options?.shallow ) return;
+      if( window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches ) return;
       settle();
-      try {
-        const transition = document.startViewTransition( () => new Promise<void>( resolve => {
-          finishTransition = resolve;
-        }) );
-        // A skipped transition rejects these promises; that is not an error for us.
-        transition?.ready?.catch( () => undefined );
-        transition?.finished?.catch( () => undefined );
-      } catch {
-        settle();
-      }
+      // The browser runs the update callback on a later frame, so the held
+      // promise and its resolver must exist before the route can finish.
+      const held = new Promise<void>( resolve => {
+        finishTransition = resolve;
+      });
+      const transition = document.startViewTransition( () => held );
+      transition.ready.catch( ( error: unknown ) => {
+        // A skipped transition rejects `ready` with an AbortError; anything else is real.
+        if( !( error instanceof DOMException && error.name === "AbortError" ) ) throw error;
+      });
     };
 
     router.events.on( "routeChangeStart", handleStart );

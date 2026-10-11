@@ -30,18 +30,52 @@ afterEach( () => {
   Reflect.deleteProperty( document, "startViewTransition" );
 });
 
+function fakeTransition(): ViewTransition {
+  return {
+    ready: Promise.resolve(),
+    finished: Promise.resolve(),
+    updateCallbackDone: Promise.resolve(),
+    skipTransition: () => undefined,
+    types: new Set<string>(),
+  };
+}
+
+function stubStartViewTransition( onStart: ( update: () => Promise<void> ) => void ) {
+  const startViewTransition = vi.fn( ( update?: ViewTransitionUpdateCallback ) => {
+    if( update ) onStart( update );
+    return fakeTransition();
+  });
+  Object.defineProperty( document, "startViewTransition", {
+    configurable: true,
+    value: startViewTransition,
+  });
+  return startViewTransition;
+}
+
 describe( "useRouteViewTransition", () => {
+  it( "releases the transition even when the route finishes before the browser runs the update callback", async () => {
+    let runUpdate: () => Promise<void> = () => Promise.resolve();
+    stubStartViewTransition( update => { runUpdate = update; });
+    render( <Harness /> );
+
+    handlers.get( "routeChangeStart" )?.( "/category/music", { shallow: false });
+    handlers.get( "routeChangeComplete" )?.( "/category/music" );
+
+    let settled = false;
+    void runUpdate().then( () => { settled = true; });
+    await Promise.resolve();
+    await Promise.resolve();
+    expect( settled ).toBe( true );
+  });
+
   it( "holds the transition open until the new route has rendered", async () => {
-    let updateDone: Promise<void> | undefined;
-    Object.defineProperty( document, "startViewTransition", {
-      configurable: true,
-      value: ( update: () => Promise<void> ) => { updateDone = update(); },
-    });
+    let updateDone: Promise<void> = Promise.resolve();
+    stubStartViewTransition( update => { updateDone = update(); });
     render( <Harness /> );
 
     handlers.get( "routeChangeStart" )?.( "/category/music", { shallow: false });
     let settled = false;
-    void updateDone?.then( () => { settled = true; });
+    void updateDone.then( () => { settled = true; });
     await Promise.resolve();
     expect( settled ).toBe( false );
 
@@ -55,22 +89,11 @@ describe( "useRouteViewTransition", () => {
     expect( handlers.size ).toBe( 0 );
   });
 
-  it( "does nothing when the user prefers reduced motion", () => {
-    Object.defineProperty( document, "startViewTransition", {
-      configurable: true,
-      value: vi.fn(),
-    });
+  it( "skips the transition when the user prefers reduced motion", () => {
+    const startViewTransition = stubStartViewTransition( () => undefined );
     vi.stubGlobal( "matchMedia", ( query: string ) => ({ matches: true, media: query }) );
     render( <Harness /> );
-    expect( handlers.size ).toBe( 0 );
-  });
-
-  it( "lets navigation proceed when starting the transition throws", () => {
-    Object.defineProperty( document, "startViewTransition", {
-      configurable: true,
-      value: () => { throw new Error( "transition unavailable" ); },
-    });
-    render( <Harness /> );
-    expect( () => handlers.get( "routeChangeStart" )?.( "/search", { shallow: false }) ).not.toThrow();
+    handlers.get( "routeChangeStart" )?.( "/search", { shallow: false });
+    expect( startViewTransition ).not.toHaveBeenCalled();
   });
 });
