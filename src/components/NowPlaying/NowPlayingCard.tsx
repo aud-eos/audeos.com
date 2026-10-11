@@ -1,9 +1,9 @@
 import { useEffect, useReducer } from "react";
-import { STREAM_ORIGIN } from "@/constants";
+import { STREAM_ORIGIN, STREAM_CHANNEL_URL } from "@/constants";
+import { NowPlaying } from "@/components/NowPlaying/nowPlayingTypes";
+import { useNowPlaying } from "@/components/NowPlaying/nowPlayingStore";
 import styles from "./NowPlayingCard.module.scss";
 
-const MAIN_CHANNEL_SLUG = "main";
-const POLL_INTERVAL_MS = 30_000;
 const PROGRESS_TICK_MS = 1_000;
 
 function formatMs( ms: number ): string {
@@ -19,22 +19,6 @@ function formatMs( ms: number ): string {
   const secondsPadded = seconds.toString().padStart( 2, "0" );
   return `${minutes}:${secondsPadded}`;
 }
-
-type Track = {
-  title: string;
-  artist: string | null;
-  started_at: string | null;
-  duration_ms: number | null;
-  position_ms: number | null;
-};
-
-type NowPlaying = {
-  channel: { slug: string; name: string; description: string | null };
-  source: "live" | "scheduled" | "loop_fallback";
-  track: Track | null;
-  next_track: { title: string; artist: string | null } | null;
-  listener_count: number;
-};
 
 type State = {
   data: NowPlaying | null;
@@ -82,44 +66,15 @@ export default function NowPlayingCard() {
   const [ state, dispatch ] = useReducer( reducer, INITIAL_STATE );
   const { data, errored, displayPositionMs, epoch } = state;
 
+  const nowPlaying = useNowPlaying();
+
   useEffect( () => {
-    let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const fetchOnce = async () => {
-      try {
-        const response = await fetch(
-          `${STREAM_ORIGIN}/api/now-playing/${MAIN_CHANNEL_SLUG}`,
-        );
-        if( !response.ok ) throw new Error( `HTTP ${response.status}` );
-        const payload = await response.json() as NowPlaying;
-        if( !cancelled ) dispatch({ type: "data", payload });
-      } catch {
-        if( !cancelled ) dispatch({ type: "error" });
-      }
-    };
-
-    const schedule = () => {
-      timer = setTimeout( () => {
-        if( document.visibilityState === "visible" ) fetchOnce();
-        schedule();
-      }, POLL_INTERVAL_MS );
-    };
-
-    const onVisibility = () => {
-      if( document.visibilityState === "visible" ) fetchOnce();
-    };
-
-    fetchOnce();
-    schedule();
-    document.addEventListener( "visibilitychange", onVisibility );
-
-    return () => {
-      cancelled = true;
-      if( timer ) clearTimeout( timer );
-      document.removeEventListener( "visibilitychange", onVisibility );
-    };
-  }, [] );
+    if( nowPlaying.data ) {
+      dispatch({ type: "data", payload: nowPlaying.data });
+    } else if( nowPlaying.errored ) {
+      dispatch({ type: "error" });
+    }
+  }, [ nowPlaying ] );
 
   useEffect( () => {
     if( !data?.track ) return;
@@ -134,7 +89,7 @@ export default function NowPlayingCard() {
   if( errored ) {
     return (
       <a
-        href={ `${STREAM_ORIGIN}/channels/${MAIN_CHANNEL_SLUG}` }
+        href={ STREAM_CHANNEL_URL }
         target="_blank"
         rel="noopener noreferrer"
         className={ styles.offline }
