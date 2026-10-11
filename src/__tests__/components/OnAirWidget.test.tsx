@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import OnAirWidget from "@/components/Layout/OnAirWidget";
 
 const payload = {
@@ -24,17 +24,22 @@ describe( "OnAirWidget", () => {
   });
 
   it( "still renders its label and link when the endpoint fails", async () => {
-    vi.stubGlobal( "fetch", vi.fn( async () => { throw new Error( "offline" ); }) );
+    const failingFetch = vi.fn( async () => { throw new Error( "offline" ); });
+    vi.stubGlobal( "fetch", failingFetch );
     render( <OnAirWidget /> );
+    await waitFor( () => expect( failingFetch ).toHaveBeenCalled() );
+    await act( async () => { await failingFetch.mock.results[0].value.catch( () => undefined ); });
     const link = screen.getByRole( "link", { name: /audeos\.fm, on air/i });
     expect( link.getAttribute( "href" ) ).toBe( "https://audeos.fm/channels/main" );
   });
 
   it( "ignores a malformed payload instead of rendering it", async () => {
-    vi.stubGlobal( "fetch", vi.fn( async () => ({ ok: true, status: 200, json: async () => ({ track: "x" }) }) ) );
+    const parseJson = vi.fn( async () => ({ track: "x" }) );
+    vi.stubGlobal( "fetch", vi.fn( async () => ({ ok: true, status: 200, json: parseJson }) ) );
     render( <OnAirWidget /> );
     const link = screen.getByRole( "link" );
-    await waitFor( () => expect( fetch ).toHaveBeenCalled() );
+    await waitFor( () => expect( parseJson ).toHaveBeenCalled() );
+    await act( async () => { await parseJson.mock.results[0].value; });
     expect( link.getAttribute( "aria-label" ) ).not.toContain( "Now playing" );
   });
 });

@@ -29,7 +29,7 @@ async function fetchOnce() {
     if( !isNowPlaying( payload ) ) throw new Error( "now-playing payload failed validation" );
     if( listeners.size > 0 ) emit({ data: payload, errored: false });
   } catch {
-    if( listeners.size > 0 ) emit({ ...currentState, errored: true });
+    if( listeners.size > 0 ) emit({ data: null, errored: true });
   }
 }
 
