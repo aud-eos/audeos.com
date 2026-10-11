@@ -78,8 +78,8 @@ describe( "CategoryPostSections", () => {
     );
     const sections = container.querySelectorAll( "section" );
     expect( sections ).toHaveLength( 3 );
-    expect( sections[0].id ).toBe( "category-music" );
-    expect( sections[1].id ).toBe( "category-events" );
+    expect( sections[0].id ).toBe( "category-events" );
+    expect( sections[1].id ).toBe( "category-music" );
     expect( sections[2].id ).toBe( "category-lifestyle" );
   });
 

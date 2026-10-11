@@ -8,8 +8,10 @@ import * as gtag from "../lib/google-analytics";
 import { GoogleAnalytics } from "@/lib/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
 
-const fontMona_Sans = Mona_Sans({
-  subsets:[ "latin" ],
+const fontMonaSans = Mona_Sans({
+  subsets: [ "latin" ],
+  axes: [ "wdth" ],
+  variable: "--font-mona-sans",
 });
 
 export default function App({ Component, pageProps }: AppProps ) {
@@ -31,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps ) {
       </Head>
       <CookieConsent />
       <GoogleAnalytics />
-      <div className={ fontMona_Sans.className }>
+      <div className={ `${fontMonaSans.className} ${fontMonaSans.variable}` }>
         <Component { ...pageProps } />
       </div>
     </>

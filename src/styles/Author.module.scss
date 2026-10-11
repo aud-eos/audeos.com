@@ -15,9 +15,6 @@
         border: 0.2rem solid gold;
         flex-shrink: 0;
         background: #000;
-        @media (prefers-color-scheme: light) {
-          background: #fff;
-        }
       }
 
       > h1 {

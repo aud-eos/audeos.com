@@ -18,37 +18,14 @@
 }
 
 
-/* LIGHT MODE */
-@media (prefers-color-scheme: light) {
+.button {
+  background: #c0c0c0; /* grey button */
+  color: #000000;      /* black text */
 
-  .button {
-    background: #c0c0c0;
-    color: #000000;
-
-    box-shadow: 12px 12px 0 #000000;
-  }
-
-  .button:active {
-    transform: translate(12px, 12px);
-    box-shadow: none;
-  }
-
+  box-shadow: 12px 12px 0 #0000aa; /* blue shadow */
 }
 
-
-/* DARK MODE */
-@media (prefers-color-scheme: dark) {
-
-  .button {
-    background: #c0c0c0; /* grey button */
-    color: #000000;      /* black text */
-
-    box-shadow: 12px 12px 0 #0000aa; /* blue shadow */
-  }
-
-  .button:active {
-    transform: translate(12px, 12px);
-    box-shadow: none;
-  }
-
+.button:active {
+  transform: translate(12px, 12px);
+  box-shadow: none;
 }

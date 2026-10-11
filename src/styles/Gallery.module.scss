@@ -25,9 +25,6 @@
   height: 540px;
   background: rgba(0, 0, 0, 0.08);
 
-  @media (prefers-color-scheme: light) {
-    background: rgba(0, 0, 0, 0.04);
-  }
 }
 
 .track {
@@ -94,10 +91,6 @@
   transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
   z-index: 2;
 
-  @media (prefers-color-scheme: light) {
-    background: rgba(255, 255, 255, 0.55);
-    color: rgba(0, 0, 0, 0.8);
-  }
 }
 
 // Always visible when hovered or keyboard-focused
@@ -121,9 +114,6 @@
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(-50%) scale(1.08);
 
-    @media (prefers-color-scheme: light) {
-      background: rgba(255, 255, 255, 0.85);
-    }
   }
 }
 
@@ -134,9 +124,6 @@
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(-50%) scale(1.08);
 
-    @media (prefers-color-scheme: light) {
-      background: rgba(255, 255, 255, 0.85);
-    }
   }
 }
 
@@ -156,10 +143,6 @@
   border-radius: 999px;
   pointer-events: none;
 
-  @media (prefers-color-scheme: light) {
-    color: rgba(0, 0, 0, 0.7);
-    background: rgba(255, 255, 255, 0.55);
-  }
 }
 
 // ── Caption & dots ────────────────────────────────────────────────────────────

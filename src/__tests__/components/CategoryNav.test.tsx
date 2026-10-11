@@ -15,24 +15,24 @@ describe( "CategoryNav", () => {
     const { container } = render( <CategoryNav currentCategory={ null } /> );
     const links = container.querySelectorAll( "a" );
     expect( links ).toHaveLength( 3 );
-    expect( links[0].getAttribute( "href" ) ).toBe( "/category/music" );
-    expect( links[1].getAttribute( "href" ) ).toBe( "/category/events" );
+    expect( links[0].getAttribute( "href" ) ).toBe( "/category/events" );
+    expect( links[1].getAttribute( "href" ) ).toBe( "/category/music" );
     expect( links[2].getAttribute( "href" ) ).toBe( "/category/lifestyle" );
   });
 
   it( "uses the title from categories.json for each label", () => {
     const { container } = render( <CategoryNav currentCategory={ null } /> );
     const links = container.querySelectorAll( "a" );
-    expect( links[0].textContent ).toBe( "Music" );
-    expect( links[1].textContent ).toBe( "Events" );
+    expect( links[0].textContent ).toBe( "Events" );
+    expect( links[1].textContent ).toBe( "Music" );
     expect( links[2].textContent ).toBe( "Lifestyle" );
   });
 
   it( "highlights only the current category's link", () => {
     const { container } = render( <CategoryNav currentCategory="music" /> );
     const links = container.querySelectorAll( "a" );
-    expect( links[0].className ).toContain( "categoryActive" );
-    expect( links[1].className ).not.toContain( "categoryActive" );
+    expect( links[1].className ).toContain( "categoryActive" );
+    expect( links[0].className ).not.toContain( "categoryActive" );
     expect( links[2].className ).not.toContain( "categoryActive" );
   });
 

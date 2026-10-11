@@ -162,9 +162,6 @@ ul.imageGallery {
 
         &:hover {
           background: rgba(255, 255, 255, 0.15);
-          @media (prefers-color-scheme: light) {
-            background: rgba(0, 0, 0, 0.1);
-          }
         }
       }
     }
@@ -352,15 +349,6 @@ ul.imageGallery {
   &:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.4);
-  }
-
-  @media (prefers-color-scheme: light) {
-    border-color: rgba(0, 0, 0, 0.25);
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.05);
-      border-color: rgba(0, 0, 0, 0.4);
-    }
   }
 }
 

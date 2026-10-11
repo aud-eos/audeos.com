@@ -5,19 +5,10 @@
 
   a {
     color: lightgreen;
-    @media (prefers-color-scheme: light) {
-      filter: drop-shadow(.1rem .1rem .1rem black);
-      text-shadow: -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000, 1px 1px 1px #000;
-    }
   }
 
   // Remove link effects from tag pills so they match the index page
   section a {
-    @media (prefers-color-scheme: light) {
-      filter: none;
-      text-shadow: none;
-      color: inherit;
-    }
   }
 
   .postNav {
@@ -28,9 +19,6 @@
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 
-    @media (prefers-color-scheme: light) {
-      border-top-color: rgba(0, 0, 0, 0.15);
-    }
 
     a {
       display: flex;
@@ -44,9 +32,6 @@
 
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        @media (prefers-color-scheme: light) {
-          background: rgba(0, 0, 0, 0.08);
-        }
       }
 
       > span:first-child {
@@ -104,9 +89,6 @@
           border: .2rem solid gold;
           margin: 0 .5rem 0 0;
           background: #000;
-          @media (prefers-color-scheme: light) {
-            background: #fff;
-          }
         }
       }
       > p {
