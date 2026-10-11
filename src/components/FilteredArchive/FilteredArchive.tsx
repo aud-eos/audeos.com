@@ -3,7 +3,6 @@ import { BlogPosts } from "@/utils/contentfulUtils";
 import BlogPostList from "@/components/Home/BlogPostList";
 import { Layout } from "@/components/Layout/Layout";
 import Pagination from "@/components/Home/Pagination";
-import CategoryNav from "@/components/CategoryNav";
 import { SeoHead } from "@/components/SeoHead";
 import { ArchiveFilter, ArchiveSeo } from "@/types/archiveFilter";
 
@@ -29,7 +28,6 @@ function filterPosts( posts: BlogPosts, filter: ArchiveFilter ) {
 export default function FilteredArchive({ posts, filter, page, seo }: FilteredArchiveProps ) {
   const filteredPosts = filterPosts( posts, filter );
   const tagId = filter.kind === "tag" ? filter.id : undefined;
-  const currentCategory = filter.kind === "category" ? filter.id : null;
 
   return (
     <>
@@ -45,7 +43,6 @@ export default function FilteredArchive({ posts, filter, page, seo }: FilteredAr
       </SeoHead>
       <Layout isFullwidth>
         <main className={ styles.main }>
-          <CategoryNav currentCategory={ currentCategory } />
           <BlogPostList
             posts={ filteredPosts }
             page={ page }

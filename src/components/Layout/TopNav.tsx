@@ -5,6 +5,12 @@ import Fuse from "fuse.js";
 
 import styles from "@/styles/Layout.module.scss";
 import { MAX_PREVIEW_RESULTS, SearchPost } from "@/lib/searchTypes";
+import categoriesData from "../../../data/categories.json";
+import { CategoryConfigMap } from "@/types/categoryConfig";
+import { buildNavLinks, isActivePath } from "@/lib/navLinks";
+import OnAirWidget from "@/components/Layout/OnAirWidget";
+
+const NAV_LINKS = buildNavLinks( categoriesData satisfies CategoryConfigMap );
 
 export const TopNav: FC = () => {
   const router = useRouter();
@@ -75,8 +81,8 @@ export const TopNav: FC = () => {
   };
 
   return (
-    <nav className={ styles.topnav }>
-      <Link href="/" scroll={ false }>Audeos.com</Link>
+    <header className={ styles.topbar }>
+      <Link href="/" scroll={ false } className={ styles.wordmark }>Audeos.com</Link>
       <div className={ styles.searchWrapper }>
         <form onSubmit={ handleSubmit } className={ styles.searchForm } role="search">
           <input
@@ -118,6 +124,24 @@ export const TopNav: FC = () => {
           </ul>
         ) }
       </div>
-    </nav>
+      <nav aria-label="Sections" className={ styles.sections }>
+        { NAV_LINKS.map( link => {
+          const active = isActivePath( router.asPath, link.href );
+          return (
+            <Link
+              key={ link.href }
+              href={ link.href }
+              className={ styles.section }
+              aria-current={ active ? "page" : undefined }
+            >
+              { link.label }
+            </Link>
+          );
+        }) }
+      </nav>
+      <div className={ styles.onAirSlot }>
+        <OnAirWidget />
+      </div>
+    </header>
   );
 };
