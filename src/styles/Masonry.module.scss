@@ -1,0 +1,25 @@
+.masonry {
+  --masonry-columns: 2;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(var(--masonry-columns), minmax(0, 1fr));
+  gap: 2rem 1rem;
+  align-items: start;
+
+  @media (min-width: 900px) {
+    --masonry-columns: 3;
+    gap: 2.25rem 2rem;
+  }
+
+  // Script-placed fallback: 1px rows, the gap is folded into each card's span.
+  &[data-placed] {
+    grid-auto-rows: 1px;
+    row-gap: 0;
+  }
+}
+
+@supports (display: grid-lanes) {
+  .masonry {
+    display: grid-lanes;
+  }
+}
