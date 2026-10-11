@@ -104,6 +104,10 @@ export interface BlogPostListProps {
 
 export default function BlogPostList({ posts, page, tagId, firstCardPriority = false }: BlogPostListProps ) {
   const listRef = useRef<HTMLUListElement>( null );
+  const visiblePosts = [ ...posts ]
+    .sort( sortBlogPostsByDate )
+    .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page );
+  const visibleKey = visiblePosts.map( post => post.sys.id ).join( "," );
 
   useEffect( () => {
     const list = listRef.current;
@@ -130,17 +134,15 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
     list.querySelectorAll( "li" ).forEach( item => observer.observe( item ) );
 
     return () => observer.disconnect();
-  }, [ posts, page, tagId ] );
+  }, [ visibleKey ] );
 
   useCardInteractions( listRef );
-  useMasonryPlacement( listRef, `${page}-${tagId}-${posts.length}` );
+  useMasonryPlacement( listRef, visibleKey );
 
   return (
     <ul id={ POSTS_ANCHOR } className={ `${styles.imageGallery} ${masonryStyles.masonry}` } role="list" ref={ listRef }>
       {
-        [ ...posts ]
-          .sort( sortBlogPostsByDate )
-          .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page )
+        visiblePosts
           .map( ( post, cardIndex ) => {
 
             return (
