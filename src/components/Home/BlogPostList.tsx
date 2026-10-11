@@ -98,11 +98,10 @@ function useCardInteractions( listRef: React.RefObject<HTMLUListElement | null> 
 export interface BlogPostListProps {
   posts: BlogPost[]
   page: number
-  tagId?: string
   firstCardPriority?: boolean
 }
 
-export default function BlogPostList({ posts, page, tagId, firstCardPriority = false }: BlogPostListProps ) {
+export default function BlogPostList({ posts, page, firstCardPriority = false }: BlogPostListProps ) {
   const listRef = useRef<HTMLUListElement>( null );
   const visiblePosts = [ ...posts ]
     .sort( sortBlogPostsByDate )
@@ -113,9 +112,13 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
     const list = listRef.current;
     if( !list ) return;
 
+    const visibleIds = new Set( visibleKey.split( "," ) );
+    const items = Array.from( list.querySelectorAll( "li" ) )
+      .filter( item => visibleIds.has( item.dataset.postId ?? "" ) );
+
     const prefersReducedMotion = window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches;
     if( prefersReducedMotion ) {
-      list.querySelectorAll( "li" ).forEach( item => item.classList.add( styles.visible ) );
+      items.forEach( item => item.classList.add( styles.visible ) );
       return;
     }
 
@@ -131,7 +134,7 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
       { threshold: OBSERVER_THRESHOLD },
     );
 
-    list.querySelectorAll( "li" ).forEach( item => observer.observe( item ) );
+    items.forEach( item => observer.observe( item ) );
 
     return () => observer.disconnect();
   }, [ visibleKey ] );
@@ -146,7 +149,7 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
           .map( ( post, cardIndex ) => {
 
             return (
-              <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
+              <li key={ post.sys.id } data-post-id={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
                 <PostCard
                   card={ cardDataFromPost( post, categoryLabelFor( post ) ) }
                   priority={ firstCardPriority && cardIndex === 0 }
