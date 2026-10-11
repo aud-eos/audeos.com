@@ -86,7 +86,7 @@
     // Article Header
     > header {
 
-      > figure, p {
+      > figure, p:not(.postMeta) {
         margin-bottom: 1rem;
       }
 
@@ -99,7 +99,7 @@
           filter: grayscale(1);
         }
       }
-      > p {
+      > p:not(.postMeta) {
         font-size: x-large;
       }
     }
