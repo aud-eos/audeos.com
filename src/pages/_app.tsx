@@ -7,6 +7,7 @@ import Head from "next/head";
 import * as gtag from "../lib/google-analytics";
 import { GoogleAnalytics } from "@/lib/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
+import { useRouteViewTransition } from "@/lib/useRouteViewTransition";
 
 const fontMonaSans = Mona_Sans({
   subsets: [ "latin" ],
@@ -17,6 +18,7 @@ const fontMonaSans = Mona_Sans({
 export default function App({ Component, pageProps }: AppProps ) {
 
   const router = useRouter();
+  useRouteViewTransition();
 
   /** Google Analytics Effect */
   useEffect( () => {
