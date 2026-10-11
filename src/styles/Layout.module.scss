@@ -28,7 +28,7 @@ header.topbar {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--ink);
 
-  @media (max-width: 699px) {
+  @media (max-width: 899px) {
     grid-template-columns: 1fr auto;
     grid-template-areas:
       "wordmark onair"

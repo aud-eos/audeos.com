@@ -7,10 +7,6 @@
     color: lightgreen;
   }
 
-  // Remove link effects from tag pills so they match the index page
-  section a {
-  }
-
   .postNav {
     display: flex;
     justify-content: space-between;
@@ -18,7 +14,6 @@
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-
 
     a {
       display: flex;
@@ -63,6 +58,7 @@
     letter-spacing: -0.04em;
     line-height: 0.95;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .postMeta {
@@ -82,10 +78,8 @@
   }
 
   > article {
-
     // Article Header
     > header {
-
       > figure {
         margin-bottom: 1rem;
         aspect-ratio: 4/3;
