@@ -51,7 +51,7 @@ A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, L
 
 - **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
 - **Overlaps are solid.** Where letters overlap they merge into one white shape. Words are plain text in a single element, with no per-letter markup and no blend effects. All words share the one -0.105em spacing, with no per-word adjustments.
-- **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled. This applies to AUDEOS too, because the logo artwork exists only in its stacked form.
+- **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled. This includes AUDEOS.
 - **Phone, AUDEOS only:** on Home and About, AUDEOS stacks as AUD over EOS, in the same live text as every other giant word, so no image is downloaded. The owner chose text over the logo artwork to keep the page light.
   - Each row is trimmed to its capital height and baseline, so the rows touch without overlapping, as in the logo.
   - The stack is centered on its visible letters. Negative letter spacing shortens each row's box after its last letter, which would shift centered text right, so each row gets trailing space equal to the letter spacing, 0.105em.
