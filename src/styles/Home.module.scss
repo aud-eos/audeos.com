@@ -54,189 +54,33 @@
 }
 
 ul.imageGallery {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 5rem;
-  justify-content: center;
   width: 100%;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 1.5rem 2rem 0;
 
-  // 2-column grid — equal gaps and page margins
-  @media (min-width: 800px) {
-    --grid-gap: 2rem;
-
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--grid-gap);
-    padding-left: var(--grid-gap);
-    padding-right: var(--grid-gap);
-  }
-
-  // Increase spacing at tablet size
-  @media (min-width: 872px) {
-    --grid-gap: 2.5rem;
-  }
-
-  // Wider screens — increase the uniform spacing
-  @media (min-width: 1100px) {
-    --grid-gap: 3.5rem;
-  }
-
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 1600px) {
-    --grid-gap: 4.5rem;
-    grid-template-columns: repeat(4, 1fr);
+  @media (max-width: 699px) {
+    padding: 1rem 1rem 0;
   }
 
   li {
-    // Scale reveal — hidden by default, shown by IntersectionObserver
     opacity: 0;
-    transform: scale(0.92);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-    // Stagger delays for multi-column layouts
-    &:nth-child(2) { transition-delay: 0.08s; }
-    &:nth-child(3) { transition-delay: 0.16s; }
-    &:nth-child(4) { transition-delay: 0.24s; }
-
-    // Reset stagger for rows beyond the first (every 2 cards at 2-col, etc.)
-    @media (min-width: 800px) {
-      &:nth-child(2n+1) { transition-delay: 0s; }
-      &:nth-child(2n+2) { transition-delay: 0.08s; }
-    }
-    @media (min-width: 1200px) {
-      &:nth-child(3n+1) { transition-delay: 0s; }
-      &:nth-child(3n+2) { transition-delay: 0.08s; }
-      &:nth-child(3n+3) { transition-delay: 0.16s; }
-    }
-    @media (min-width: 1600px) {
-      &:nth-child(4n+1) { transition-delay: 0s; }
-      &:nth-child(4n+2) { transition-delay: 0.08s; }
-      &:nth-child(4n+3) { transition-delay: 0.16s; }
-      &:nth-child(4n+4) { transition-delay: 0.24s; }
-    }
-
-    figure {
-      picture {
-        overflow: hidden;
-        display: block;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        transition: box-shadow 0.3s ease;
-        margin-bottom: 0.25rem;
-
-        &:hover {
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-        }
-
-        > img {
-          display: block;
-          width: 100%;
-          object-fit: cover;
-          aspect-ratio: 4/3;
-          border: 2px solid rgba(255, 255, 255, 0.1);
-          transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-          &:hover {
-            transform: scale(1.08);
-          }
-        }
-      }
-      > figcaption, section {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem;
-        padding-top: 0.5rem;
-        > a {
-          text-decoration: none;
-        }
-      }
-      > figcaption > a {
-        display: block;
-        padding: 0.2rem 0.4rem;
-        border-radius: 6px;
-        transition: background 0.15s ease;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.15);
-        }
-      }
-    }
+    translate: 0 24px;
+    transition: opacity 0.7s ease, translate 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  // Scale reveal — visible state (applied by IntersectionObserver)
   li.visible {
     opacity: 1;
-    transform: scale(1);
+    translate: 0 0;
   }
 
-  // Mobile tap feedback
-  @media (hover: none) {
-    li figure a:active {
-      transform: scale(0.97);
-      transition: transform 0.15s ease;
-    }
-  }
-
-  // Long-press preview state
   li.longPressPreview {
-    transform: scale(1) translateY(-4px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    figure picture > img {
-      transform: scale(1.05);
-    }
+    scale: 1.02;
   }
-}
 
-// Reduced motion: disable all animations
-@media (prefers-reduced-motion: reduce) {
-  ul.imageGallery {
+  @media (prefers-reduced-motion: reduce) {
     li {
       opacity: 1;
-      transform: none;
+      translate: none;
       transition: none;
-
-      figure picture {
-        transition: none;
-
-        &:hover {
-          box-shadow: none;
-        }
-
-        > img {
-          transition: none;
-
-          &:hover {
-            transform: none;
-          }
-        }
-      }
-    }
-
-    li.visible {
-      transition: none;
-    }
-
-    @media (hover: none) {
-      li figure a:active {
-        transform: none;
-        transition: none;
-      }
-    }
-
-    li.longPressPreview {
-      transform: none;
-      box-shadow: none;
-      transition: none;
-
-      figure picture > img {
-        transform: none;
-      }
     }
   }
 }

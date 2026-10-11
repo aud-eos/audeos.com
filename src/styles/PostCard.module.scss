@@ -1,0 +1,54 @@
+.card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.frame {
+  display: block;
+  overflow: hidden;
+  background-image: var(--hatch);
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.4s ease;
+  }
+}
+
+.card:hover .frame img {
+  scale: 1.03;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-inline: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.category {
+  color: var(--accent);
+}
+
+.title {
+  margin-top: 0.4rem;
+  padding-inline: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame img { transition: none; }
+}
