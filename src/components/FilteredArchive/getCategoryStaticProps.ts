@@ -36,6 +36,6 @@ export async function getCategoryStaticProps( context: GetStaticPropsContext ) {
   const filter: ArchiveFilter = { kind: "category", id: slugParam };
 
   return {
-    props: { posts, page, filter, seo },
+    props: { posts, page, filter, seo, heading: config.title },
   };
 }

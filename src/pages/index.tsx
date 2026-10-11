@@ -1,3 +1,4 @@
+import GiantWord from "@/components/GiantWord/GiantWord";
 import Link from "next/link";
 import styles from "@/styles/Home.module.scss";
 import { BlogPosts, getBlogPosts } from "@/utils/contentfulUtils";
@@ -35,6 +36,7 @@ export default function Home({ posts, categoryConfig, schema }: HomeProps ) {
       </SeoHead>
       <Layout isFullwidth>
         <main className={ styles.main }>
+          <GiantWord text="Audeos" stackedLogoOnPhone />
           <NowPlayingCard />
           <CategoryPostSections
             posts={ posts }
