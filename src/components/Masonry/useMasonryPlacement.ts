@@ -23,16 +23,24 @@ export function useMasonryPlacement( gridRef: RefObject<HTMLElement | null>, lay
       ( child ): child is HTMLElement => child instanceof HTMLElement,
     );
 
+    let lastWidth = 0;
+    let lastHeights: number[] = [];
+    let cancelled = false;
+
+    const measureHeights = () => items.map( item => item.getBoundingClientRect().height );
+
     const layout = () => {
       grid.removeAttribute( PLACED_ATTRIBUTE );
       items.forEach( item => {
         item.style.gridColumn = "";
         item.style.gridRow = "";
       });
+      lastWidth = grid.clientWidth;
+      lastHeights = measureHeights();
       const columnCount = countColumns( grid );
       if( columnCount < 1 ) return;
       const gap = parseFloat( getComputedStyle( grid ).rowGap ) || 0;
-      const heights = items.map( item => item.getBoundingClientRect().height + gap );
+      const heights = lastHeights.map( height => height + gap );
       placeCards( heights, columnCount, ROW_UNIT_PX ).forEach( ( placement, index ) => {
         items[index].style.gridColumn = String( placement.column + 1 );
         items[index].style.gridRow = `${placement.rowStart + 1} / span ${placement.rowSpan}`;
@@ -40,16 +48,24 @@ export function useMasonryPlacement( gridRef: RefObject<HTMLElement | null>, lay
       grid.setAttribute( PLACED_ATTRIBUTE, "" );
     };
 
-    layout();
-    void document.fonts?.ready.then( layout );
+    // Compare against the measurements layout() stored, so its own style changes do not retrigger it.
+    const layoutIfChanged = () => {
+      const currentHeights = measureHeights();
+      const heightChanged = currentHeights.some( ( height, index ) => height !== lastHeights[index] );
+      if( grid.clientWidth !== lastWidth || heightChanged ) layout();
+    };
 
-    let lastWidth = grid.clientWidth;
-    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver( () => {
-      if( grid.clientWidth === lastWidth ) return;
-      lastWidth = grid.clientWidth;
-      layout();
+    layout();
+    void document.fonts?.ready.then( () => {
+      if( !cancelled ) layout();
     });
+
+    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver( layoutIfChanged );
     resizeObserver?.observe( grid );
-    return () => resizeObserver?.disconnect();
+    items.forEach( item => resizeObserver?.observe( item ) );
+    return () => {
+      cancelled = true;
+      resizeObserver?.disconnect();
+    };
   }, [ gridRef, layoutKey ] );
 }
