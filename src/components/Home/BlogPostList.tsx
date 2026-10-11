@@ -94,31 +94,14 @@ function useCardInteractions( listRef: React.RefObject<HTMLUListElement | null> 
   }, [ listRef ] );
 }
 
-
-export interface BlogPostListProps {
-  posts: BlogPost[]
-  page: number
-  firstCardPriority?: boolean
-}
-
-export default function BlogPostList({ posts, page, firstCardPriority = false }: BlogPostListProps ) {
-  const listRef = useRef<HTMLUListElement>( null );
-  const visiblePosts = [ ...posts ]
-    .sort( sortBlogPostsByDate )
-    .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page );
-  const visibleKey = visiblePosts.map( post => post.sys.id ).join( "," );
-
+function useRevealOnScroll( listRef: React.RefObject<HTMLUListElement | null>, visibleKey: unknown ) {
   useEffect( () => {
     const list = listRef.current;
     if( !list ) return;
 
-    const visibleIds = new Set( visibleKey.split( "," ) );
-    const items = Array.from( list.querySelectorAll( "li" ) )
-      .filter( item => visibleIds.has( item.dataset.postId ?? "" ) );
-
     const prefersReducedMotion = window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches;
     if( prefersReducedMotion ) {
-      items.forEach( item => item.classList.add( styles.visible ) );
+      list.querySelectorAll( "li" ).forEach( item => item.classList.add( styles.visible ) );
       return;
     }
 
@@ -134,11 +117,27 @@ export default function BlogPostList({ posts, page, firstCardPriority = false }:
       { threshold: OBSERVER_THRESHOLD },
     );
 
-    items.forEach( item => observer.observe( item ) );
+    list.querySelectorAll( "li" ).forEach( item => observer.observe( item ) );
 
     return () => observer.disconnect();
-  }, [ visibleKey ] );
+  }, [ listRef, visibleKey ] );
+}
 
+
+export interface BlogPostListProps {
+  posts: BlogPost[]
+  page: number
+  firstCardPriority?: boolean
+}
+
+export default function BlogPostList({ posts, page, firstCardPriority = false }: BlogPostListProps ) {
+  const listRef = useRef<HTMLUListElement>( null );
+  const visiblePosts = [ ...posts ]
+    .sort( sortBlogPostsByDate )
+    .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page );
+  const visibleKey = visiblePosts.map( post => post.sys.id ).join( "," );
+
+  useRevealOnScroll( listRef, visibleKey );
   useCardInteractions( listRef );
   useMasonryPlacement( listRef, visibleKey );
 
@@ -149,7 +148,7 @@ export default function BlogPostList({ posts, page, firstCardPriority = false }:
           .map( ( post, cardIndex ) => {
 
             return (
-              <li key={ post.sys.id } data-post-id={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
+              <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
                 <PostCard
                   card={ cardDataFromPost( post, categoryLabelFor( post ) ) }
                   priority={ firstCardPriority && cardIndex === 0 }
