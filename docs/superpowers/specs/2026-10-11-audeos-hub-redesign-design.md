@@ -52,11 +52,11 @@ A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, L
 - **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
 - **Overlaps are solid.** Where letters overlap they merge into one white shape. Words are plain text in a single element, with no per-letter markup and no blend effects. All words share the one -0.105em spacing, with no per-word adjustments.
 - **Desktop:** one line, sized so it runs off the right edge and is clipped by its container, never scrolled. This includes AUDEOS.
-- **Phone, AUDEOS only:** on Home and About, AUDEOS stacks as AUD over EOS, in the same live text as every other giant word, so no image is downloaded. The owner chose text over the logo artwork to keep the page light.
-  - Each row is trimmed to its capital height and baseline, so the rows touch without overlapping, as in the logo.
-  - The stack is centered on its visible letters. Negative letter spacing shortens each row's box after its last letter, which would shift centered text right, so each row gets trailing space equal to the letter spacing, 0.105em.
-  - It is sized to leave a small margin on each side, as the logo does.
-  - AUDEOS is the only word that ever splits.
+- **Phone, AUDEOS only:** on Home and About, the stacked AUD over EOS is the owner's logo as an SVG, so it matches the favicon and logo exactly. AUDEOS is the only word that ever splits.
+  - Source: the cleaned SVG committed with this spec at `docs/superpowers/specs/assets/audeos-logo-clean.svg`. It is a single path, 3.9 KB, about 2.1 KB compressed, labeled "Audeos" with `role="img"`, optimized with SVGO.
+  - Its fill is `currentColor`. That only works when the SVG is inlined in the markup, so it ships as an inline SVG component, not an `<img>`.
+  - It was traced from the raster logo, so edges wobble slightly at extreme zoom. This is invisible at phone size and accepted. A re-export from untraced vector letters can replace the file later without code changes.
+  - Sized to leave a small margin on each side.
 - **Phone, every other word:** EVENTS, MUSIC, LIFESTYLE and any future word stay on one line, scaled so the whole word fills the container width edge to edge. Nothing is cropped, so short words render taller and long words shorter. The sizing method is a planning decision: container-query units with a per-word ratio, or a maintained fit-text library.
 - Trim the text box to the capital height and baseline with `text-box: trim-both cap alphabetic`, then apply equal padding above and below. Browsers without support keep the word, with slightly uneven spacing.
 - Post pages do not use the giant word. They use a large title.
