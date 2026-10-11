@@ -233,7 +233,7 @@ Tests made redundant by the change are deleted in the same PR, including `Catego
 
 ## Reference mockups
 
-The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, and the phone stack is `stack-text-final.html`. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
+The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, and the cleaned logo check is `svg-clean-check.html`. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
 
 ## Out of scope
 
