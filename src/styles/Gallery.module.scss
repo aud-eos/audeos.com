@@ -24,7 +24,6 @@
   overflow: hidden;
   height: 540px;
   background: rgba(0, 0, 0, 0.08);
-
 }
 
 .track {
@@ -90,7 +89,6 @@
   opacity: 0;
   transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
   z-index: 2;
-
 }
 
 // Always visible when hovered or keyboard-focused
@@ -113,7 +111,6 @@
   &:hover {
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(-50%) scale(1.08);
-
   }
 }
 
@@ -123,7 +120,6 @@
   &:hover {
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(-50%) scale(1.08);
-
   }
 }
 
@@ -142,7 +138,6 @@
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
   pointer-events: none;
-
 }
 
 // ── Caption & dots ────────────────────────────────────────────────────────────
