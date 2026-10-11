@@ -6,19 +6,7 @@ import { useMasonryPlacement } from "@/components/Masonry/useMasonryPlacement";
 import masonryStyles from "@/styles/Masonry.module.scss";
 import { PAGE_SIZE, POSTS_ANCHOR } from "@/constants";
 import { BlogPost } from "@/utils/contentfulUtils";
-import categoriesData from "../../../data/categories.json";
-import { CategoryConfigMap } from "@/types/categoryConfig";
-
-const CATEGORY_CONFIG: CategoryConfigMap = categoriesData satisfies CategoryConfigMap;
-
-function categoryLabelFor( post: BlogPost ): string {
-  const category = post.fields.category;
-  const config = category ? CATEGORY_CONFIG[category] : undefined;
-  if( !config ) {
-    throw new Error( `BlogPostList: post "${post.fields.slug}" has unknown category "${category}"` );
-  }
-  return config.title;
-}
+import { categoryTitleFor } from "@/utils/categoryTitle";
 
 const OBSERVER_THRESHOLD = 0.15;
 const LONG_PRESS_DURATION = 500;
@@ -150,7 +138,7 @@ export default function BlogPostList({ posts, page, firstCardPriority = false }:
             return (
               <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
                 <PostCard
-                  card={ cardDataFromPost( post, categoryLabelFor( post ) ) }
+                  card={ cardDataFromPost( post, categoryTitleFor( post.fields.category ) ) }
                   priority={ firstCardPriority && cardIndex === 0 }
                 />
               </li>

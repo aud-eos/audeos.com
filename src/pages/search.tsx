@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import Fuse from "fuse.js";
 
 import { getBlogPosts } from "@/utils/contentfulUtils";
@@ -9,10 +8,12 @@ import { getPlaylist } from "@/utils/spotify/getPlaylist";
 import { generateSearchIndex } from "@/lib/generateSearchIndex";
 import { SearchPost } from "@/lib/searchTypes";
 import { Layout } from "@/components/Layout/Layout";
-import { Tags } from "@/components/Tags";
-import DateTimeFormat from "@/components/DateTimeFormat";
+import PostCard, { cardImageFromPost } from "@/components/PostCard/PostCard";
+import { useMasonryPlacement } from "@/components/Masonry/useMasonryPlacement";
+import { categoryTitleFor } from "@/utils/categoryTitle";
 import styles from "@/styles/Home.module.scss";
 import searchStyles from "@/styles/Search.module.scss";
+import masonryStyles from "@/styles/Masonry.module.scss";
 import { META_DESCRIPTION, META_IMAGE, META_TITLE, SITE_URL } from "@/constants";
 import { SeoHead } from "@/components/SeoHead";
 import { stripMarkdown } from "@/utils/stringUtils";
@@ -48,6 +49,9 @@ export default function Search({ posts }: SearchProps ) {
     ? fuse.search( query ).map( result => result.item )
     : [];
 
+  const resultsRef = useRef<HTMLUListElement>( null );
+  useMasonryPlacement( resultsRef, results.map( post => post.slug ).join( "," ) );
+
   return (
     <>
       <SeoHead
@@ -56,7 +60,7 @@ export default function Search({ posts }: SearchProps ) {
         description={ META_DESCRIPTION }
         ogImage={ META_IMAGE }
       />
-      <Layout>
+      <Layout isFullwidth>
         <main className={ styles.main }>
           <section className={ searchStyles.searchResults }>
             { query && (
@@ -68,18 +72,21 @@ export default function Search({ posts }: SearchProps ) {
               <p className={ searchStyles.resultCount }>Enter a search term above.</p>
             ) }
 
-            <ul className={ searchStyles.resultList } role="list">
+            <ul
+              ref={ resultsRef }
+              className={ `${searchStyles.resultList} ${masonryStyles.masonry}` }
+              role="list"
+            >
               { results.map( post => (
                 <li key={ post.slug }>
-                  <Link href={ `/post/${post.slug}` }>
-                    <h3>{ post.title }</h3>
-                  </Link>
-                  { post.date && <DateTimeFormat timestamp={ post.date } /> }
-                  { post.description && (
-                    <p>{ post.description }</p>
-                  ) }
-                  <Tags
-                    tags={ post.tags.map( id => ({ sys: { id, type: "Link" as const, linkType: "Tag" as const } }) ) }
+                  <PostCard
+                    card={ {
+                      href: `/post/${post.slug}`,
+                      title: post.title,
+                      timestamp: post.date,
+                      categoryLabel: categoryTitleFor( post.category ),
+                      image: post.image,
+                    } }
                   />
                 </li>
               ) ) }
@@ -120,7 +127,8 @@ export async function getStaticProps() {
         spotifyText,
         tags: post.metadata.tags.map( tag => tag.sys.id ),
         date: resolvePostDate( post ),
-        imageUrl: post.fields.image?.fields.file?.url ?? "",
+        category: post.fields.category,
+        image: cardImageFromPost( post ),
       };
     }),
   );

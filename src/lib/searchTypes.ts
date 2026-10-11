@@ -1,3 +1,5 @@
+import { PostCardImage } from "@/components/PostCard/PostCard";
+
 export const MAX_PREVIEW_RESULTS = 5;
 
 export interface SearchPost {
@@ -9,5 +11,6 @@ export interface SearchPost {
   spotifyText: string;
   tags: string[];
   date: string;
-  imageUrl: string;
+  category: string;
+  image: PostCardImage | null;
 }

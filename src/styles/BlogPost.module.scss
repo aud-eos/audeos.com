@@ -86,11 +86,8 @@
     // Article Header
     > header {
 
-      > figure, p:not(.postMeta) {
-        margin-bottom: 1rem;
-      }
-
       > figure {
+        margin-bottom: 1rem;
         aspect-ratio: 4/3;
         position: relative;
         > img {
@@ -99,7 +96,9 @@
           filter: grayscale(1);
         }
       }
-      > p:not(.postMeta) {
+
+      .postDescription {
+        margin-bottom: 1rem;
         font-size: x-large;
       }
     }

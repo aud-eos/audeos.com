@@ -21,7 +21,8 @@ const makePost = ( overrides: Partial<SearchPost> = {}): SearchPost => ({
   spotifyText: "",
   tags: [ "tag1" ],
   date: "2024-06-01",
-  imageUrl: "",
+  category: "events",
+  image: null,
   ...overrides,
 });
 

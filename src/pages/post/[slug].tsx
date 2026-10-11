@@ -22,10 +22,7 @@ import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getOembed as getTikTokOembed, TikTokOembed } from "@/utils/tiktok/getOembed";
 import { TikTokEmbed } from "@/components/TikTokEmbed";
 import { LocationMap } from "@/components/LocationMap";
-import { CategoryConfigMap } from "@/types/categoryConfig";
-import categoriesData from "../../../data/categories.json";
-
-const CATEGORY_CONFIG: CategoryConfigMap = categoriesData satisfies CategoryConfigMap;
+import { categoryTitleFor } from "@/utils/categoryTitle";
 
 
 
@@ -101,8 +98,8 @@ export const BlogPostView: FC<BlogPostViewProps> = ({ post, playlist, soundCloud
               <p className={ styles.postMeta }>
                 <DateTimeFormat timestamp={ resolvePostDate( post ) } withDayName={ false } withTime={ false } />
                 { post.fields.category && (
-                  <Link href={ `/category/${post.fields.category}` } className={ styles.postCategory }>
-                    { CATEGORY_CONFIG[post.fields.category]?.title ?? post.fields.category }
+                  <Link href={ `/category/${post.fields.category}` }>
+                    { categoryTitleFor( post.fields.category ) }
                   </Link>
                 ) }
                 { authorName && (
@@ -118,7 +115,7 @@ export const BlogPostView: FC<BlogPostViewProps> = ({ post, playlist, soundCloud
                 <figcaption>{ metaImageDesc }</figcaption>
               </figure>
               <Tags tags={ post.metadata.tags } />
-              <p>{ post.fields.description }</p>
+              <p className={ styles.postDescription }>{ post.fields.description }</p>
             </header>
             <Markdown>{ post.fields.body || "" }</Markdown>
             <Gallery items={ resolveGalleryItems( post.fields.gallery ) } />
