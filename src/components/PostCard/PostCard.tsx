@@ -1,3 +1,4 @@
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import Picture from "@/components/Picture";
 import { BlogPost } from "@/utils/contentfulUtils";
@@ -54,19 +55,39 @@ export interface PostCardProps {
 }
 
 export default function PostCard({ card, priority = false }: PostCardProps ) {
+  const titleId = useId();
+  const frameRef = useRef<HTMLSpanElement>( null );
+  const [ imageLoaded, setImageLoaded ] = useState( false );
+  // The image may finish loading before hydration, so its load event is missed.
+  useEffect( () => {
+    if( frameRef.current?.querySelector( "img" )?.complete ) setImageLoaded( true );
+  }, [] );
   const coverRatio = card.image ? `${card.image.width} / ${card.image.height}` : PLACEHOLDER_RATIO;
   return (
-    <Link href={ card.href } className={ styles.card }>
-      <span className={ styles.frame } data-frame data-ratio={ coverRatio } style={ { aspectRatio: coverRatio } }>
+    <Link href={ card.href } className={ styles.card } aria-labelledby={ titleId }>
+      <span
+        ref={ frameRef }
+        className={ styles.frame }
+        data-frame
+        data-ratio={ coverRatio }
+        data-loaded={ imageLoaded ? "" : undefined }
+        style={ { aspectRatio: coverRatio } }
+      >
         { card.image && (
-          <Picture url={ card.image.url } maxWidth={ IMAGE_WIDTH } alt={ card.image.alt } priority={ priority } />
+          <Picture
+            url={ card.image.url }
+            maxWidth={ IMAGE_WIDTH }
+            alt={ card.image.alt }
+            priority={ priority }
+            onLoad={ () => setImageLoaded( true ) }
+          />
         ) }
       </span>
       <span className={ styles.meta }>
         <time dateTime={ card.timestamp }>{ formatCardDate( card.timestamp ) }</time>
         <span className={ styles.category }>{ card.categoryLabel }</span>
       </span>
-      <h3 className={ styles.title }>{ card.title }</h3>
+      <h3 id={ titleId } className={ styles.title }>{ card.title }</h3>
     </Link>
   );
 }

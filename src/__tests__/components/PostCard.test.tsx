@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 
 vi.mock( "@/utils/contentfulUtils", () => ({}) );
@@ -60,5 +60,25 @@ describe( "PostCard", () => {
     expect( screen.getByText( "06.11.26" ) ).toBeInTheDocument();
     expect( screen.getByText( "Events" ) ).toBeInTheDocument();
     expect( screen.getByRole( "link" ).getAttribute( "href" ) ).toBe( "/post/kick-off-day-party" );
+  });
+
+  it( "names the link by the title alone", () => {
+    render( <PostCard card={ card } /> );
+    expect( screen.getByRole( "link", { name: "Kick Off Day Party" }) ).toBeInTheDocument();
+  });
+
+  it( "keeps the hatch until the cover has loaded", () => {
+    const { container } = render( <PostCard card={ card } /> );
+    const frame = container.querySelector( "[data-frame]" );
+    expect( frame?.hasAttribute( "data-loaded" ) ).toBe( false );
+    const image = container.querySelector( "img" );
+    if( !image ) throw new Error( "expected a cover image" );
+    fireEvent.load( image );
+    expect( frame?.hasAttribute( "data-loaded" ) ).toBe( true );
+  });
+
+  it( "keeps the hatch on the placeholder", () => {
+    const { container } = render( <PostCard card={ { ...card, image: null } } /> );
+    expect( container.querySelector( "[data-frame]" )?.hasAttribute( "data-loaded" ) ).toBe( false );
   });
 });
