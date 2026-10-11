@@ -1,0 +1,61 @@
+.giant {
+  width: 100%;
+  overflow: clip;
+  padding: clamp(28px, 4vw, 44px) 0 clamp(28px, 4vw, 44px) 6px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.heading {
+  font: inherit;
+  line-height: 1;
+}
+
+.word {
+  display: inline-block;
+  font-family: var(--font-mona-sans), sans-serif;
+  font-size: 30vw;
+  font-weight: 900;
+  font-stretch: 82%;
+  letter-spacing: -0.105em;
+  padding-right: 0.105em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+  view-transition-name: giant-word;
+  animation: giant-word-load 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes giant-word-load {
+  from { translate: 30% 0; opacity: 0; }
+}
+
+.phoneLogo {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  .giant {
+    padding-inline: 0;
+  }
+
+  .word {
+    font-size: 22vw;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .phoneLogo {
+    display: block;
+    width: calc(100% - 56px);
+    height: auto;
+    margin-inline: auto;
+    color: var(--ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word { animation: none; }
+}
