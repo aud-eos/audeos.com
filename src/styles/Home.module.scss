@@ -101,6 +101,10 @@
   font-weight: 700;
 }
 
+$card-rest-opacity: 0.3;
+$card-focus-zoom: 1.08;
+$card-focus-duration: 0.3s;
+
 ul.imageGallery {
   list-style: none;
   display: grid;
@@ -168,16 +172,16 @@ ul.imageGallery {
         overflow: hidden;
         display: block;
 
+        // Images rest dimmed over the black page; the focused card (useCardFocus) shows full color.
         > img {
           display: block;
           width: 100%;
           object-fit: cover;
           aspect-ratio: 4/3;
-          transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-          &:hover {
-            transform: scale(1.08);
-          }
+          opacity: $card-rest-opacity;
+          transition:
+            opacity $card-focus-duration ease,
+            transform $card-focus-duration cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
       }
 
@@ -257,14 +261,12 @@ ul.imageGallery {
     }
   }
 
-  // Long-press preview state
-  li.longPressPreview {
-    transform: scale(1) translateY(-4px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
+  // Focused card: full color and zoom. Keyboard focus inside a card counts too.
+  li.focused,
+  li:focus-within {
     figure picture > img {
-      transform: scale(1.05);
+      opacity: 1;
+      transform: scale($card-focus-zoom);
     }
   }
 }
@@ -277,14 +279,15 @@ ul.imageGallery {
       transform: none;
       transition: none;
 
-      figure picture {
-        > img {
-          transition: none;
+      figure picture > img {
+        transition: none;
+      }
+    }
 
-          &:hover {
-            transform: none;
-          }
-        }
+    li.focused,
+    li:focus-within {
+      figure picture > img {
+        transform: none;
       }
     }
 
@@ -296,16 +299,6 @@ ul.imageGallery {
       li figure a:active {
         transform: none;
         transition: none;
-      }
-    }
-
-    li.longPressPreview {
-      transform: none;
-      box-shadow: none;
-      transition: none;
-
-      figure picture > img {
-        transform: none;
       }
     }
   }
