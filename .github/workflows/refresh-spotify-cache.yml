@@ -25,19 +25,12 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
         with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
+          cache: true
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
 
       - name: Build to refresh Spotify cache
         env:
@@ -47,7 +40,7 @@ jobs:
           CONTENTFUL_ENVIRONMENT: ${{ secrets.CONTENTFUL_ENVIRONMENT }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        run: yarn build
+        run: pnpm build
 
       - name: Commit updated cache files
         run: |

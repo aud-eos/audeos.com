@@ -4,36 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-**Package manager: Yarn 4** (pinned via the `packageManager` field in `package.json`). The project relies on **Corepack** to resolve the right yarn version per-project — Corepack reads `packageManager`, downloads the matching yarn release on first use, and shims the `yarn` binary on PATH. CI already runs `corepack enable` before `yarn install --immutable`. New clones on macOS need Corepack installed (Homebrew's Node formula excludes it):
+**Package manager: pnpm** (pinned via the `packageManager` field in `package.json`; pnpm switches to that version automatically). Node comes from `.nvmrc`, which [mise](https://mise.jdx.dev) reads when you `cd` into the repo. pnpm settings — the 7-day `minimumReleaseAge`, security `overrides` and the `allowBuilds` install-script allowlist — live in `pnpm-workspace.yaml`. CI installs with `pnpm/action-setup` and `pnpm install --frozen-lockfile`.
+
+**Do not start the dev server** — the user typically runs `pnpm dev` themselves in a separate terminal. Never launch it from Claude Code.
 
 ```bash
-brew install corepack   # one-time, removes Homebrew yarn/pnpm if installed
-corepack enable
-```
-
-After that, `yarn install` just works.
-
-**Do not start the dev server** — the user typically runs `yarn dev` themselves in a separate terminal. Never launch it from Claude Code.
-
-```bash
-yarn dev          # Start development server
-yarn build        # Build for production (postbuild runs next-sitemap automatically)
-yarn export       # Static export
-yarn test         # Run tests (Vitest)
-yarn test:watch   # Vitest in watch mode
-yarn lint         # ESLint + TypeScript typecheck
-yarn typecheck    # TypeScript only
-yarn format       # ESLint with auto-fix
+pnpm dev          # Start development server
+make build        # Build for production (reads .env; postbuild runs next-sitemap automatically)
+pnpm test         # Run tests (Vitest)
+pnpm test:watch   # Vitest in watch mode
+pnpm lint         # ESLint + TypeScript typecheck
+pnpm typecheck    # TypeScript only
+pnpm format       # ESLint with auto-fix
 ```
 
 Dependency management (Makefile):
 
 ```bash
-make upgrade         # yarn upgrade-interactive (table-style picker for available updates)
-make upgrade-latest  # yarn up '*' --recursive (bumps all packages to latest, including majors)
+make upgrade         # pnpm update --interactive --latest (pick updates from a table)
+make upgrade-latest  # pnpm update --latest (bumps all direct dependencies to latest, including majors)
+make audit           # pnpm audit
 ```
-
-Yarn 4 command shifts to remember: `yarn upgrade` → `yarn up`, `yarn list` → `yarn info -AR`, `yarn outdated` → `yarn upgrade-interactive`, `yarn audit` → `yarn npm audit`. CI flag `--frozen-lockfile` is `--immutable` in yarn 4.
 
 Contentful asset management (Makefile):
 
@@ -66,7 +57,7 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 
 ## Code style
 
-- Use `yarn format` as the project formatter (ESLint with auto-fix); follow it with `yarn test` to confirm nothing is broken.
+- Use `pnpm format` as the project formatter (ESLint with auto-fix); follow it with `pnpm test` to confirm nothing is broken.
 - Enforce required environment variables at module scope using `import { strict as assert } from "assert"` followed by `assert( !!VAR )`. This ensures the build fails immediately if a variable is missing. See `src/utils/contentfulUtils.ts` for the canonical example. Never defer these checks to function-level.
 
 ## Architecture
@@ -111,7 +102,7 @@ TypeScript types for Contentful content models live in `src/types/contentful/`. 
 ```bash
 make types
 ```
-This first exports the full space to `contentful/export.json` (intermediate file, gitignored), then generates types with JSDoc, type guards, and response variants. Do not use `yarn cf-content-types-generator` directly — it skips the export step and produces a stripped-down format.
+This first exports the full space to `contentful/export.json` (intermediate file, gitignored), then generates types with JSDoc, type guards, and response variants. Do not run `cf-content-types-generator` directly — it skips the export step and produces a stripped-down format.
 
 ## Invariants
 

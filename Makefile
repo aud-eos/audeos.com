@@ -2,15 +2,15 @@
 
 # Install dependencies
 install:
-	@yarn
+	@pnpm install
 
 # Build for production — postbuild hook runs next-sitemap automatically
 build:
-	@yarn build
+	@pnpm build
 
 # Start the Next.js development server with hot reload
 dev:
-	@yarn dev
+	@pnpm dev
 
 # Generate TypeScript declarations from Contentful content models.
 # Two-step process:
@@ -21,11 +21,11 @@ dev:
 # as it skips the export step and produces a stripped-down format.
 # https://github.com/contentful-userland/cf-content-types-generator#usage
 types:
-	@yarn contentful space export \
+	@pnpm exec contentful space export \
 		--config contentful/export-config.json \
 		--management-token $(CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN) \
 		--space-id $(CONTENTFUL_SPACE_ID)
-	@yarn cf-content-types-generator \
+	@pnpm exec cf-content-types-generator \
 		contentful/export.json \
 		-s $(CONTENTFUL_SPACE_ID) \
 		-t $(CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN) \
@@ -63,31 +63,30 @@ migrate-tags:
 
 # Run ESLint + TypeScript typecheck
 lint:
-	@yarn lint
+	@pnpm lint
 
 # Run ESLint with auto-fix
 format:
-	@yarn format
+	@pnpm format
 
 # Perform a vulnerability audit against the installed packages.
 audit:
-	@yarn npm audit
+	@pnpm audit
 
-# Upgrade dependencies interactively. Yarn 4's upgrade-interactive replaces
-# the old `yarn outdated` + `yarn upgrade` pair from yarn 1, showing a table
-# of available updates and letting you pick which to apply.
+# Upgrade dependencies interactively: shows a table of available updates,
+# including new majors, and lets you pick which to apply.
 upgrade:
-	@yarn upgrade-interactive
+	@pnpm update --interactive --latest
 
 # Upgrade all dependencies to their absolute latest versions, ignoring semver
 # ranges in package.json entirely. Use when intentionally adopting major
 # version bumps.
 upgrade-latest:
-	@yarn up '*' --recursive
+	@pnpm update --latest
 
 # TypeScript-only type check (no ESLint)
 typecheck:
-	@yarn typecheck
+	@pnpm typecheck
 
 # `make cleanup` — run after a PR merges to return to a clean main.
 # Switches to main, fast-forwards, force-deletes the (just-merged) branch
