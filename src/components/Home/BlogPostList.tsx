@@ -145,6 +145,18 @@ function GalleryImageLink({ url, title, pictureUrl, altText, priority }: Gallery
 }
 
 
+// Two copies of the title wrap identically in one grid cell: the hidden back copy paints each
+// line's black box and the front copy paints the text, so tightly set lines never cover each other.
+function StampTitle({ title }: { title: string }) {
+  return (
+    <h3>
+      <span className={ styles.stampBack } aria-hidden="true"><span>{ title }</span></span>
+      <span className={ styles.stampFront }><span>{ title }</span></span>
+    </h3>
+  );
+}
+
+
 export interface BlogPostListProps {
   posts: BlogPost[]
   page: number
@@ -179,14 +191,19 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
                 />
                 <figcaption>
                   <Link href={ url }>
-                    <h3>{ post.fields.title }</h3>
-                    <DateTimeFormat timestamp={ resolvePostDate( post ) } />
+                    <StampTitle title={ post.fields.title } />
+                    <DateTimeFormat
+                      timestamp={ resolvePostDate( post ) }
+                      withTime={ false }
+                      withDayName={ false }
+                    />
                   </Link>
+                  <Tags
+                    tags={ post.metadata.tags }
+                    tagId={ tagId }
+                    variant="stamp"
+                  />
                 </figcaption>
-                <Tags
-                  tags={ post.metadata.tags }
-                  tagId={ tagId }
-                />
               </figure>
             </li>
           );
