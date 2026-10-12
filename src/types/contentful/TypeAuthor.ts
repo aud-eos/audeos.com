@@ -1,4 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeBrandSkeleton } from "./TypeBrand";
 
 /**
  * Fields type definition for content type 'TypeAuthor'
@@ -37,6 +38,18 @@ export interface TypeAuthorFields {
      * @localized false
      */
     bio?: EntryFieldTypes.Text;
+    /**
+     * Field type definition for field 'resumeUrl' (Resume URL)
+     * @name Resume URL
+     * @localized false
+     */
+    resumeUrl?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'brands' (Brands)
+     * @name Brands
+     * @localized false
+     */
+    brands?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBrandSkeleton>>;
 }
 
 /**
@@ -45,7 +58,7 @@ export interface TypeAuthorFields {
  * @type {TypeAuthorSkeleton}
  * @author 5qtbtLdlsTzODfegrwA2Ez
  * @since 2023-04-10T06:17:51.446Z
- * @version 3
+ * @version 5
  */
 export type TypeAuthorSkeleton = EntrySkeletonType<TypeAuthorFields, "author">;
 /**
@@ -54,7 +67,7 @@ export type TypeAuthorSkeleton = EntrySkeletonType<TypeAuthorFields, "author">;
  * @type {TypeAuthor}
  * @author 5qtbtLdlsTzODfegrwA2Ez
  * @since 2023-04-10T06:17:51.446Z
- * @version 3
+ * @version 5
  */
 export type TypeAuthor<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeAuthorSkeleton, Modifiers, Locales>;
 
