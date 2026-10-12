@@ -1,10 +1,12 @@
 import styles from "@/styles/Home.module.scss";
 import { BlogPosts } from "@/utils/contentfulUtils";
 import BlogPostList from "@/components/Home/BlogPostList";
+import CategoryLanding from "@/components/Landing/CategoryLanding";
 import GiantWord from "@/components/GiantWord/GiantWord";
 import { Layout } from "@/components/Layout/Layout";
 import Pagination from "@/components/Home/Pagination";
 import { SeoHead } from "@/components/SeoHead";
+import { LandingContent } from "@/lib/siteContent";
 import { ArchiveFilter, ArchiveSeo } from "@/types/archiveFilter";
 
 export interface FilteredArchiveProps {
@@ -13,6 +15,7 @@ export interface FilteredArchiveProps {
   page: number
   seo: ArchiveSeo
   heading?: string
+  landing?: LandingContent | null
 }
 
 function filterPosts( posts: BlogPosts, filter: ArchiveFilter ) {
@@ -27,7 +30,7 @@ function filterPosts( posts: BlogPosts, filter: ArchiveFilter ) {
   }
 }
 
-export default function FilteredArchive({ posts, filter, page, seo, heading }: FilteredArchiveProps ) {
+export default function FilteredArchive({ posts, filter, page, seo, heading, landing }: FilteredArchiveProps ) {
   const filteredPosts = filterPosts( posts, filter );
   const tagId = filter.kind === "tag" ? filter.id : undefined;
 
@@ -46,6 +49,7 @@ export default function FilteredArchive({ posts, filter, page, seo, heading }: F
       <Layout isFullwidth>
         <main className={ styles.main }>
           { heading && <GiantWord text={ heading } /> }
+          { landing && <CategoryLanding landing={ landing } /> }
           <BlogPostList
             posts={ filteredPosts }
             page={ page }

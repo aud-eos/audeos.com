@@ -1,5 +1,4 @@
-import { AUTHOR_SLUG, CATEGORY_IDS } from "@/constants";
-import { CategoryConfigMap } from "@/types/categoryConfig";
+import { AUTHOR_SLUG, CATEGORY_IDS, CATEGORY_TITLES } from "@/constants";
 
 export interface NavLink {
   href: string;
@@ -8,14 +7,8 @@ export interface NavLink {
 
 export const ABOUT_LABEL = "About";
 
-export function buildNavLinks( categoryConfig: CategoryConfigMap ): NavLink[] {
-  const categoryLinks = CATEGORY_IDS.map( categoryId => {
-    const config = categoryConfig[categoryId];
-    if( !config ) {
-      throw new Error( `buildNavLinks: no categoryConfig entry for "${categoryId}"` );
-    }
-    return { href: `/category/${categoryId}`, label: config.title };
-  });
+export function buildNavLinks(): NavLink[] {
+  const categoryLinks = CATEGORY_IDS.map( categoryId => ({ href: `/category/${categoryId}`, label: CATEGORY_TITLES[categoryId] }) );
   return [ ...categoryLinks, { href: `/author/${AUTHOR_SLUG}`, label: ABOUT_LABEL } ];
 }
 

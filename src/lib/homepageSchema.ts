@@ -1,36 +1,34 @@
 import { BlogPosts } from "@/utils/contentfulUtils";
 import { resolvePostDate, sortBlogPostsByDate } from "@/utils/blogPostUtils";
-import { CategoryConfigMap } from "@/types/categoryConfig";
+import { HomeContent, LandingMap } from "@/lib/siteContent";
 import {
   CATEGORY_IDS,
-  META_DESCRIPTION,
-  META_TITLE,
+  CATEGORY_TITLES,
   POSTS_PER_CATEGORY_SECTION,
   SITE_URL,
 } from "@/constants";
 
-export function buildHomepageSchema( posts: BlogPosts, categoryConfig: CategoryConfigMap ) {
+export function buildHomepageSchema( posts: BlogPosts, landings: LandingMap, home: HomeContent ) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": META_TITLE,
-    "description": META_DESCRIPTION,
+    "name": home.seoTitle,
+    "description": home.seoDescription,
     "url": SITE_URL,
     "isPartOf": {
       "@type": "WebSite",
-      "name": META_TITLE,
+      "name": home.seoTitle,
       "url": SITE_URL,
     },
     "hasPart": CATEGORY_IDS.map( categoryId => {
-      const config = categoryConfig[categoryId];
       const categoryPosts = posts.items
         .filter( post => post.fields.category === categoryId )
         .sort( sortBlogPostsByDate )
         .slice( 0, POSTS_PER_CATEGORY_SECTION );
       return {
         "@type": "CollectionPage",
-        "name": config.title,
-        "description": config.description,
+        "name": CATEGORY_TITLES[categoryId],
+        "description": landings[categoryId].description,
         "url": `${SITE_URL}/category/${categoryId}`,
         "hasPart": categoryPosts.map( post => {
           const imageUrl = post.fields.image?.fields.file?.url;
