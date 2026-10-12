@@ -134,7 +134,7 @@ Artist first, then ventures. From top to bottom:
 3. **Ventures list:** a section heading (copy pass), then one row per brand in the author's `brands` order, in the Events price-list row layout: the name large, a monospace `kind` label, the one-line blurb, the optional `history` line, and a link out. Every row looks the same, whoever owns the business behind it. Logos are not shown on the page; they feed the structured data only.
    - audeos.fm
    - The North West Clothing, at nwclothing.com, with the history line "BEGAN AS CRISIS CLOTHING". Crisis Clothing was the first stage of the same clothing line, not a separate brand.
-   - Northwest Local Cannabis, at nw-local.com. The owner built the brand; the business of that name is a separate company the owner co-owns with two partners who are not involved in the brand. Its brand assets largely come from The North West Clothing.
+   - Northwest Local Cannabis, at nw-local.com. The owner built the brand and co-founded the business of that name, a separate company co-owned with two partners who are not involved in the brand. Its brand assets largely come from The North West Clothing.
 4. **Links row:** Resume (ben-petty.com) and GitHub, in the Music listening-row link style. The other profiles stay in the footer.
 
 DJ Audeos is not a ventures row: the page is already about Audeos the artist, and DJ work is covered by the bio, the Events page and the Events structured data. Rooted Community, listed on ben-petty.com, is a project the owner helped with and stays off audeos.com.
@@ -236,7 +236,7 @@ One module, `src/lib/structuredData/identity.ts`, builds every identity record f
 
 - **Person** (`@id` `https://www.audeos.com/#person`): name Audeos, `alternateName` "Benjamin S. Petty", "Ben Petty" and "Benny Petty" (a constant, matching ben-petty.com), the author photo, the About URL, and `sameAs` from `SOCIAL_LINKS` without Signal (a contact link, not a profile) plus the resume URL.
 - **Organization** (`@id` `https://www.audeos.com/#organization`): name "Audeos", `legalName` "AUDEOS, LLC" (a constant), the site URL and logo, `founder` the Person, and `brand` listing every brand without `separateCompany` (audeos.fm and The North West Clothing) with name, url, description and logo.
-- **Separate-company brands** (Northwest Local Cannabis): their own Organization with the Person as `founder`. Not listed as an AUDEOS, LLC brand and no licensing claim, since no license is on paper yet; adding one later is a data change.
+- **Separate-company brands** (Northwest Local Cannabis): their own Organization whose `founder` list includes the Person (the owner is a co-founder; schema.org `founder` is a list, so naming only the owner does not claim sole founding, and the other founders can be added later). Not listed as an AUDEOS, LLC brand and no licensing claim, since no license is on paper yet; adding one later is a data change.
 - **No `areaServed` or address**, so nothing limits Audeos to a city.
 
 Per page:
@@ -277,7 +277,7 @@ Per the shared testing rules, only behavior nothing else covers:
 
 - Build validation failures, one case per rule above, with expected messages written from the rules.
 - Price formatting and the two-price rental rows.
-- The identity module: AUDEOS, LLC brands appear under the Organization and separate-company brands appear as their own Organization with the Person as founder, Signal is left out of `sameAs`, and the records link by `@id`. The Events Service and Offer output.
+- The identity module: AUDEOS, LLC brands appear under the Organization and separate-company brands appear as their own Organization whose founders include the Person, Signal is left out of `sameAs`, and the records link by `@id`. The Events Service and Offer output.
 - The now-playing hook's response type guard, which replaces the current unchecked `as NowPlaying` cast.
 
 Tests made redundant by the change are deleted in the same PR, including `CategoryNav` and `categoryConfig` tests. Visual checks happen in the owner's running dev server.
