@@ -1,0 +1,120 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding: 1.5rem 0.75rem 3rem;
+  border-bottom: 1px solid var(--rule);
+
+  @media (min-width: 800px) {
+    padding-inline: 2rem;
+  }
+}
+
+.intro,
+.body {
+  max-width: 44rem;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.priceList {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+
+  @media (max-width: 699px) {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.priceName h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.includes {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--mute);
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-shrink: 0;
+
+  dt {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.unit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--mute);
+}
+
+.rental {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .priceName h3 {
+    font-size: 1.05rem;
+  }
+
+  .price {
+    font-size: 1.35rem;
+  }
+}
+
+.rentalHeading {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.footnote {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--mute);
+}
+
+.cta {
+  align-self: flex-start;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}

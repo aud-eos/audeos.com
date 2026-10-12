@@ -27,3 +27,6 @@ export const AUTHOR_SLUG = "audeos";
 export const STREAM_CHANNEL_URL = `${STREAM_ORIGIN}/channels/main`;
 
 export const LIVE_LINE_PREFIX = "Now playing on audeos.fm";
+
+export const GEAR_ONLY_LABEL = "Gear only";
+export const WITH_ME_LABEL = "With me";
