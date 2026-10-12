@@ -1,76 +1,23 @@
 .card {
-  --bg-deep: #0a0618;
-  --neon-cyan: #38bdf8;
-  --neon-violet: #a855f7;
-  --neon-magenta: #ec4899;
-  --text-warm: #f5f3ff;
-
   position: relative;
-  isolation: isolate;
   display: block;
   width: 100%;
   max-width: 64rem;
   margin: 0 auto 4rem;
   padding: 1.6rem 1.85rem;
   border-radius: 18px;
-  color: var(--text-warm);
+  border: 1px solid var(--rule);
+  color: var(--ink);
   text-decoration: none;
   overflow: hidden;
-  background: var(--bg-deep);
-  box-shadow:
-    0 18px 48px rgba(10, 6, 24, 0.4),
-    0 4px 16px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--paper);
+  transition: border-color 0.3s ease, transform 0.3s ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     transform: translateY(-2px);
-    box-shadow:
-      0 24px 64px rgba(10, 6, 24, 0.5),
-      0 8px 24px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
   }
-
-  /* Aurora drift — a rotating conic-gradient with a heavy blur produces an
-     unmistakable, continuously-moving color wash. Pivot is the layer's
-     center; inset is square-ish so the rotated layer always covers the card. */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    z-index: -2;
-    background: conic-gradient(
-      from 0deg,
-      rgba(168, 85, 247, 0.7),
-      rgba(56, 189, 248, 0.7),
-      rgba(236, 72, 153, 0.6),
-      rgba(168, 85, 247, 0.7),
-      rgba(56, 189, 248, 0.7),
-      rgba(168, 85, 247, 0.7)
-    );
-    filter: blur(70px);
-    animation: aurora 16s linear infinite;
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  /* Subtle frost — light backdrop blur for depth, doesn't hide the rotation */
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: rgba(15, 10, 35, 0.18);
-    backdrop-filter: blur(6px) saturate(140%);
-    -webkit-backdrop-filter: blur(6px) saturate(140%);
-    pointer-events: none;
-  }
-}
-
-@keyframes aurora {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .content {
@@ -86,8 +33,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--neon-cyan);
-  opacity: 0.9;
+  color: var(--accent);
 }
 
 .eq {
@@ -99,7 +45,7 @@
 
 .eq span {
   width: 3px;
-  background: var(--neon-cyan);
+  background: var(--accent);
   border-radius: 1px;
   opacity: 0.85;
   animation: eq 0.85s ease-in-out infinite;
@@ -123,17 +69,13 @@
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.15;
-  background: linear-gradient(90deg, var(--text-warm), #e9d5ff);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-          color: transparent;
+  color: var(--ink);
 }
 
 .artist {
   margin: 0 0 0.85rem;
   font-size: 0.95rem;
-  opacity: 0.75;
+  color: var(--mute);
 }
 
 .progress {
@@ -147,21 +89,21 @@
   flex: 1;
   height: 4px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--rule);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet));
+  background: var(--accent);
   border-radius: inherit;
   transition: width 0.4s linear;
 }
 
 .progressTime {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
-  opacity: 0.7;
+  color: var(--mute);
   white-space: nowrap;
 }
 
@@ -169,19 +111,19 @@
   margin: 0 0 0.95rem;
   font-size: 0.85rem;
   font-style: italic;
-  opacity: 0.7;
+  color: var(--mute);
 }
 
 .footer {
   margin-top: 0.6rem;
   padding-top: 0.7rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--rule);
 }
 
 .channelInfo {
   margin: 0;
   font-size: 0.78rem;
-  opacity: 0.55;
+  color: var(--mute);
 }
 
 .footerRow {
@@ -193,13 +135,12 @@
 }
 
 .listenerCount {
-  opacity: 0.7;
+  color: var(--mute);
 }
 
 .cta {
-  color: var(--neon-cyan);
+  color: var(--accent);
   font-weight: 600;
-  opacity: 0.95;
 }
 
 /* ===== Skeleton ===== */
@@ -211,11 +152,8 @@
   margin: 0 auto 4rem;
   padding: 1.6rem 1.85rem;
   border-radius: 18px;
-  background: linear-gradient(135deg,
-    rgba(168, 85, 247, 0.1),
-    rgba(56, 189, 248, 0.06));
-  border: 1px solid rgba(168, 85, 247, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  background-image: var(--hatch);
+  border: 1px solid var(--rule);
   animation: skeletonPulse 1.6s ease-in-out infinite;
   pointer-events: none;
   cursor: default;
@@ -235,15 +173,15 @@
   margin: 0 auto 4rem;
   padding: 1.6rem 1.85rem;
   border-radius: 18px;
-  color: rgba(245, 243, 255, 0.85);
+  color: var(--mute);
   text-decoration: none;
-  background: linear-gradient(180deg, rgba(40, 40, 55, 0.8), rgba(20, 20, 30, 0.9));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  background: var(--paper);
+  border: 1px solid var(--rule);
   transition: border-color 0.2s ease, transform 0.2s ease;
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.16);
+  &:hover,
+  &:focus-visible {
+    border-color: var(--mute);
     transform: translateY(-1px);
   }
 }
@@ -252,7 +190,6 @@
   margin: 0.6rem 0 0;
   font-size: 0.95rem;
   font-weight: 600;
-  opacity: 0.75;
 }
 
 /* ===== Mobile / narrow widths ===== */
@@ -272,16 +209,15 @@
   .skeleton {
     animation: none;
   }
-  .card::before {
-    animation: none;
-  }
   .card,
   .offline,
   .progressFill {
     transition: none;
   }
   .card:hover,
-  .offline:hover {
+  .card:focus-visible,
+  .offline:hover,
+  .offline:focus-visible {
     transform: none;
   }
 }

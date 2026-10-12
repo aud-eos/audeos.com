@@ -5,6 +5,10 @@ vi.mock( "@/components/Markdown", () => ({
   Markdown: ({ children }: { children?: string }) => <p>{ children }</p>,
 }) );
 
+vi.mock( "@/components/NowPlaying/NowPlayingCard", () => ({
+  default: () => <div data-testid="now-playing-card" />,
+}) );
+
 import CategoryLanding from "@/components/Landing/CategoryLanding";
 import { LandingContent, PricePackage } from "@/lib/siteContent";
 
@@ -41,6 +45,18 @@ describe( "CategoryLanding", () => {
 
   it( "leaves out the rental section when there are no rental packages", () => {
     render( <CategoryLanding landing={ landing({ packages: [ party ], rentalHeading: "Speaker rental" }) } /> );
+    expect( screen.queryByRole( "heading", { name: "Speaker rental" }) ).toBeNull();
+  });
+
+  it( "renders the Music intro, the audeos.fm player and every listening link", () => {
+    render( <CategoryLanding
+      landing={ landing({
+        category: "music",
+        intro: "Original music, DJ mixes, edits and playlists. Tune in to the live stream on audeos.fm.",
+      }) } /> );
+    expect( screen.getByTestId( "now-playing-card" ) ).toBeInTheDocument();
+    expect( screen.getAllByRole( "link" ).map( link => link.textContent ) )
+      .toEqual( [ "SoundCloud", "Mixcloud", "Bandcamp", "Spotify", "YouTube", "Dropbox" ] );
     expect( screen.queryByRole( "heading", { name: "Speaker rental" }) ).toBeNull();
   });
 });
