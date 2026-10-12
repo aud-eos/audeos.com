@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { CATEGORY_IDS } from "@/constants";
 import { render } from "@testing-library/react";
 import React from "react";
 
@@ -79,9 +80,9 @@ describe( "CategoryPostSections", () => {
     );
     const sections = container.querySelectorAll( "section" );
     expect( sections ).toHaveLength( 3 );
-    expect( sections[0].id ).toBe( "category-events" );
-    expect( sections[1].id ).toBe( "category-music" );
-    expect( sections[2].id ).toBe( "category-lifestyle" );
+    expect( Array.from( sections, section => section.id ) ).toEqual(
+      CATEGORY_IDS.map( categoryId => `category-${categoryId}` ),
+    );
   });
 
   it( "caps each section at POSTS_PER_CATEGORY_SECTION (6) most recent posts", () => {

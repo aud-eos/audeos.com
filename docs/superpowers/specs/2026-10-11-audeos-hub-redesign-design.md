@@ -47,7 +47,7 @@ The redesign keeps the live site's existing fonts and drops everything else.
 
 ### The giant word
 
-A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, LIFESTYLE.
+A huge word anchors the home, category and About pages: AUDEOS, MUSIC, EVENTS, LIFESTYLE.
 
 - **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
 - **Overlaps are solid.** Where letters overlap they merge into one white shape. Words are plain text in a single element, with no per-letter markup and no blend effects. All words share the one -0.105em spacing, with no per-word adjustments.
@@ -57,7 +57,7 @@ A huge word anchors the home, category and About pages: AUDEOS, EVENTS, MUSIC, L
   - Its fill is `currentColor`. That only works when the SVG is inlined in the markup, so it ships as an inline SVG component, not an `<img>`.
   - It was traced from the raster logo, so edges wobble slightly at extreme zoom. This is invisible at phone size and accepted. A re-export from untraced vector letters can replace the file later without code changes.
   - Sized to leave a small margin on each side.
-- **Phone, every other word:** EVENTS, MUSIC, LIFESTYLE and any future word stay on one line, scaled so the whole word fills the container width edge to edge. Nothing is cropped, so short words render taller and long words shorter. The sizing method is a planning decision: container-query units with a per-word ratio, or a maintained fit-text library.
+- **Phone, every other word:** MUSIC, EVENTS, LIFESTYLE and any future word stay on one line, scaled so the whole word fills the container width edge to edge. Nothing is cropped, so short words render taller and long words shorter. The sizing method is a planning decision: container-query units with a per-word ratio, or a maintained fit-text library.
 - Trim the text box to the capital height and baseline with `text-box: trim-both cap alphabetic`, then apply equal padding above and below. Browsers without support keep the word, with slightly uneven spacing.
 - Post pages do not use the giant word. They use a large title.
 
@@ -84,7 +84,7 @@ Kept minimal and fully disabled under `prefers-reduced-motion`.
 
 ### Top bar
 
-- **Desktop:** wordmark "Audeos.com", the existing search input, then Events, Music, Lifestyle and About links, then the on-air widget.
+- **Desktop:** wordmark "Audeos.com", the existing search input, then Music, Events, Lifestyle and About links, then the on-air widget.
 - **Phone:** wordmark and on-air widget on the first row, full-width search on the second, the four links on the third. No menu hides any link.
 - The current page's link is marked with a light green underline.
 - The existing search behavior, with its preview dropdown and `/search` page, is unchanged.
@@ -108,7 +108,7 @@ The existing footer content, restyled: all twelve social icons, the copyright li
 1. Top bar.
 2. Giant AUDEOS.
 3. Intro paragraph from Contentful, with one plain text link, "DJ FOR HIRE →", to `/category/events`. No dot, no "available for hire" label and no resume link.
-4. Three category blocks in this order: Events, Music, Lifestyle. Each has:
+4. Three category blocks in this order: Music, Events, Lifestyle. Each has:
    - The category name in the condensed giant-word style at section size, with a small "See all N →" link beside it.
    - The six newest posts as masonry cards.
    - A full-width bordered link in the condensed style, "All N events →".

@@ -8,10 +8,10 @@ const categoryConfig = {
 };
 
 describe( "buildNavLinks", () => {
-  it( "lists Events, Music, Lifestyle, then About", () => {
+  it( "lists Music, Events, Lifestyle, then About", () => {
     expect( buildNavLinks( categoryConfig ) ).toEqual( [
-      { href: "/category/events", label: "Events" },
       { href: "/category/music", label: "Music" },
+      { href: "/category/events", label: "Events" },
       { href: "/category/lifestyle", label: "Lifestyle" },
       { href: "/author/audeos", label: "About" },
     ] );

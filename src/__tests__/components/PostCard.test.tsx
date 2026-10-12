@@ -9,28 +9,26 @@ vi.mock( "next/link", () => ({
   ),
 }) );
 
-import PostCard, { cardDataFromPost } from "@/components/PostCard/PostCard";
+import PostCard, { cardImageFromPost } from "@/components/PostCard/PostCard";
 import { makeBlogPost } from "../helpers/makeBlogPost";
 
 const COVER_URL = "//images.ctfassets.net/flyer.png";
 
-describe( "cardDataFromPost", () => {
+describe( "cardImageFromPost", () => {
   it( "carries the cover's real dimensions", () => {
     const post = makeBlogPost({
       cover: { url: COVER_URL, description: "Flyer", dimensions: { width: 1080, height: 1350 } },
     });
-    const card = cardDataFromPost( post, "Events" );
-    expect( card.image ).toEqual({ url: COVER_URL, alt: "Flyer", width: 1080, height: 1350 });
-    expect( card.href ).toBe( "/post/kick-off-day-party" );
+    expect( cardImageFromPost( post ) ).toEqual({ url: COVER_URL, alt: "Flyer", width: 1080, height: 1350 });
   });
 
   it( "has no image when the post has no cover", () => {
-    expect( cardDataFromPost( makeBlogPost(), "Events" ).image ).toBeNull();
+    expect( cardImageFromPost( makeBlogPost() ) ).toBeNull();
   });
 
   it( "fails the build when the cover image has no dimensions", () => {
     const post = makeBlogPost({ cover: { url: COVER_URL } });
-    expect( () => cardDataFromPost( post, "Events" ) ).toThrow( /kick-off-day-party/ );
+    expect( () => cardImageFromPost( post ) ).toThrow( /kick-off-day-party/ );
   });
 });
 

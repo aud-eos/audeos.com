@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { buildHomepageSchema } from "@/lib/homepageSchema";
 import { CategoryConfigMap } from "@/types/categoryConfig";
+import { CATEGORY_IDS } from "@/constants";
 
 const categoryConfig: CategoryConfigMap = {
   music: { title: "Music", description: "Music posts", ogImage: null },
@@ -36,6 +37,11 @@ const makePost = ({
   metadata: { tags: [] },
 });
 
+// Sections render in CATEGORY_IDS order; look one up by category instead of by position.
+function sectionFor( schema: ReturnType<typeof buildHomepageSchema>, categoryId: ( typeof CATEGORY_IDS )[number] ) {
+  return schema.hasPart[CATEGORY_IDS.indexOf( categoryId )];
+}
+
 describe( "buildHomepageSchema", () => {
   it( "returns a top-level CollectionPage with site metadata", () => {
     const schema = buildHomepageSchema(
@@ -62,21 +68,14 @@ describe( "buildHomepageSchema", () => {
       categoryConfig,
     );
     expect( schema.hasPart ).toHaveLength( 3 );
-    expect( schema.hasPart[0] ).toMatchObject({
-      "@type": "CollectionPage",
-      "name": "Events",
-      "url": "https://www.audeos.com/category/events",
-    });
-    expect( schema.hasPart[1] ).toMatchObject({
+    expect( schema.hasPart.map( ( section: { url: string }) => section.url ) ).toEqual(
+      CATEGORY_IDS.map( categoryId => `https://www.audeos.com/category/${categoryId}` ),
+    );
+    expect( sectionFor( schema, "music" ) ).toMatchObject({
       "@type": "CollectionPage",
       "name": "Music",
       "description": "Music posts",
       "url": "https://www.audeos.com/category/music",
-    });
-    expect( schema.hasPart[2] ).toMatchObject({
-      "@type": "CollectionPage",
-      "name": "Lifestyle",
-      "url": "https://www.audeos.com/category/lifestyle",
     });
   });
 
@@ -93,7 +92,7 @@ describe( "buildHomepageSchema", () => {
       }) );
     }
     const schema = buildHomepageSchema({ items } as never, categoryConfig );
-    const musicSection = schema.hasPart[1];
+    const musicSection = sectionFor( schema, "music" );
     expect( musicSection.hasPart ).toHaveLength( 6 );
     const slugs = musicSection.hasPart.map( ( post: { url: string }) => post.url );
     expect( slugs[0] ).toContain( "m8" );
@@ -121,7 +120,7 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    const musicSection = schema.hasPart[1];
+    const musicSection = sectionFor( schema, "music" );
     expect( musicSection.hasPart[0] ).toMatchObject({
       "@type": "BlogPosting",
       "headline": "No Image",
@@ -143,8 +142,8 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    expect( schema.hasPart[0].hasPart ).toEqual( [] );
-    expect( schema.hasPart[2].hasPart ).toEqual( [] );
+    expect( sectionFor( schema, "events" ).hasPart ).toEqual( [] );
+    expect( sectionFor( schema, "lifestyle" ).hasPart ).toEqual( [] );
   });
 
   it( "does not include posts from other categories in a section's hasPart", () => {
@@ -155,8 +154,8 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    const musicSection = schema.hasPart[1];
-    const eventsSection = schema.hasPart[0];
+    const musicSection = sectionFor( schema, "music" );
+    const eventsSection = sectionFor( schema, "events" );
     expect( musicSection.hasPart ).toHaveLength( 1 );
     expect( musicSection.hasPart[0].url ).toContain( "m1" );
     expect( eventsSection.hasPart ).toHaveLength( 1 );
