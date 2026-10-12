@@ -1,0 +1,744 @@
+<title>Dithered Post Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,300..900&display=swap">
+<style>
+/* Layout: control strip over an edge-to-edge 4:3 grid; site tokens, dark only */
+:root {
+  --ink: #fff;
+  --paper: #000;
+  --mute: rgba(255, 255, 255, 0.55);
+  --rule: rgba(255, 255, 255, 0.16);
+  --accent: lightgreen;
+  --panel: #0b0d0b;
+  --font-display: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Roboto Mono", monospace;
+  color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--font-display); }
+* { box-sizing: border-box; }
+a { color: inherit; }
+
+.page { padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 20px; }
+header.intro { display: grid; gap: 6px; max-width: 70ch; }
+header.intro h1 {
+  margin: 0; font-size: clamp(2.2rem, 7vw, 4.5rem); line-height: 0.9;
+  font-weight: 900; font-stretch: 125%; letter-spacing: -0.02em; text-transform: uppercase;
+}
+header.intro p { margin: 0; color: var(--mute); font-size: 0.95rem; line-height: 1.45; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end;
+  padding: 14px; background: var(--panel); border: 1px solid var(--rule); border-radius: 10px;
+}
+.control { display: grid; gap: 6px; min-width: 0; }
+.control > span, .control legend {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute); padding: 0;
+}
+fieldset.control { border: 0; margin: 0; padding: 0; }
+.segmented { display: flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.segmented input { position: absolute; opacity: 0; pointer-events: none; }
+.segmented label {
+  font-family: var(--font-mono); font-size: 0.78rem; padding: 6px 10px; cursor: pointer;
+  border-right: 1px solid var(--rule); white-space: nowrap; color: var(--mute);
+}
+.segmented label:last-of-type { border-right: 0; }
+.segmented input:checked + label { background: var(--ink); color: var(--paper); }
+.segmented input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: -2px; }
+.control input[type="range"] { width: 120px; accent-color: var(--accent); }
+.control output { font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.range-row { display: flex; gap: 8px; align-items: center; }
+.replay {
+  font-family: var(--font-mono); font-size: 0.78rem; padding: 6px 12px; cursor: pointer;
+  background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px;
+}
+.replay:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.note { font-family: var(--font-mono); font-size: 0.8rem; color: var(--mute); margin: 0; line-height: 1.5; max-width: 90ch; }
+.note strong { color: var(--accent); font-weight: 500; }
+
+/* Grid */
+.grid {
+  list-style: none; margin: 0 -16px; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: var(--gutter, 0px);
+  background: var(--rule);
+}
+@media (min-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1300px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+.grid[data-gutter="none"] { --gutter: 0px; }
+.grid[data-gutter="hairline"] { --gutter: 1px; }
+.grid[data-gutter="site"] { --gutter: 16px; background: var(--paper); margin: 0; }
+
+.card { position: relative; background: var(--paper); min-width: 0; -webkit-touch-callout: none; }
+.frame { position: relative; display: block; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--paper); }
+.frame img, .frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; -webkit-user-select: none; user-select: none; }
+.frame img { object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
+.frame canvas { opacity: 1; transition: opacity 0.35s ease; }
+
+.caption { display: grid; gap: 4px; padding: 10px 12px 0; }
+.title-link { text-decoration: none; display: grid; gap: 4px; }
+.title-link h3 { margin: 0; font-size: 1.02rem; line-height: 1.15; font-weight: 700; font-stretch: 110%; text-wrap: balance; }
+.title-link time { font-family: var(--font-mono); font-size: 0.72rem; color: var(--mute); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 12px 14px; }
+.tags a { text-decoration: none; position: relative; z-index: 2; }
+.tags code { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); padding: 1px 4px; border-radius: 4px; }
+.tags a:hover code { background: rgba(144, 238, 144, 0.16); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Layout: band, caption across the bottom of the image */
+.grid[data-layout="band"] .card, .grid[data-layout="center"] .card { aspect-ratio: 4 / 3; overflow: hidden; }
+.grid[data-layout="band"] .overlay { position: absolute; inset: auto 0 0 0; display: grid; gap: 2px; background: var(--paper); }
+.grid[data-layout="band"] .title-link h3 { font-size: 1.1rem; font-stretch: 118%; text-transform: uppercase; }
+.grid[data-layout="band"] .title-link time { color: var(--ink); }
+.grid[data-layout="band"] .tags { padding: 4px 12px 10px; }
+
+/* Layout: centered, a solid black stamp in the middle of the image: title lines, date and tags butt together */
+.grid[data-layout="center"] .overlay {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center;
+  gap: 0; padding: 14px; text-align: center; pointer-events: none;
+}
+.grid[data-layout="center"] .overlay a { pointer-events: auto; }
+.grid[data-layout="center"] .caption { padding: 0; justify-items: center; }
+.grid[data-layout="center"] .title-link { justify-items: center; gap: 0; }
+.grid[data-layout="center"] .title-link h3 {
+  font-size: clamp(1rem, 1.6vw, 1.3rem); line-height: 1.08; font-weight: 800; font-stretch: 122%;
+  text-transform: uppercase; letter-spacing: 0.01em; max-width: 18ch;
+}
+/* Two stacked copies of the title wrap identically: the back one paints every black box, the front one
+   paints the text, so a line's box can overlap its neighbours without covering their letters. */
+.grid[data-layout="center"] .title-link h3 { display: grid; }
+.grid[data-layout="center"] .title-link h3 .layer { grid-area: 1 / 1; }
+.grid[data-layout="center"] .title-link h3 .layer span {
+  padding: 0.16em 0.4em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.grid[data-layout="center"] .title-link h3 .back span { background: var(--paper); color: transparent; }
+.title-link h3 .back { display: none; }
+.grid[data-layout="center"] .title-link h3 .back { display: block; }
+.grid[data-layout="center"] .title-link time {
+  display: block; background: var(--paper); color: var(--ink);
+  padding: 4px 10px 2px; line-height: 1.2;
+}
+.grid[data-layout="center"] .tags {
+  background: var(--paper); padding: 2px 10px 5px; justify-content: center; gap: 0 8px;
+}
+.grid[data-layout="center"] .tags code { padding: 0; border-radius: 0; line-height: 1.2; }
+
+/* Reveal: color photo under the screen */
+.grid:not([data-reveal="off"]) .card:focus-within .frame img,
+.grid:not([data-reveal="off"]) .card.revealed .frame img { opacity: 1; }
+.grid:not([data-reveal="off"]) .card:focus-within .frame canvas,
+.grid:not([data-reveal="off"]) .card.revealed .frame canvas { opacity: 0; }
+
+/* Thin guide showing where the screen-center trigger sits */
+.center-guide {
+  position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none; z-index: 4;
+  border-block: 1px dashed rgba(144, 238, 144, 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame img, .frame canvas { transition: none; }
+}
+</style>
+
+<div class="page">
+  <header class="intro">
+    <h1>Dither study</h1>
+    <p>Twelve recent audeos.com posts with their real cover images, dithered live in the browser. Scroll slowly: dots sharpen toward the middle of the screen and the card at the center shows its photo. Open this page on your phone to feel it there too.</p>
+  </header>
+
+  <form class="controls" id="controls" onsubmit="return false">
+    <fieldset class="control">
+      <legend>Layout</legend>
+      <div class="segmented">
+        <input type="radio" name="layout" id="layout-below" value="below" checked><label for="layout-below">below</label>
+        <input type="radio" name="layout" id="layout-center" value="center"><label for="layout-center">centered</label>
+        <input type="radio" name="layout" id="layout-band" value="band"><label for="layout-band">band</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Reveal</legend>
+      <div class="segmented">
+        <input type="radio" name="reveal" id="reveal-auto" value="auto"><label for="reveal-auto">auto</label>
+        <input type="radio" name="reveal" id="reveal-hover" value="hover"><label for="reveal-hover">hover</label>
+        <input type="radio" name="reveal" id="reveal-center" value="center" checked><label for="reveal-center">screen center</label>
+        <input type="radio" name="reveal" id="reveal-press" value="press"><label for="reveal-press">long-press</label>
+        <input type="radio" name="reveal" id="reveal-off" value="off"><label for="reveal-off">off</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Reveals</legend>
+      <div class="segmented">
+        <input type="radio" name="unit" id="unit-sweep" value="sweep" checked><label for="unit-sweep">one card (sweep)</label>
+        <input type="radio" name="unit" id="unit-row" value="row"><label for="unit-row">whole row</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Motion</legend>
+      <div class="segmented">
+        <input type="radio" name="motion" id="motion-scroll" value="scroll" checked><label for="motion-scroll">scroll</label>
+        <input type="radio" name="motion" id="motion-off" value="off"><label for="motion-off">off</label>
+        <input type="radio" name="motion" id="motion-wave" value="wave"><label for="motion-wave">wave</label>
+        <input type="radio" name="motion" id="motion-random" value="random"><label for="motion-random">random</label>
+        <input type="radio" name="motion" id="motion-rez" value="rez"><label for="motion-rez">rez-in</label>
+      </div>
+    </fieldset>
+    <button type="button" class="replay" id="replay">Replay rez-in</button>
+    <fieldset class="control">
+      <legend>Pattern</legend>
+      <div class="segmented">
+        <input type="radio" name="pattern" id="pattern-bayer4" value="bayer4" checked><label for="pattern-bayer4">bayer 4</label>
+        <input type="radio" name="pattern" id="pattern-bayer8" value="bayer8"><label for="pattern-bayer8">bayer 8</label>
+        <input type="radio" name="pattern" id="pattern-atkinson" value="atkinson"><label for="pattern-atkinson">atkinson</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Dot</legend>
+      <div class="segmented">
+        <input type="radio" name="shape" id="shape-square" value="square" checked><label for="shape-square">square</label>
+        <input type="radio" name="shape" id="shape-round" value="round"><label for="shape-round">round</label>
+        <input type="radio" name="shape" id="shape-pixel" value="pixel"><label for="shape-pixel">solid</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Ink</legend>
+      <div class="segmented">
+        <input type="radio" name="ink" id="ink-white" value="#ffffff" checked><label for="ink-white">white</label>
+        <input type="radio" name="ink" id="ink-green" value="#90ee90"><label for="ink-green">green</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Gutter</legend>
+      <div class="segmented">
+        <input type="radio" name="gutter" id="gutter-none" value="none" checked><label for="gutter-none">none</label>
+        <input type="radio" name="gutter" id="gutter-hairline" value="hairline"><label for="gutter-hairline">1px</label>
+        <input type="radio" name="gutter" id="gutter-site" value="site"><label for="gutter-site">current</label>
+      </div>
+    </fieldset>
+    <label class="control" for="cell">
+      <span>Dot size</span>
+      <span class="range-row"><input type="range" id="cell" min="2" max="8" step="1" value="3"><output id="cell-out">3px</output></span>
+    </label>
+    <label class="control" for="contrast">
+      <span>Contrast</span>
+      <span class="range-row"><input type="range" id="contrast" min="0.6" max="2.4" step="0.1" value="1.3"><output id="contrast-out">1.3</output></span>
+    </label>
+    <label class="control" for="brightness">
+      <span>Brightness</span>
+      <span class="range-row"><input type="range" id="brightness" min="-0.3" max="0.3" step="0.02" value="0"><output id="brightness-out">0</output></span>
+    </label>
+  </form>
+
+  <p class="note" id="note"></p>
+
+  <ul class="grid" id="grid" role="list" data-layout="below" data-reveal="hover" data-gutter="none"></ul>
+</div>
+<div class="center-guide" id="center-guide" hidden></div>
+
+<script>
+const POSTS = __POSTS__;
+
+const MOTION_FPS = 12;
+const LONG_PRESS_MS = 450;
+const TOUCH_MOVE_LIMIT = 10;
+const REZ_DURATION_MS = 900;
+const REZ_START_EXTRA = 22;
+const WAVE_SPAN = 5;
+const WAVE_PERIOD_MS = 2600;
+const WAVE_LENGTH_PX = 900;
+const RANDOM_SPAN = 6;
+const SCROLL_SPAN = 9;
+
+const REVEAL_NOTES = {
+  hover: "<strong>hover</strong> · pointer over a card shows the photo",
+  center: "<strong>screen center</strong> · the card crossing crosses the dashed band in the middle of the screen shows its photo (best on a phone, one column)",
+  press: "<strong>long-press</strong> · hold a card for half a second to see the photo; releasing goes back to dots and doesn't open the post",
+  off: "<strong>off</strong> · dots only",
+};
+const MOTION_NOTES = {
+  off: "",
+  scroll: "<strong>scroll</strong> · dots get finer as a card nears the middle of the screen and coarser as it moves away; scroll position drives it on desktop and phone alike",
+  wave: "<strong>wave</strong> · dot size and brightness ripple diagonally across the grid",
+  random: "<strong>random</strong> · each card drifts to a new dot size every few seconds",
+  rez: "<strong>rez-in</strong> · cards resolve from coarse blocks to fine dots as they scroll into view",
+};
+
+const prefersReducedMotion = window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches;
+const mouseQuery = window.matchMedia( "(hover: hover) and (pointer: fine)" );
+
+function bayerMatrix( size ) {
+  let matrix = [ [ 0 ] ];
+  while( matrix.length < size ) {
+    const previous = matrix.length;
+    const next = [];
+    for( let row = 0; row < previous * 2; row++ ) next.push( new Array( previous * 2 ) );
+    for( let row = 0; row < previous; row++ ) {
+      for( let column = 0; column < previous; column++ ) {
+        const base = matrix[row][column] * 4;
+        next[row][column] = base;
+        next[row][column + previous] = base + 2;
+        next[row + previous][column] = base + 3;
+        next[row + previous][column + previous] = base + 1;
+      }
+    }
+    matrix = next;
+  }
+  const total = size * size;
+  return matrix.map( row => row.map( value => ( value + 0.5 ) / total ) );
+}
+const BAYER = { bayer4: bayerMatrix( 4 ), bayer8: bayerMatrix( 8 ) };
+
+function readSettings() {
+  const data = new FormData( document.getElementById( "controls" ) );
+  const reveal = data.get( "reveal" );
+  return {
+    layout: data.get( "layout" ),
+    reveal: reveal === "auto" ? ( mouseQuery.matches ? "hover" : "center" ) : reveal,
+    revealChoice: reveal,
+    unit: data.get( "unit" ),
+    motion: prefersReducedMotion ? "off" : data.get( "motion" ),
+    pattern: data.get( "pattern" ),
+    shape: data.get( "shape" ),
+    ink: data.get( "ink" ),
+    gutter: data.get( "gutter" ),
+    cell: Number( document.getElementById( "cell" ).value ),
+    contrast: Number( document.getElementById( "contrast" ).value ),
+    brightness: Number( document.getElementById( "brightness" ).value ),
+  };
+}
+
+function sampleLuminance( image, columns, rows ) {
+  const sampler = document.createElement( "canvas" );
+  sampler.width = columns;
+  sampler.height = rows;
+  const context = sampler.getContext( "2d", { willReadFrequently: true } );
+  context.imageSmoothingQuality = "high";
+  const scale = Math.max( columns / image.naturalWidth, rows / image.naturalHeight );
+  const drawWidth = image.naturalWidth * scale;
+  const drawHeight = image.naturalHeight * scale;
+  context.drawImage( image, ( columns - drawWidth ) / 2, ( rows - drawHeight ) / 2, drawWidth, drawHeight );
+  const pixels = context.getImageData( 0, 0, columns, rows ).data;
+  const luminance = new Float32Array( columns * rows );
+  for( let index = 0; index < luminance.length; index++ ) {
+    const offset = index * 4;
+    luminance[index] = ( 0.2126 * pixels[offset] + 0.7152 * pixels[offset + 1] + 0.0722 * pixels[offset + 2] ) / 255;
+  }
+  return luminance;
+}
+
+function adjust( luminance, contrast, brightness ) {
+  for( let index = 0; index < luminance.length; index++ ) {
+    const value = ( luminance[index] - 0.5 ) * contrast + 0.5 + brightness;
+    luminance[index] = Math.min( 1, Math.max( 0, value ) );
+  }
+}
+
+function threshold( luminance, columns, rows, pattern ) {
+  const lit = new Uint8Array( columns * rows );
+  if( pattern === "atkinson" ) {
+    const buffer = Float32Array.from( luminance );
+    const spread = [ [ 1, 0 ], [ 2, 0 ], [ -1, 1 ], [ 0, 1 ], [ 1, 1 ], [ 0, 2 ] ];
+    for( let row = 0; row < rows; row++ ) {
+      for( let column = 0; column < columns; column++ ) {
+        const index = row * columns + column;
+        const on = buffer[index] >= 0.5;
+        lit[index] = on ? 1 : 0;
+        const error = ( buffer[index] - ( on ? 1 : 0 ) ) / 8;
+        for( const [ deltaX, deltaY ] of spread ) {
+          const targetColumn = column + deltaX;
+          const targetRow = row + deltaY;
+          if( targetColumn >= 0 && targetColumn < columns && targetRow < rows ) {
+            buffer[targetRow * columns + targetColumn] += error;
+          }
+        }
+      }
+    }
+    return lit;
+  }
+  const matrix = BAYER[pattern];
+  const size = matrix.length;
+  for( let row = 0; row < rows; row++ ) {
+    for( let column = 0; column < columns; column++ ) {
+      const index = row * columns + column;
+      lit[index] = luminance[index] > matrix[row % size][column % size] ? 1 : 0;
+    }
+  }
+  return lit;
+}
+
+// Draws one card at a given dot size and brightness shift; skips the work when nothing changed.
+function renderCard( card, settings, cell, brightnessShift ) {
+  const canvas = card.querySelector( "canvas" );
+  const image = card.querySelector( "img" );
+  if( !image.complete || !image.naturalWidth ) return;
+  const bounds = canvas.getBoundingClientRect();
+  if( !bounds.width ) return;
+  const shift = Math.round( brightnessShift * 50 ) / 50;
+  const key = [ bounds.width, bounds.height, cell, shift, settings.pattern, settings.shape, settings.ink, settings.contrast, settings.brightness ].join( "|" );
+  if( card.renderKey === key ) return;
+  card.renderKey = key;
+
+  const ratio = window.devicePixelRatio || 1;
+  const columns = Math.ceil( bounds.width / cell );
+  const rows = Math.ceil( bounds.height / cell );
+  const luminance = sampleLuminance( image, columns, rows );
+  adjust( luminance, settings.contrast, settings.brightness + shift );
+  const lit = threshold( luminance, columns, rows, settings.pattern );
+
+  canvas.width = Math.round( bounds.width * ratio );
+  canvas.height = Math.round( bounds.height * ratio );
+  const context = canvas.getContext( "2d" );
+  context.fillStyle = "#000";
+  context.fillRect( 0, 0, canvas.width, canvas.height );
+  context.fillStyle = settings.ink;
+
+  const step = cell * ratio;
+  const gap = settings.shape === "pixel" ? 0 : Math.max( ratio * 0.75, step * 0.22 );
+  const size = settings.shape === "pixel" ? step + 0.5 : step - gap;
+  context.beginPath();
+  for( let row = 0; row < rows; row++ ) {
+    for( let column = 0; column < columns; column++ ) {
+      if( !lit[row * columns + column] ) continue;
+      const left = column * step;
+      const top = row * step;
+      if( settings.shape === "round" ) {
+        const radius = size / 2;
+        context.moveTo( left + step / 2 + radius, top + step / 2 );
+        context.arc( left + step / 2, top + step / 2, radius, 0, Math.PI * 2 );
+      } else {
+        context.rect( left, top, size, size );
+      }
+    }
+  }
+  context.fill();
+}
+
+function formatDate( value ) {
+  return new Date( value ).toLocaleDateString( "en-US", { year: "numeric", month: "long", day: "numeric" } );
+}
+
+function buildCard( post ) {
+  const item = document.createElement( "li" );
+  item.className = "card";
+  const postUrl = `https://audeos.com/post/${post.slug}`;
+
+  const frame = document.createElement( "a" );
+  frame.className = "frame";
+  frame.href = postUrl;
+  frame.tabIndex = -1;
+  frame.setAttribute( "aria-hidden", "true" );
+  frame.draggable = false;
+  const image = document.createElement( "img" );
+  image.alt = "";
+  image.draggable = false;
+  image.src = post.data;
+  const canvas = document.createElement( "canvas" );
+  frame.append( image, canvas );
+
+  const overlay = document.createElement( "div" );
+  overlay.className = "overlay";
+  const caption = document.createElement( "div" );
+  caption.className = "caption";
+  const titleLink = document.createElement( "a" );
+  titleLink.className = "title-link";
+  titleLink.href = postUrl;
+  const heading = document.createElement( "h3" );
+  for( const layerName of [ "back", "front" ] ) {
+    const layer = document.createElement( "span" );
+    layer.className = `layer ${layerName}`;
+    const layerText = document.createElement( "span" );
+    layerText.textContent = post.title;
+    layer.append( layerText );
+    if( layerName === "back" ) layer.setAttribute( "aria-hidden", "true" );
+    heading.append( layer );
+  }
+  const time = document.createElement( "time" );
+  time.dateTime = post.date;
+  time.textContent = formatDate( post.date );
+  titleLink.append( heading, time );
+  caption.append( titleLink );
+
+  const tags = document.createElement( "div" );
+  tags.className = "tags";
+  for( const tag of post.tags ) {
+    const tagLink = document.createElement( "a" );
+    tagLink.href = `https://audeos.com/tags/${tag}`;
+    const code = document.createElement( "code" );
+    code.textContent = `#${tag}`;
+    tagLink.append( code );
+    tags.append( tagLink );
+  }
+  overlay.append( caption, tags );
+  item.append( frame, overlay );
+
+  item.randomCell = 0;
+  item.randomTarget = 0;
+  item.randomNextChange = 0;
+  item.rezStart = null;
+  return item;
+}
+
+const grid = document.getElementById( "grid" );
+const cards = POSTS.map( buildCard );
+grid.append( ...cards );
+
+// The page may sit in a cross-origin iframe sized to its content, where innerHeight and rootMargin
+// say nothing about the real screen. A document-tall sentinel's intersectionRect does: it is the
+// slice of this page that is actually on screen, in this frame's client coordinates.
+const viewport = { top: 0, bottom: window.innerHeight };
+const sentinel = document.createElement( "div" );
+sentinel.style.cssText = "position:absolute;left:0;top:0;width:1px;pointer-events:none;visibility:hidden";
+document.body.append( sentinel );
+const SENTINEL_STEPS = 1000;
+const viewportObserver = new IntersectionObserver( entries => {
+  for( const entry of entries ) {
+    if( !entry.isIntersecting ) continue;
+    viewport.top = entry.intersectionRect.top;
+    viewport.bottom = entry.intersectionRect.bottom;
+  }
+}, { threshold: Array.from( { length: SENTINEL_STEPS + 1 }, ( _unused, step ) => step / SENTINEL_STEPS ) } );
+function sizeSentinel() {
+  sentinel.style.height = "0px";
+  sentinel.style.height = `${document.documentElement.scrollHeight}px`;
+}
+sizeSentinel();
+viewportObserver.observe( sentinel );
+
+// The focus line sits mid-screen, but slides toward the top or bottom edge over the first and last
+// half-screen of scrolling, so the first and last rows still reach it.
+const FOCUS_EDGE = 0.35;
+const pageContent = document.querySelector( ".page" );
+function viewportCenter() {
+  const height = viewport.bottom - viewport.top;
+  const half = Math.max( 1, height / 2 );
+  // Measure slack against the real content: the host frame can keep blank space below it.
+  const content = pageContent.getBoundingClientRect();
+  const slackAbove = Math.max( 0, viewport.top - content.top );
+  const slackBelow = Math.max( 0, content.bottom - viewport.bottom );
+  const towardBottom = 1 - Math.min( 1, slackBelow / half );
+  const towardTop = 1 - Math.min( 1, slackAbove / half );
+  const fraction = 0.5 + FOCUS_EDGE * ( towardBottom - towardTop );
+  const line = viewport.top + height * fraction;
+  // Keep the line within the grid's rows, so the first and last rows can always be fully crossed.
+  const firstCard = cards[0].getBoundingClientRect();
+  const lastCard = cards[cards.length - 1].getBoundingClientRect();
+  return Math.min( Math.max( line, firstCard.top ), lastCard.bottom - 1 );
+}
+function viewportHalf() {
+  return Math.max( 1, ( viewport.bottom - viewport.top ) / 2 );
+}
+
+// Per-card dot size and brightness shift for the current motion mode at time `now`.
+function motionFrame( card, settings, now ) {
+  const base = settings.cell;
+  if( settings.motion === "scroll" ) {
+    const bounds = card.getBoundingClientRect();
+    const offset = Math.abs( bounds.top + bounds.height / 2 - viewportCenter() );
+    const distance = Math.min( 1, offset / viewportHalf() );
+    const eased = distance * distance;
+    return { cell: base + Math.round( eased * SCROLL_SPAN ), shift: -eased * 0.12 };
+  }
+  if( settings.motion === "wave" ) {
+    const bounds = card.getBoundingClientRect();
+    const distance = bounds.left + bounds.top + window.scrollY;
+    const phase = distance / WAVE_LENGTH_PX - now / WAVE_PERIOD_MS;
+    const swell = ( Math.sin( phase * Math.PI * 2 ) + 1 ) / 2;
+    return { cell: base + Math.round( swell * WAVE_SPAN ), shift: ( swell - 0.5 ) * 0.16 };
+  }
+  if( settings.motion === "random" ) {
+    if( now >= card.randomNextChange ) {
+      card.randomTarget = base + Math.floor( Math.random() * ( RANDOM_SPAN + 1 ) );
+      card.randomNextChange = now + 1500 + Math.random() * 2500;
+    }
+    if( !card.randomCell ) card.randomCell = base;
+    card.randomCell += Math.sign( card.randomTarget - card.randomCell );
+    return { cell: Math.max( base, card.randomCell ), shift: 0 };
+  }
+  if( settings.motion === "rez" ) {
+    if( card.rezStart === null ) return { cell: base + REZ_START_EXTRA, shift: 0 };
+    const progress = Math.min( 1, ( now - card.rezStart ) / REZ_DURATION_MS );
+    const eased = 1 - Math.pow( 1 - progress, 3 );
+    return { cell: base + Math.round( ( 1 - eased ) * REZ_START_EXTRA ), shift: ( 1 - eased ) * 0.1 };
+  }
+  return { cell: base, shift: 0 };
+}
+
+let settings = readSettings();
+let lastTick = 0;
+let animationHandle = 0;
+
+const CENTER_BAND = 0.1;
+const guide = document.getElementById( "center-guide" );
+
+// Screen-center reveal: a card shows its photo while it overlaps the middle band of the screen.
+function updateCenterReveal() {
+  if( settings.reveal !== "center" ) return;
+  const center = viewportCenter();
+  const halfBand = viewportHalf() * CENTER_BAND;
+  guide.style.top = `${center - halfBand + window.scrollY}px`;
+  guide.style.height = `${halfBand * 2}px`;
+  const boundsByCard = new Map( cards.map( card => [ card, card.getBoundingClientRect() ] ) );
+  if( settings.unit === "row" ) {
+    for( const [ card, bounds ] of boundsByCard ) {
+      card.classList.toggle( "revealed", bounds.top < center + halfBand && bounds.bottom > center - halfBand );
+    }
+    return;
+  }
+  // Sweep: where the line sits within the row picks which column is revealed, left to right.
+  const rows = new Map();
+  for( const [ card, bounds ] of boundsByCard ) {
+    const rowKey = Math.round( bounds.top );
+    if( !rows.has( rowKey ) ) rows.set( rowKey, [] );
+    rows.get( rowKey ).push( card );
+  }
+  for( const rowCards of rows.values() ) {
+    rowCards.sort( ( first, second ) => boundsByCard.get( first ).left - boundsByCard.get( second ).left );
+    const rowBounds = boundsByCard.get( rowCards[0] );
+    const progress = ( center - rowBounds.top ) / rowBounds.height;
+    const inside = progress >= 0 && progress < 1;
+    const activeColumn = Math.min( rowCards.length - 1, Math.floor( progress * rowCards.length ) );
+    rowCards.forEach( ( card, column ) => card.classList.toggle( "revealed", inside && column === activeColumn ) );
+  }
+}
+
+// Hover reveal tracked in script: CSS :hover goes stale when the page scrolls under a still cursor.
+// If the host page scrolls this frame, the cursor's spot inside it shifts by however far the
+// visible slice moved since the last mouse move.
+const pointer = { x: 0, y: 0, viewportTop: 0, inside: false };
+document.addEventListener( "pointermove", event => {
+  if( event.pointerType !== "mouse" ) return;
+  pointer.x = event.clientX;
+  pointer.y = event.clientY;
+  pointer.viewportTop = viewport.top;
+  pointer.inside = true;
+});
+document.addEventListener( "mouseout", event => {
+  if( !event.relatedTarget ) pointer.inside = false;
+});
+
+function updateHoverReveal() {
+  if( settings.reveal !== "hover" ) return;
+  let hovered = null;
+  if( pointer.inside ) {
+    const target = document.elementFromPoint( pointer.x, pointer.y + viewport.top - pointer.viewportTop );
+    hovered = target ? target.closest( ".card" ) : null;
+  }
+  for( const card of cards ) card.classList.toggle( "revealed", card === hovered );
+}
+
+function updateReveals() {
+  updateCenterReveal();
+  updateHoverReveal();
+}
+
+function drawAll( now ) {
+  updateReveals();
+  for( const card of cards ) {
+    const { cell, shift } = motionFrame( card, settings, now );
+    renderCard( card, settings, cell, shift );
+  }
+}
+
+function tick( now ) {
+  animationHandle = requestAnimationFrame( tick );
+  updateReveals();
+  if( now - lastTick < 1000 / MOTION_FPS ) return;
+  lastTick = now;
+  drawAll( now );
+}
+
+// The loop always runs: scroll position can only be read by polling the sentinel's latest rect,
+// and renderCard skips any card whose inputs did not change.
+function startMotion() {
+  cancelAnimationFrame( animationHandle );
+  animationHandle = requestAnimationFrame( tick );
+}
+
+// Rez-in plays as each card scrolls into view.
+const rezObserver = new IntersectionObserver( entries => {
+  for( const entry of entries ) {
+    if( entry.isIntersecting && entry.target.rezStart === null ) {
+      entry.target.rezStart = performance.now() + Math.random() * 250;
+    }
+  }
+}, { threshold: 0.3 } );
+cards.forEach( card => rezObserver.observe( card ) );
+
+function replayRez() {
+  for( const card of cards ) card.rezStart = null;
+  rezObserver.disconnect();
+  cards.forEach( card => rezObserver.observe( card ) );
+}
+
+// Long-press reveal, the same gesture shape as useCardInteractions on the site.
+function wireLongPress( card ) {
+  let pressTimer = null;
+  let startX = 0;
+  let startY = 0;
+  let pressed = false;
+  function release() {
+    clearTimeout( pressTimer );
+    pressTimer = null;
+    if( settings.reveal === "press" ) card.classList.remove( "revealed" );
+  }
+  card.addEventListener( "pointerdown", event => {
+    if( settings.reveal !== "press" ) return;
+    pressed = false;
+    startX = event.clientX;
+    startY = event.clientY;
+    pressTimer = setTimeout( () => {
+      pressed = true;
+      card.classList.add( "revealed" );
+    }, LONG_PRESS_MS );
+  });
+  card.addEventListener( "pointermove", event => {
+    if( !pressTimer ) return;
+    if( Math.abs( event.clientX - startX ) > TOUCH_MOVE_LIMIT || Math.abs( event.clientY - startY ) > TOUCH_MOVE_LIMIT ) release();
+  });
+  card.addEventListener( "pointerup", release );
+  card.addEventListener( "pointercancel", release );
+  card.addEventListener( "pointerleave", release );
+  card.addEventListener( "contextmenu", event => { if( settings.reveal === "press" ) event.preventDefault(); } );
+  card.addEventListener( "click", event => {
+    if( pressed ) {
+      event.preventDefault();
+      pressed = false;
+    }
+  }, true );
+}
+cards.forEach( wireLongPress );
+
+function applySettings() {
+  settings = readSettings();
+  grid.dataset.layout = settings.layout;
+  grid.dataset.reveal = settings.reveal;
+  grid.dataset.gutter = settings.gutter;
+  document.getElementById( "center-guide" ).hidden = settings.reveal !== "center";
+  document.getElementById( "replay" ).hidden = settings.motion !== "rez";
+  cards.forEach( card => card.classList.remove( "revealed" ) );
+  const revealLabel = settings.revealChoice === "auto" ? `auto → ${settings.reveal}. ` : "";
+  const motionNote = prefersReducedMotion ? "Motion is off because your device asks for reduced motion." : MOTION_NOTES[settings.motion];
+  document.getElementById( "note" ).innerHTML = [ revealLabel + REVEAL_NOTES[settings.reveal], motionNote ].filter( Boolean ).join( "<br>" );
+  document.getElementById( "cell-out" ).textContent = `${settings.cell}px`;
+  document.getElementById( "contrast-out" ).textContent = settings.contrast.toFixed( 1 );
+  document.getElementById( "brightness-out" ).textContent = settings.brightness.toFixed( 2 );
+  for( const card of cards ) {
+    card.randomCell = 0;
+    card.randomNextChange = 0;
+  }
+  startMotion();
+}
+
+document.getElementById( "controls" ).addEventListener( "input", applySettings );
+mouseQuery.addEventListener( "change", applySettings );
+document.getElementById( "replay" ).addEventListener( "click", replayRez );
+for( const card of cards ) {
+  const image = card.querySelector( "img" );
+  if( !image.complete ) image.addEventListener( "load", () => drawAll( performance.now() ), { once: true } );
+}
+new ResizeObserver( () => {
+  sizeSentinel();
+  drawAll( performance.now() );
+} ).observe( grid );
+applySettings();
+</script>
