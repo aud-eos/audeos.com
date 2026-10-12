@@ -1,7 +1,7 @@
 # Audeos.com hub redesign
 
 Date: 2026-10-11
-Status: PR 1 shipped (#153, follow-ups #156–#159). PR 2 sections revised after the 2026-10-12 copy pass; awaiting owner review.
+Status: PR 1 shipped (#153, follow-ups #156–#159). PR 2 shipped (#164). PR 3 sections (About, brands, structured data) revised on 2026-10-12; awaiting owner review.
 
 ## Goal
 
@@ -10,7 +10,7 @@ Turn audeos.com from a blog into the front door for Audeos, LLC while keeping th
 Success means:
 
 - A visitor can reach DJ rates and speaker-rental rates from any page in one click.
-- Searches for "Audeos" surface a site that clearly identifies Audeos, LLC, its founder and its brands.
+- Searches for "Audeos" surface a site that clearly identifies Audeos the artist, AUDEOS, LLC, and the brands the owner built.
 - The Events page can rank for "DJ for hire Seattle"-style searches.
 - Every existing post, category, tag and author URL keeps working.
 
@@ -18,7 +18,7 @@ Success means:
 
 These were settled with the owner during brainstorming and are not open for redesign in planning.
 
-- **Audeos is an entity, not a person.** Copy describes what Audeos puts out and offers, not a bio or elevator pitch, and never limits it to Seattle (the owner travels anywhere). A little mystery is welcome; the sections explain themselves. Search engines get the plain description from the meta description and structured data.
+- **Audeos is a person and an entity.** Audeos is the owner's artist name, and also AUDEOS, LLC, which runs several projects. The site promotes the owner as an artist and as a brand builder. Copy still reads as presence, not a resume or elevator pitch, and never limits Audeos to Seattle (the owner travels anywhere). A little mystery is welcome; the sections explain themselves. Search engines get the plain description from the meta description and structured data.
 - **Music first.** Categories run Music, Events, Lifestyle everywhere. Events (paid work) is reachable in one click from the home page's "DJ FOR HIRE →" link.
 - **The blog stays.** The evergreen marketing content sits on top of the existing category pages. There is no separate services section and no new top-level routes.
 - **Categories carry the evergreen content.** Events holds DJ for hire plus speaker rentals with prices. Music holds releases and audeos.fm. Lifestyle stays a plain archive. The `lifestyle` slug is unchanged.
@@ -49,12 +49,12 @@ The redesign keeps the live site's existing fonts and drops everything else.
 
 ### The giant word
 
-A huge word anchors the home, category and About pages: AUDEOS, MUSIC, EVENTS, LIFESTYLE.
+A huge word anchors the home, category and About pages: AUDEOS, MUSIC, EVENTS, LIFESTYLE, ABOUT.
 
 - **Live-text words:** Mona Sans at weight 900 and about 82% width, letter spacing -0.105em so neighboring letters overlap.
 - **Overlaps are solid.** Where letters overlap they merge into one white shape. Words are plain text in a single element, with no per-letter markup and no blend effects. All words share the one -0.105em spacing, with no per-word adjustments.
 - **Desktop:** one line, sized so the whole word fills the container width, never cropped or scrolled. This includes AUDEOS.
-- **Phone, AUDEOS only:** on Home and About, the stacked AUD over EOS is the owner's logo as an SVG, so it matches the favicon and logo exactly. AUDEOS is the only word that ever splits.
+- **Phone, AUDEOS only:** on Home, the stacked AUD over EOS is the owner's logo as an SVG, so it matches the favicon and logo exactly. AUDEOS is the only word that ever splits.
   - Source: the cleaned SVG committed with this spec at `docs/superpowers/specs/assets/audeos-logo-clean.svg`. It is a single path, 3.9 KB, about 2.1 KB compressed, labeled "Audeos" with `role="img"`, optimized with SVGO.
   - Its fill is `currentColor`. That only works when the SVG is inlined in the markup, so it ships as an inline SVG component, not an `<img>`.
   - It was traced from the raster logo, so edges wobble slightly at extreme zoom. This is invisible at phone size and accepted. A re-export from untraced vector letters can replace the file later without code changes.
@@ -127,7 +127,19 @@ The `NowPlayingCard` leaves the home page. The homepage CollectionPage JSON-LD a
 
 ### About, `/author/audeos`
 
-Giant AUDEOS, photo, bio from the author entry, links to the resume on ben-petty.com and to GitHub, the brands as rows in the price-list style with a link out, then the profile links. Brands: The North West Clothing, Crisis Clothing, Northwest Local Cannabis, DJ Audeos and audeos.fm. The final list and blurbs are part of the copy pass.
+Artist first, then ventures. From top to bottom:
+
+1. **Giant ABOUT**, so every top-bar link opens on its own giant word and AUDEOS stays the home page's word.
+2. **Artist block:** the author photo and the bio from the author entry. This replaces the small gold-ringed avatar.
+3. **Ventures list:** a section heading (copy pass), then one row per brand in the author's `brands` order, in the Events price-list row layout: the name large, a monospace `kind` label, the one-line blurb, the optional `history` line, and a link out. Every row looks the same, whoever owns the business behind it. Logos are not shown on the page; they feed the structured data only.
+   - audeos.fm
+   - The North West Clothing, at nwclothing.com, with the history line "BEGAN AS CRISIS CLOTHING". Crisis Clothing was the first stage of the same clothing line, not a separate brand.
+   - Northwest Local Cannabis, at nw-local.com. The owner built the brand; the business of that name is a separate company the owner co-owns with two partners who are not involved in the brand. Its brand assets largely come from The North West Clothing.
+4. **Links row:** Resume (ben-petty.com) and GitHub, in the Music listening-row link style. The other profiles stay in the footer.
+
+DJ Audeos is not a ventures row: the page is already about Audeos the artist, and DJ work is covered by the bio, the Events page and the Events structured data. Rooted Community, listed on ben-petty.com, is a project the owner helped with and stays off audeos.com.
+
+The `<title>` is "About | Audeos.com" and the meta description comes from the bio. The layout is an `About` component beside the `Landing` components, rendered by the existing `/author/[slug]` route.
 
 ### Posts, `/post/[slug]`
 
@@ -180,7 +192,13 @@ Category display titles (Music, Events, Lifestyle) stay the `CATEGORY_TITLES` co
 
 ### `brand`
 
-`name`, `kind`, `blurb`, `url`, optional `logo` asset.
+The type exists since PR 2 with `name`, `kind`, `blurb`, `url` and an optional `logo` asset. PR 3 changes:
+
+| Field | Type | Notes |
+|---|---|---|
+| `url` | Symbol | Becomes required. A full https address; every ventures row links out |
+| `history` | Symbol | New, optional. A short line such as "BEGAN AS CRISIS CLOTHING" |
+| `separateCompany` | Boolean | New, optional. On for a brand run by a company other than AUDEOS, LLC. Affects structured data only; the page shows every brand the same way |
 
 ### `homePage`, single entry
 
@@ -194,7 +212,7 @@ Category display titles (Music, Events, Lifestyle) stay the `CATEGORY_TITLES` co
 
 ### `author`, two new fields
 
-`resumeUrl` and `brands`, an ordered array of links to `brand`.
+`resumeUrl` and `brands`, an ordered array of links to `brand`. Both exist since PR 2; PR 3 fills them on the Audeos entry with the bio.
 
 ### Build-time validation
 
@@ -204,6 +222,7 @@ Category display titles (Music, Events, Lifestyle) stay the `CATEGORY_TITLES` co
 - A published post's category has no landing entry.
 - There is not exactly one `homePage` entry.
 - A `speakerRental` package has no `priceOperated`.
+- The Audeos author entry has no brands, or a linked brand has a `url` that is not a full https address.
 
 This follows the `fallback: false` invariant in `CLAUDE.md`. Missing content must fail loudly with a named entry, never render blank.
 
@@ -213,9 +232,22 @@ Every proposed entry and field value is shown to the owner for approval before a
 
 ## Structured data
 
-- **About page:** an Organization for Audeos, LLC with a founder Person named Audeos, alternate name Ben Petty, image, and `sameAs` from the shared social-links constant plus the resume URL.
-- **Events page:** each package as an `Offer` in US dollars inside a `Service` provided by the Organization.
-- **Home page:** the existing CollectionPage schema, reading category data from the landing entries instead of the JSON file.
+One module, `src/lib/structuredData/identity.ts`, builds every identity record from the author entry, its brands, `SOCIAL_LINKS` and two constants. Google does not resolve an `@id` across pages, so each page that mentions the Person or Organization carries the full record from this module, never a hand-written copy.
+
+- **Person** (`@id` `https://www.audeos.com/#person`): name Audeos, `alternateName` "Benjamin S. Petty", "Ben Petty" and "Benny Petty" (a constant, matching ben-petty.com), the author photo, the About URL, and `sameAs` from `SOCIAL_LINKS` without Signal (a contact link, not a profile) plus the resume URL.
+- **Organization** (`@id` `https://www.audeos.com/#organization`): name "Audeos", `legalName` "AUDEOS, LLC" (a constant), the site URL and logo, `founder` the Person, and `brand` listing every brand without `separateCompany` (audeos.fm and The North West Clothing) with name, url, description and logo.
+- **Separate-company brands** (Northwest Local Cannabis): their own Organization with the Person as `founder`. Not listed as an AUDEOS, LLC brand and no licensing claim, since no license is on paper yet; adding one later is a data change.
+- **No `areaServed` or address**, so nothing limits Audeos to a city.
+
+Per page:
+
+- **About:** a `ProfilePage` whose `mainEntity` is the Person, plus the Organization and separate-company records.
+- **Home:** the existing CollectionPage, reading category data from the landing entries, with the Organization as `publisher` and the full Organization record.
+- **Events:** a "DJ services" `Service` with each DJ package as an `Offer` in US dollars, and a "Speaker rental" `Service` with two offers per package (gear only, and with the owner running it), both with the Organization as `provider`.
+
+### ben-petty.com
+
+A separate small PR in that repo links the two identities from the other side: add "Audeos" to its Person's `alternateName`, and point its audeos.com `sameAs` at `https://www.audeos.com/author/audeos`.
 
 ## Delivery
 
@@ -223,7 +255,7 @@ Three pull requests, each in its own worktree, each passing `pnpm format`, `pnpm
 
 1. **Visual system and site frame.** Dark-only tokens, Mona Sans width axis, top bar, on-air widget with its shared now-playing hook, footer, giant word component, card, masonry, pagination styling, post page restyle, and removal of `CategoryNav`. No content-model changes. Category titles still come from `data/categories.json`.
 2. **Content models with home and category pages.** The four new types and the author fields, `make types`, fetch helpers using the existing promise-cache pattern, build validation, the home stack, live line and SEO fields, the Events price lists, rental section, footnote and booking link, the Music player block and listening row, and deletion of the category JSON config. Contentful entries are created from the copy pass's stand-ins, shown to the owner before any write.
-3. **About page and structured data.** The brands section, resume and GitHub links, and the Organization, Person, Service and Offer data.
+3. **About page and structured data.** The `brand` field changes, the About page (giant ABOUT, artist block, ventures list, links row), the identity module and the About, Home and Events structured data, the brand build checks, and the copy-pass rewrite of `META_DESCRIPTION` and the `SOCIAL_LINKS` titles. Contentful entries are written only after the owner approves the copy. The ben-petty.com PR follows.
 
 The copy pass with the owner happens before PRs 2 and 3 are merged.
 
@@ -237,6 +269,7 @@ Stand-ins for the Contentful entries. None is final until the owner says so; all
 - **Speaker rental (per day; gear only includes delivery and pickup):** Pair $250 / $600 with the owner running sound; Pair + sub $450 / $850; Full system $750 / $1,350. No speaker brand names in intro copy.
 - **Music:** "Original music, DJ mixes, edits and playlists. Tune in to the live stream on audeos.fm." Listening row: all six music platforms.
 - **Category search descriptions:** the current `data/categories.json` descriptions carry over.
+- **PR 3, still open:** the bio, the ventures heading, each brand's `kind`, blurb and history line, the site-wide `META_DESCRIPTION` (replacing "Official website of DJ Audeos", which shrinks Audeos to the DJ service), and the `SOCIAL_LINKS` tooltips. Naming the owner is fine; the copy should hold the artist and the ventures together.
 
 ## Testing
 
@@ -244,14 +277,14 @@ Per the shared testing rules, only behavior nothing else covers:
 
 - Build validation failures, one case per rule above, with expected messages written from the rules.
 - Price formatting and the two-price rental rows.
-- Structured data output for the Organization, Person, Service and Offer.
+- The identity module: AUDEOS, LLC brands appear under the Organization and separate-company brands appear as their own Organization with the Person as founder, Signal is left out of `sameAs`, and the records link by `@id`. The Events Service and Offer output.
 - The now-playing hook's response type guard, which replaces the current unchecked `as NowPlaying` cast.
 
 Tests made redundant by the change are deleted in the same PR, including `CategoryNav` and `categoryConfig` tests. Visual checks happen in the owner's running dev server.
 
 ## Reference mockups
 
-The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, and the cleaned logo check is `svg-clean-check.html`. The Events, Music and About layouts were approved in earlier light-theme screens and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
+The approved mockups live in the brainstorming companion's session folder under `.superpowers/brainstorm/`, which is gitignored. The final home page is `home-v9-even.html`, the phone word sizing is `phone-words-v2.html`, option B. The final giant-word treatment is `kerning-grid-v1.html`, the solid-overlap row at -0.105em, and the cleaned logo check is `svg-clean-check.html`. The Events, Music and About layouts were approved in earlier light-theme screens (the About layout is superseded by the About section above) and carry over to the dark system: `events-v3-site-colors-chrome.html` and `music-about-v2-site-colors-chrome.html`.
 
 ## Out of scope
 
