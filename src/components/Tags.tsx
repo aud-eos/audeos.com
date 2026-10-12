@@ -21,14 +21,19 @@ const TagComponent: FC<TagProps> = ({ tagName, isTagged }) => {
 };
 
 
+export type TagsVariant = "pill" | "stamp";
+
 export interface TagsProps {
   tags: { sys: TagLink; }[];
   tagId?: string;
+  // "stamp" renders flat chips on a black bar for the post grid's centered caption.
+  variant?: TagsVariant;
 }
 
-export const Tags: FC<TagsProps> = ({ tags, tagId }) => {
+export const Tags: FC<TagsProps> = ({ tags, tagId, variant = "pill" }) => {
+  const className = variant === "stamp" ? `${ styles.tags } ${ styles.stamp }` : styles.tags;
   return (
-    <section className={ styles.tags }>
+    <section className={ className }>
       {
         tags
           .map( tag =>

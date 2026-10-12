@@ -17,3 +17,32 @@ code.isTagged {
   background: lightgreen!important;
   color: darkgreen;
 }
+
+// Flat green chips on a black bar; hover and the active tag invert to a green block.
+section.tags.stamp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.6rem;
+  padding: 0.1rem 0.6rem 0.35rem;
+  background: var(--paper);
+
+  > a {
+    text-decoration: none;
+  }
+
+  > a > code {
+    margin: 0;
+    padding: 0 0.15rem;
+    border-radius: 0;
+    background: none;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 3.2cqi, 0.95rem);
+  }
+
+  > a > code:hover,
+  > a > code.isTagged {
+    color: var(--paper);
+  }
+}
