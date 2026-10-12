@@ -29,6 +29,7 @@ function filterPosts( posts: BlogPosts, filter: ArchiveFilter ) {
 
 export default function FilteredArchive({ posts, filter, page, seo, heading }: FilteredArchiveProps ) {
   const filteredPosts = filterPosts( posts, filter );
+  const tagId = filter.kind === "tag" ? filter.id : undefined;
 
   return (
     <>
@@ -48,6 +49,7 @@ export default function FilteredArchive({ posts, filter, page, seo, heading }: F
           <BlogPostList
             posts={ filteredPosts }
             page={ page }
+            tagId={ tagId }
           />
           <Pagination
             posts={ filteredPosts }

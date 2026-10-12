@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { sortBlogPostsByDate } from "@/utils/blogPostUtils";
+import Link from "next/link";
+import { resolvePostDate, sortBlogPostsByDate } from "@/utils/blogPostUtils";
+import DateTimeFormat from "@/components/DateTimeFormat";
 import styles from "@/styles/Home.module.scss";
-import PostCard, { cardDataFromPost } from "@/components/PostCard/PostCard";
-import { useMasonryPlacement } from "@/components/Masonry/useMasonryPlacement";
-import masonryStyles from "@/styles/Masonry.module.scss";
+import Picture from "@/components/Picture";
+import { Tags } from "@/components/Tags";
 import { PAGE_SIZE, POSTS_ANCHOR } from "@/constants";
 import { BlogPost } from "@/utils/contentfulUtils";
-import { categoryTitleFor } from "@/utils/categoryTitle";
+import { useImageLoaded } from "@/lib/useImageLoaded";
 
+const IMAGE_WIDTH = 800;
 const OBSERVER_THRESHOLD = 0.15;
 const LONG_PRESS_DURATION = 500;
 const TOUCH_MOVE_THRESHOLD = 10;
@@ -112,13 +114,45 @@ function useRevealOnScroll( listRef: React.RefObject<HTMLUListElement | null>, v
 }
 
 
+interface GalleryImageLinkProps {
+  url: string
+  title: string
+  pictureUrl: string
+  altText: string
+  priority: boolean
+}
+
+// The image link shows the hatch until its picture loads.
+function GalleryImageLink({ url, title, pictureUrl, altText, priority }: GalleryImageLinkProps ) {
+  const { containerRef, loaded, markLoaded } = useImageLoaded<HTMLAnchorElement>();
+  return (
+    <Link
+      ref={ containerRef }
+      href={ url }
+      aria-label={ title }
+      className={ styles.galleryImage }
+      data-loaded={ loaded ? "" : undefined }
+    >
+      <Picture
+        url={ pictureUrl }
+        maxWidth={ IMAGE_WIDTH }
+        alt={ altText }
+        priority={ priority }
+        onLoad={ markLoaded }
+      />
+    </Link>
+  );
+}
+
+
 export interface BlogPostListProps {
   posts: BlogPost[]
   page: number
+  tagId?: string
   firstCardPriority?: boolean
 }
 
-export default function BlogPostList({ posts, page, firstCardPriority = false }: BlogPostListProps ) {
+export default function BlogPostList({ posts, page, tagId, firstCardPriority = false }: BlogPostListProps ) {
   const listRef = useRef<HTMLUListElement>( null );
   const visiblePosts = [ ...posts ]
     .sort( sortBlogPostsByDate )
@@ -127,23 +161,36 @@ export default function BlogPostList({ posts, page, firstCardPriority = false }:
 
   useRevealOnScroll( listRef, visibleKey );
   useCardInteractions( listRef );
-  useMasonryPlacement( listRef, visibleKey );
 
   return (
-    <ul id={ POSTS_ANCHOR } className={ `${styles.imageGallery} ${masonryStyles.masonry}` } role="list" ref={ listRef }>
+    <ul id={ POSTS_ANCHOR } className={ styles.imageGallery } role="list" ref={ listRef }>
       {
-        visiblePosts
-          .map( ( post, cardIndex ) => {
-
-            return (
-              <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
-                <PostCard
-                  card={ cardDataFromPost( post, categoryTitleFor( post.fields.category ) ) }
+        visiblePosts.map( ( post, cardIndex ) => {
+          const url = `/post/${post.fields.slug}`;
+          return (
+            <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
+              <figure>
+                <GalleryImageLink
+                  url={ url }
+                  title={ post.fields.title }
+                  pictureUrl={ post.fields.image?.fields.file?.url || "" }
+                  altText={ post.fields.image?.fields.description || "" }
                   priority={ firstCardPriority && cardIndex === 0 }
                 />
-              </li>
-            );
-          })
+                <figcaption>
+                  <Link href={ url }>
+                    <h3>{ post.fields.title }</h3>
+                    <DateTimeFormat timestamp={ resolvePostDate( post ) } />
+                  </Link>
+                </figcaption>
+                <Tags
+                  tags={ post.metadata.tags }
+                  tagId={ tagId }
+                />
+              </figure>
+            </li>
+          );
+        })
       }
     </ul>
   );
