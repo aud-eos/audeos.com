@@ -8,81 +8,10 @@ import { Tags } from "@/components/Tags";
 import { PAGE_SIZE, POSTS_ANCHOR } from "@/constants";
 import { BlogPost } from "@/utils/contentfulUtils";
 import { useImageLoaded } from "@/lib/useImageLoaded";
+import { useCardFocus } from "@/components/Home/useCardFocus";
 
 const IMAGE_WIDTH = 800;
 const OBSERVER_THRESHOLD = 0.15;
-const LONG_PRESS_DURATION = 500;
-const TOUCH_MOVE_THRESHOLD = 10;
-
-function useCardInteractions( listRef: React.RefObject<HTMLUListElement | null> ) {
-  useEffect( () => {
-    const listOrNull = listRef.current;
-    if( !listOrNull ) return;
-    const list: HTMLUListElement = listOrNull;
-
-    const isTouchDevice = window.matchMedia( "(hover: none)" ).matches;
-    const prefersReducedMotion = window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches;
-    if( !isTouchDevice || prefersReducedMotion ) return;
-
-    let pressTimer: ReturnType<typeof setTimeout> | null = null;
-    let startX = 0;
-    let startY = 0;
-    let activeCard: HTMLElement | null = null;
-
-    function clearPreview() {
-      if( activeCard ) {
-        activeCard.classList.remove( styles.longPressPreview );
-        activeCard = null;
-      }
-      if( pressTimer ) {
-        clearTimeout( pressTimer );
-        pressTimer = null;
-      }
-    }
-
-    function handleTouchStart( event: TouchEvent ) {
-      if( !( event.target instanceof Element ) ) return;
-      const card = event.target.closest( "li" );
-      if( !card || !( card instanceof HTMLElement ) || !list.contains( card ) ) return;
-
-      const touch = event.touches[0];
-      startX = touch.clientX;
-      startY = touch.clientY;
-
-      pressTimer = setTimeout( () => {
-        activeCard = card;
-        activeCard.classList.add( styles.longPressPreview );
-      }, LONG_PRESS_DURATION );
-    }
-
-    function handleTouchMove( event: TouchEvent ) {
-      if( !pressTimer && !activeCard ) return;
-      const touch = event.touches[0];
-      const deltaX = Math.abs( touch.clientX - startX );
-      const deltaY = Math.abs( touch.clientY - startY );
-      if( deltaX > TOUCH_MOVE_THRESHOLD || deltaY > TOUCH_MOVE_THRESHOLD ) {
-        clearPreview();
-      }
-    }
-
-    function handleTouchEnd() {
-      clearPreview();
-    }
-
-    list.addEventListener( "touchstart", handleTouchStart, { passive: true });
-    list.addEventListener( "touchmove", handleTouchMove, { passive: true });
-    list.addEventListener( "touchend", handleTouchEnd );
-    list.addEventListener( "touchcancel", handleTouchEnd );
-
-    return () => {
-      list.removeEventListener( "touchstart", handleTouchStart );
-      list.removeEventListener( "touchmove", handleTouchMove );
-      list.removeEventListener( "touchend", handleTouchEnd );
-      list.removeEventListener( "touchcancel", handleTouchEnd );
-      clearPreview();
-    };
-  }, [ listRef ] );
-}
 
 function useRevealOnScroll( listRef: React.RefObject<HTMLUListElement | null>, visibleKey: unknown ) {
   useEffect( () => {
@@ -172,7 +101,7 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
   const visibleKey = visiblePosts.map( post => post.sys.id ).join( "," );
 
   useRevealOnScroll( listRef, visibleKey );
-  useCardInteractions( listRef );
+  useCardFocus( listRef );
 
   return (
     <ul id={ POSTS_ANCHOR } className={ styles.imageGallery } role="list" ref={ listRef }>
