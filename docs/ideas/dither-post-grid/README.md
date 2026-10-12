@@ -7,10 +7,12 @@ A 1-bit dot dither on `BlogPostList` images, with the full-color photo revealed 
 ## Files
 
 - `mockup.template.html`: the mockup page. It is a standalone artifact page, so it has no `<html>`/`<head>` of its own, and its post data is a `__POSTS__` placeholder.
-- `build-mockup.mjs`: fills the placeholder from the live home page and inlines the 12 most recent cover images.
+- `filter-mockup.template.html`: the simpler first pass. Cards rest behind a CSS filter (black and white, dim, a green tint and others), and the focused card shows full color and zooms in. It uses the same focus triggers as the dither mockup, without the dither. Published copy: https://claude.ai/artifact/2dqj6grTH5qApUcVvuDd8H
+- `build-mockup.mjs`: fills a template's placeholder from the live home page and inlines the 12 most recent cover images.
 
 ```bash
 node docs/ideas/dither-post-grid/build-mockup.mjs /tmp/dither-mockup.html
+node docs/ideas/dither-post-grid/build-mockup.mjs /tmp/focus-study.html filter-mockup.template.html
 ```
 
 Open the output in a browser, or publish it as an artifact. Published copy: https://claude.ai/artifact/KMiWwZTYoNSW3YSG1HrpFM

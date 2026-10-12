@@ -1,0 +1,444 @@
+<title>Post Grid Focus Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,300..900&display=swap">
+<style>
+/* Layout: control strip over the site's gapless 4:3 grid (1/2/3/4 columns); site tokens, dark only */
+:root {
+  --ink: #fff;
+  --paper: #000;
+  --mute: rgba(255, 255, 255, 0.55);
+  --rule: rgba(255, 255, 255, 0.16);
+  --accent: lightgreen;
+  --panel: #0b0d0b;
+  --font-display: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Roboto Mono", monospace;
+  --dim: 0.5;
+  --zoom: 1.08;
+  --speed: 0.5s;
+  color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--font-display); }
+* { box-sizing: border-box; }
+a { color: inherit; }
+
+.page { padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 20px; }
+header.intro { display: grid; gap: 6px; max-width: 70ch; }
+header.intro h1 {
+  margin: 0; font-size: clamp(2.2rem, 7vw, 4.5rem); line-height: 0.9;
+  font-weight: 900; font-stretch: 125%; letter-spacing: -0.02em; text-transform: uppercase; text-wrap: balance;
+}
+header.intro p { margin: 0; color: var(--mute); font-size: 0.95rem; line-height: 1.45; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end;
+  padding: 14px; background: var(--panel); border: 1px solid var(--rule); border-radius: 10px;
+}
+.control { display: grid; gap: 6px; min-width: 0; }
+.control > span, .control legend {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute); padding: 0;
+}
+fieldset.control { border: 0; margin: 0; padding: 0; }
+.segmented { display: flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.segmented input { position: absolute; opacity: 0; pointer-events: none; }
+.segmented label {
+  font-family: var(--font-mono); font-size: 0.78rem; padding: 6px 10px; cursor: pointer;
+  border-right: 1px solid var(--rule); white-space: nowrap; color: var(--mute);
+}
+.segmented label:last-of-type { border-right: 0; }
+.segmented input:checked + label { background: var(--ink); color: var(--paper); }
+.segmented input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: -2px; }
+.control input[type="range"] { width: 120px; accent-color: var(--accent); }
+.control output { font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.range-row { display: flex; gap: 8px; align-items: center; }
+
+.note { font-family: var(--font-mono); font-size: 0.8rem; color: var(--mute); margin: 0; line-height: 1.5; max-width: 90ch; }
+.note strong { color: var(--accent); font-weight: 500; }
+
+/* Grid: the site's breakpoints */
+.grid {
+  list-style: none; margin: 0 -16px; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 0;
+}
+@media (min-width: 800px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1600px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+
+.card { position: relative; min-width: 0; container-type: inline-size; -webkit-touch-callout: none; }
+.frame {
+  position: relative; display: block; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden;
+  background: var(--paper); isolation: isolate;
+}
+.frame img {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover;
+  -webkit-user-select: none; user-select: none;
+  transition: filter var(--speed) ease, opacity var(--speed) ease, transform var(--speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Tint layer: green multiplied over the grayscale photo; only the tint filter shows it */
+.frame::after {
+  content: ""; position: absolute; inset: 0; background: var(--accent); mix-blend-mode: multiply;
+  opacity: 0; transition: opacity var(--speed) ease; pointer-events: none;
+}
+
+/* Rest states, one per filter */
+.grid[data-filter="gray"] .frame img { filter: grayscale(1); }
+.grid[data-filter="dim"] .frame img { opacity: var(--dim); }
+.grid[data-filter="gray-dim"] .frame img { filter: grayscale(1); opacity: var(--dim); }
+.grid[data-filter="tint"] .frame img { filter: grayscale(1) contrast(1.15); }
+.grid[data-filter="tint"] .frame::after { opacity: 1; }
+.grid[data-filter="contrast"] .frame img { filter: grayscale(1) contrast(1.6) brightness(0.85); }
+
+/* Active state: full color and zoom */
+.grid .card.revealed .frame img,
+.grid .card:focus-within .frame img { filter: none; opacity: 1; transform: scale(var(--zoom)); }
+.grid .card.revealed .frame::after,
+.grid .card:focus-within .frame::after { opacity: 0; }
+
+/* Centered stamp caption, as on main */
+.overlay {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center;
+  padding: 1rem; text-align: center; pointer-events: none; z-index: 1;
+}
+.overlay a { pointer-events: auto; text-decoration: none; }
+.title-link { display: grid; justify-items: center; color: var(--ink); }
+.title-link h3 {
+  display: grid; max-width: 18ch; margin: 0;
+  font-size: clamp(1.2rem, 5.5cqi, 1.75rem); font-weight: 800; font-stretch: 122%;
+  line-height: 1.08; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance;
+}
+/* Two stacked copies of the title wrap identically: the back one paints every black box, the front one the text */
+.title-link h3 .layer { grid-area: 1 / 1; }
+.title-link h3 .layer span { padding: 0.16em 0.4em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.title-link h3 .back span { background: var(--paper); color: transparent; }
+.title-link time {
+  display: block; padding: 0.3rem 0.6rem 0.1rem; background: var(--paper);
+  font-family: var(--font-mono); font-size: clamp(0.8rem, 3.2cqi, 0.95rem);
+}
+.tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 8px; background: var(--paper); padding: 2px 10px 5px; }
+.tags code { font-family: var(--font-mono); font-size: clamp(0.75rem, 3cqi, 0.88rem); color: var(--accent); line-height: 1.2; }
+.tags a:hover code { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Optional scroll-in entrance: the site's current fade and scale */
+.grid[data-entrance="on"] .card { opacity: 0; transform: scale(0.92); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.grid[data-entrance="on"] .card.visible { opacity: 1; transform: scale(1); }
+
+/* Dashed band showing where the screen-center trigger sits */
+.center-guide {
+  position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none; z-index: 4;
+  border-block: 1px dashed rgba(144, 238, 144, 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame img, .frame::after { transition: none; }
+  .grid .card.revealed .frame img, .grid .card:focus-within .frame img { transform: none; }
+  .grid[data-entrance="on"] .card { opacity: 1; transform: none; transition: none; }
+}
+</style>
+
+<div class="page">
+  <header class="intro">
+    <h1>Focus study</h1>
+    <p>Twelve recent audeos.com posts with their real cover images. Cards rest behind a filter, and the card you're focused on shows full color and zooms in. With a mouse, focus follows the pointer. On a phone, it's the card crossing the middle of the screen. Try each filter on your phone and on desktop.</p>
+  </header>
+
+  <form class="controls" id="controls" onsubmit="return false">
+    <fieldset class="control">
+      <legend>Rest filter</legend>
+      <div class="segmented">
+        <input type="radio" name="filter" id="filter-gray" value="gray" checked><label for="filter-gray">b&amp;w</label>
+        <input type="radio" name="filter" id="filter-dim" value="dim"><label for="filter-dim">dim</label>
+        <input type="radio" name="filter" id="filter-gray-dim" value="gray-dim"><label for="filter-gray-dim">b&amp;w + dim</label>
+        <input type="radio" name="filter" id="filter-tint" value="tint"><label for="filter-tint">green tint</label>
+        <input type="radio" name="filter" id="filter-contrast" value="contrast"><label for="filter-contrast">hard b&amp;w</label>
+        <input type="radio" name="filter" id="filter-none" value="none"><label for="filter-none">none</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Focus by</legend>
+      <div class="segmented">
+        <input type="radio" name="reveal" id="reveal-auto" value="auto" checked><label for="reveal-auto">auto</label>
+        <input type="radio" name="reveal" id="reveal-hover" value="hover"><label for="reveal-hover">hover</label>
+        <input type="radio" name="reveal" id="reveal-center" value="center"><label for="reveal-center">screen center</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Center focuses</legend>
+      <div class="segmented">
+        <input type="radio" name="unit" id="unit-sweep" value="sweep" checked><label for="unit-sweep">one card (sweep)</label>
+        <input type="radio" name="unit" id="unit-row" value="row"><label for="unit-row">whole row</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Scroll-in fade</legend>
+      <div class="segmented">
+        <input type="radio" name="entrance" id="entrance-off" value="off" checked><label for="entrance-off">off</label>
+        <input type="radio" name="entrance" id="entrance-on" value="on"><label for="entrance-on">on (current)</label>
+      </div>
+    </fieldset>
+    <fieldset class="control">
+      <legend>Focus band</legend>
+      <div class="segmented">
+        <input type="radio" name="guide" id="guide-show" value="show" checked><label for="guide-show">show</label>
+        <input type="radio" name="guide" id="guide-hide" value="hide"><label for="guide-hide">hide</label>
+      </div>
+    </fieldset>
+    <label class="control" for="dim">
+      <span>Dim opacity</span>
+      <span class="range-row"><input type="range" id="dim" min="0.15" max="0.85" step="0.05" value="0.5"><output id="dim-out">50%</output></span>
+    </label>
+    <label class="control" for="zoom">
+      <span>Focus zoom</span>
+      <span class="range-row"><input type="range" id="zoom" min="1" max="1.2" step="0.01" value="1.08"><output id="zoom-out">1.08×</output></span>
+    </label>
+    <label class="control" for="speed">
+      <span>Transition</span>
+      <span class="range-row"><input type="range" id="speed" min="0.1" max="1.2" step="0.05" value="0.5"><output id="speed-out">0.50s</output></span>
+    </label>
+  </form>
+
+  <p class="note" id="note"></p>
+
+  <ul class="grid" id="grid" role="list"></ul>
+</div>
+<div class="center-guide" id="center-guide" hidden></div>
+
+<script>
+const POSTS = __POSTS__;
+
+const FILTER_NOTES = {
+  gray: "<strong>b&amp;w</strong> · <code>grayscale(1)</code>, which keeps the photo's full brightness",
+  dim: "<strong>dim</strong> · the photo at reduced opacity over the black page, so color stays faintly visible",
+  "gray-dim": "<strong>b&amp;w + dim</strong> · grayscale and reduced opacity, the quietest rest state",
+  tint: "<strong>green tint</strong> · grayscale with the accent green multiplied over it, like a duotone",
+  contrast: "<strong>hard b&amp;w</strong> · grayscale with strong contrast, the closest to the dither's graphic look",
+  none: "<strong>none</strong> · no filter; focus only zooms",
+};
+const REVEAL_NOTES = {
+  hover: "<strong>hover</strong> · the card under the pointer is in focus, even while the page scrolls under a still mouse",
+  center: "<strong>screen center</strong> · the card crossing the dashed band is in focus; the band slides toward the top and bottom edges at the ends of the page so the first and last rows reach it",
+};
+
+const mouseQuery = window.matchMedia( "(hover: hover) and (pointer: fine)" );
+
+function readSettings() {
+  const data = new FormData( document.getElementById( "controls" ) );
+  const reveal = data.get( "reveal" );
+  return {
+    filter: data.get( "filter" ),
+    reveal: reveal === "auto" ? ( mouseQuery.matches ? "hover" : "center" ) : reveal,
+    revealChoice: reveal,
+    unit: data.get( "unit" ),
+    entrance: data.get( "entrance" ),
+    guide: data.get( "guide" ),
+    dim: Number( document.getElementById( "dim" ).value ),
+    zoom: Number( document.getElementById( "zoom" ).value ),
+    speed: Number( document.getElementById( "speed" ).value ),
+  };
+}
+
+function formatDate( value ) {
+  return new Date( value ).toLocaleDateString( "en-US", { year: "numeric", month: "long", day: "numeric" } );
+}
+
+function buildCard( post ) {
+  const item = document.createElement( "li" );
+  item.className = "card";
+  const postUrl = `https://audeos.com/post/${post.slug}`;
+
+  const frame = document.createElement( "a" );
+  frame.className = "frame";
+  frame.href = postUrl;
+  frame.setAttribute( "aria-label", post.title );
+  frame.draggable = false;
+  const image = document.createElement( "img" );
+  image.alt = "";
+  image.draggable = false;
+  image.src = post.data;
+  frame.append( image );
+
+  const overlay = document.createElement( "div" );
+  overlay.className = "overlay";
+  const titleLink = document.createElement( "a" );
+  titleLink.className = "title-link";
+  titleLink.href = postUrl;
+  const heading = document.createElement( "h3" );
+  for( const layerName of [ "back", "front" ] ) {
+    const layer = document.createElement( "span" );
+    layer.className = `layer ${layerName}`;
+    const layerText = document.createElement( "span" );
+    layerText.textContent = post.title;
+    layer.append( layerText );
+    if( layerName === "back" ) layer.setAttribute( "aria-hidden", "true" );
+    heading.append( layer );
+  }
+  const time = document.createElement( "time" );
+  time.dateTime = post.date;
+  time.textContent = formatDate( post.date );
+  titleLink.append( heading, time );
+
+  const tags = document.createElement( "div" );
+  tags.className = "tags";
+  for( const tag of post.tags ) {
+    const tagLink = document.createElement( "a" );
+    tagLink.href = `https://audeos.com/tags/${tag}`;
+    const code = document.createElement( "code" );
+    code.textContent = `#${tag}`;
+    tagLink.append( code );
+    tags.append( tagLink );
+  }
+  overlay.append( titleLink, tags );
+  item.append( frame, overlay );
+  return item;
+}
+
+const grid = document.getElementById( "grid" );
+const cards = POSTS.map( buildCard );
+grid.append( ...cards );
+
+// The page may sit in a cross-origin iframe sized to its content, where innerHeight and rootMargin
+// say nothing about the real screen. A document-tall sentinel's intersectionRect does: it is the
+// slice of this page that is actually on screen, in this frame's client coordinates.
+const viewport = { top: 0, bottom: window.innerHeight };
+const sentinel = document.createElement( "div" );
+sentinel.style.cssText = "position:absolute;left:0;top:0;width:1px;pointer-events:none;visibility:hidden";
+document.body.append( sentinel );
+const SENTINEL_STEPS = 1000;
+const viewportObserver = new IntersectionObserver( entries => {
+  for( const entry of entries ) {
+    if( !entry.isIntersecting ) continue;
+    viewport.top = entry.intersectionRect.top;
+    viewport.bottom = entry.intersectionRect.bottom;
+  }
+}, { threshold: Array.from( { length: SENTINEL_STEPS + 1 }, ( _unused, step ) => step / SENTINEL_STEPS ) } );
+function sizeSentinel() {
+  sentinel.style.height = "0px";
+  sentinel.style.height = `${document.documentElement.scrollHeight}px`;
+}
+sizeSentinel();
+viewportObserver.observe( sentinel );
+
+// The focus line sits mid-screen, but slides toward the top or bottom edge over the first and last
+// half-screen of scrolling, so the first and last rows still reach it.
+const FOCUS_EDGE = 0.35;
+const pageContent = document.querySelector( ".page" );
+function viewportHalf() {
+  return Math.max( 1, ( viewport.bottom - viewport.top ) / 2 );
+}
+function viewportCenter() {
+  const height = viewport.bottom - viewport.top;
+  const half = viewportHalf();
+  const content = pageContent.getBoundingClientRect();
+  const slackAbove = Math.max( 0, viewport.top - content.top );
+  const slackBelow = Math.max( 0, content.bottom - viewport.bottom );
+  const towardBottom = 1 - Math.min( 1, slackBelow / half );
+  const towardTop = 1 - Math.min( 1, slackAbove / half );
+  const line = viewport.top + height * ( 0.5 + FOCUS_EDGE * ( towardBottom - towardTop ) );
+  const firstCard = cards[0].getBoundingClientRect();
+  const lastCard = cards[cards.length - 1].getBoundingClientRect();
+  return Math.min( Math.max( line, firstCard.top ), lastCard.bottom - 1 );
+}
+
+let settings = readSettings();
+
+const CENTER_BAND = 0.1;
+const guide = document.getElementById( "center-guide" );
+
+// Screen-center focus: a card is in focus while it overlaps the middle band of the screen.
+function updateCenterReveal() {
+  const center = viewportCenter();
+  const halfBand = viewportHalf() * CENTER_BAND;
+  guide.style.top = `${center - halfBand + window.scrollY}px`;
+  guide.style.height = `${halfBand * 2}px`;
+  const boundsByCard = new Map( cards.map( card => [ card, card.getBoundingClientRect() ] ) );
+  if( settings.unit === "row" ) {
+    for( const [ card, bounds ] of boundsByCard ) {
+      card.classList.toggle( "revealed", bounds.top < center + halfBand && bounds.bottom > center - halfBand );
+    }
+    return;
+  }
+  // Sweep: where the line sits within the row picks which column is in focus, left to right.
+  const rows = new Map();
+  for( const [ card, bounds ] of boundsByCard ) {
+    const rowKey = Math.round( bounds.top );
+    if( !rows.has( rowKey ) ) rows.set( rowKey, [] );
+    rows.get( rowKey ).push( card );
+  }
+  for( const rowCards of rows.values() ) {
+    rowCards.sort( ( first, second ) => boundsByCard.get( first ).left - boundsByCard.get( second ).left );
+    const rowBounds = boundsByCard.get( rowCards[0] );
+    const progress = ( center - rowBounds.top ) / rowBounds.height;
+    const inside = progress >= 0 && progress < 1;
+    const activeColumn = Math.min( rowCards.length - 1, Math.floor( progress * rowCards.length ) );
+    rowCards.forEach( ( card, column ) => card.classList.toggle( "revealed", inside && column === activeColumn ) );
+  }
+}
+
+// Hover focus tracked in script: CSS :hover goes stale when the page scrolls under a still cursor.
+// If the host page scrolls this frame, the cursor's spot inside it shifts by however far the
+// visible slice moved since the last mouse move.
+const pointer = { x: 0, y: 0, viewportTop: 0, inside: false };
+document.addEventListener( "pointermove", event => {
+  if( event.pointerType !== "mouse" ) return;
+  pointer.x = event.clientX;
+  pointer.y = event.clientY;
+  pointer.viewportTop = viewport.top;
+  pointer.inside = true;
+});
+document.addEventListener( "mouseout", event => {
+  if( !event.relatedTarget ) pointer.inside = false;
+});
+
+function updateHoverReveal() {
+  let hovered = null;
+  if( pointer.inside ) {
+    const target = document.elementFromPoint( pointer.x, pointer.y + viewport.top - pointer.viewportTop );
+    hovered = target ? target.closest( ".card" ) : null;
+  }
+  for( const card of cards ) card.classList.toggle( "revealed", card === hovered );
+}
+
+function tick() {
+  requestAnimationFrame( tick );
+  if( settings.reveal === "center" ) updateCenterReveal();
+  else updateHoverReveal();
+}
+
+// Scroll-in entrance, as useRevealOnScroll does on the site today.
+const entranceObserver = new IntersectionObserver( entries => {
+  for( const entry of entries ) {
+    if( entry.isIntersecting ) entry.target.classList.add( "visible" );
+  }
+}, { threshold: 0.15 } );
+cards.forEach( card => entranceObserver.observe( card ) );
+
+function applySettings() {
+  const previousEntrance = settings.entrance;
+  settings = readSettings();
+  grid.dataset.filter = settings.filter;
+  grid.dataset.entrance = settings.entrance;
+  if( settings.entrance === "on" && previousEntrance !== "on" ) {
+    // Replay the entrance for cards below the fold.
+    cards.forEach( card => card.classList.remove( "visible" ) );
+    entranceObserver.disconnect();
+    cards.forEach( card => entranceObserver.observe( card ) );
+  }
+  const rootStyle = document.documentElement.style;
+  rootStyle.setProperty( "--dim", settings.dim );
+  rootStyle.setProperty( "--zoom", settings.zoom );
+  rootStyle.setProperty( "--speed", `${settings.speed}s` );
+  guide.hidden = settings.reveal !== "center" || settings.guide === "hide";
+  cards.forEach( card => card.classList.remove( "revealed" ) );
+  const revealLabel = settings.revealChoice === "auto" ? `auto → ${settings.reveal}. ` : "";
+  document.getElementById( "note" ).innerHTML = [ FILTER_NOTES[settings.filter], revealLabel + REVEAL_NOTES[settings.reveal] ].join( "<br>" );
+  document.getElementById( "dim-out" ).textContent = `${Math.round( settings.dim * 100 )}%`;
+  document.getElementById( "zoom-out" ).textContent = `${settings.zoom.toFixed( 2 )}×`;
+  document.getElementById( "speed-out" ).textContent = `${settings.speed.toFixed( 2 )}s`;
+}
+
+document.getElementById( "controls" ).addEventListener( "input", applySettings );
+mouseQuery.addEventListener( "change", applySettings );
+new ResizeObserver( sizeSentinel ).observe( grid );
+applySettings();
+requestAnimationFrame( tick );
+</script>

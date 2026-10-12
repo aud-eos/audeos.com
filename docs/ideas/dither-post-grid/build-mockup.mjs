@@ -1,8 +1,10 @@
-// Rebuilds the dither mockup from the live site: reads the home page's embedded post data,
+// Rebuilds a mockup from the live site: reads the home page's embedded post data,
 // downloads the 12 most recent cover images and inlines them, since artifact pages cannot load
 // images from other hosts.
 //
-//   node docs/ideas/dither-post-grid/build-mockup.mjs <output.html>
+//   node docs/ideas/dither-post-grid/build-mockup.mjs <output.html> [template.html]
+//
+// The template defaults to the dither mockup; pass filter-mockup.template.html for the filter study.
 import { readFile, writeFile } from "node:fs/promises";
 import { strict as assert } from "assert";
 
@@ -10,10 +12,11 @@ const SITE_URL = "https://audeos.com/";
 const POST_COUNT = 12;
 const IMAGE_QUERY = "?w=640&h=480&fit=fill&f=faces&fm=jpg&q=72";
 const PLACEHOLDER = "__POSTS__";
-const TEMPLATE_URL = new URL( "./mockup.template.html", import.meta.url );
+const DEFAULT_TEMPLATE = "mockup.template.html";
 
 const outputPath = process.argv[2];
-assert( outputPath, "Usage: node build-mockup.mjs <output.html>" );
+assert( outputPath, "Usage: node build-mockup.mjs <output.html> [template.html]" );
+const templateUrl = new URL( `./${process.argv[3] ?? DEFAULT_TEMPLATE}`, import.meta.url );
 
 function collectPosts( node, found ) {
   if( Array.isArray( node ) ) {
@@ -59,7 +62,7 @@ const mockupPosts = await Promise.all( recentPosts.map( async post => ({
   data: await inlineImage( post.fields.image.fields.file.url ),
 }) ) );
 
-const template = await readFile( TEMPLATE_URL, "utf8" );
+const template = await readFile( templateUrl, "utf8" );
 assert( template.includes( PLACEHOLDER ), `Template has no ${PLACEHOLDER} placeholder` );
 await writeFile( outputPath, template.replace( PLACEHOLDER, () => JSON.stringify( mockupPosts ) ) );
 console.log( `Wrote ${outputPath} with ${mockupPosts.length} posts` );
