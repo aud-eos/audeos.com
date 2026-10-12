@@ -5,10 +5,7 @@ section.tags {
     padding: .4rem;
     border-radius: 1rem;
     display: inline-block;
-    background: lightgrey;
-    @media (prefers-color-scheme: dark) {
-      background: rgb(33, 33, 33);
-    }
+    background: rgb(33, 33, 33);
   }
   > a > code:hover {
     color: darkgreen;

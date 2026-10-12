@@ -265,18 +265,6 @@
   }
 }
 
-/* ===== Light mode tweaks ===== */
-@media (prefers-color-scheme: light) {
-  .card {
-    --bg-deep: #1a1530;
-  }
-  .skeleton {
-    background: linear-gradient(135deg,
-      rgba(168, 85, 247, 0.08),
-      rgba(56, 189, 248, 0.05));
-  }
-}
-
 /* ===== Reduced motion ===== */
 @media (prefers-reduced-motion: reduce) {
   .card,

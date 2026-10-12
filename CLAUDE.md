@@ -73,6 +73,8 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 - Feeds are generated in `src/lib/generateFeeds.ts` and called from `getStaticProps` in `src/pages/index.tsx`.
 - **Editorial SEO copy lives on categories, not tags.** Per-category title/description/OG image is configured in `data/categories.json`; tag pages render generic SEO (e.g. `Posts tagged {id} | Audeos.com`) by design. The per-tag JSON config (`data/tags.json`, `src/types/tagConfig.ts`, `src/utils/tagSeoConfig.ts`) was deleted in PR #89 because per-tag editorial copy didn't scale. Do not re-introduce it — if a tag needs prominence, consider whether it should be a category instead.
 - **`NowPlayingCard` is intentionally client-only** — it polls `audeos.fm/api/now-playing/main` via `useEffect` + `fetch`, with no `getStaticProps` involvement. This decouples the static export from `audeos.fm`'s availability and keeps live-stream state out of the build cache. Resist the instinct to migrate it to the build-time fetch pattern used elsewhere; it would break the live behavior.
+- **One shared now-playing poller** — `src/components/NowPlaying/nowPlayingStore.ts` is the single client-side poller of `audeos.fm/api/now-playing/main` (a `useSyncExternalStore` store: the poller fetches only while subscribed and the tab is visible, payloads validated by `isNowPlaying`, a failed poll clears the data). `NowPlayingCard` and the top-bar `OnAirWidget` both read it via `useNowPlaying()`; do not add a second `fetch` of that endpoint. The client-only rule above applies to the store.
+- **Frame navigation and social links** come from `src/lib/navLinks.ts` and `src/lib/socialLinks.ts`. Category display titles come from `categoryTitleFor()` in `src/utils/categoryTitle.ts`, which throws on an unknown id (a missing category fails the build rather than rendering blank).
 
 ### Routing
 
@@ -84,13 +86,19 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 | `/page/[page]` | `pages/page/[page].tsx` | Pagination (chronological archive) |
 | `/category/[slug]` | `pages/category/[slug].tsx` | Category landing page (3 categories) |
 | `/category/[slug]/page/[page]` | `pages/category/[slug]/page/[page].tsx` | Paginated category listing |
-| `/tags/[tagId]` | `pages/tags/[tagId].tsx` | Tag-filtered listing (reachable from per-card chips) |
+| `/tags/[tagId]` | `pages/tags/[tagId].tsx` | Tag-filtered listing (reachable from the tag chips on post pages) |
 | `/tags/[tagId]/page/[page]` | `pages/tags/[tagId]/page/[page].tsx` | Paginated tag listing |
 | `/author/[slug]` | `pages/author/[slug].tsx` | Author profile page |
 
 ### Styling
 
-SCSS modules in `src/styles/`. Each page/component has a corresponding `.module.scss` file. Global styles in `src/styles/globals.scss`.
+SCSS modules in `src/styles/`. Each page/component has a corresponding `.module.scss` file. Global styles and tokens in `src/styles/globals.css`.
+
+The site is **dark only** (no `prefers-color-scheme` branches). Design tokens are CSS custom properties in `globals.css`: `--ink`, `--paper`, `--mute`, `--rule`, `--accent`, `--hatch`. Mona Sans is loaded in `_app.tsx` with its `wdth` axis as `--font-mona-sans`.
+
+- **`GiantWord`** (`src/components/GiantWord/`) renders each page's `h1`, fitted by `useFitWidth` (100% of the container on phones; on desktop `DESKTOP_OVERSHOOT` (1.15) times the container, so every word crops at the right edge); with `stackedLogoOnPhone` (home) phones get the inline `AudeosLogo` instead of the text. `useRouteViewTransition` (`src/lib/`) morphs it between pages via the View Transitions API and is skipped for reduced motion.
+- **Masonry** post grids use native `display: grid-lanes` where supported (`@supports` in `Masonry.module.scss`); otherwise `useMasonryPlacement` (`src/components/Masonry/`) places cards, re-placing when the grid width or any card height changes.
+- `useRevealOnScroll` (in `BlogPostList.tsx`) fades cards in on scroll and shows all cards at once under reduced motion.
 
 ### Path aliases
 

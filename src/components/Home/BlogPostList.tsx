@@ -1,15 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { resolvePostDate, sortBlogPostsByDate } from "@/utils/blogPostUtils";
-import DateTimeFormat from "@/components/DateTimeFormat";
+import { sortBlogPostsByDate } from "@/utils/blogPostUtils";
 import styles from "@/styles/Home.module.scss";
-import Picture from "@/components/Picture";
-import { Tags } from "@/components/Tags";
+import PostCard, { cardDataFromPost } from "@/components/PostCard/PostCard";
+import { useMasonryPlacement } from "@/components/Masonry/useMasonryPlacement";
+import masonryStyles from "@/styles/Masonry.module.scss";
 import { PAGE_SIZE, POSTS_ANCHOR } from "@/constants";
 import { BlogPost } from "@/utils/contentfulUtils";
+import { categoryTitleFor } from "@/utils/categoryTitle";
 
-
-const IMAGE_WIDTH = 800;
 const OBSERVER_THRESHOLD = 0.15;
 const LONG_PRESS_DURATION = 500;
 const TOUCH_MOVE_THRESHOLD = 10;
@@ -84,17 +82,7 @@ function useCardInteractions( listRef: React.RefObject<HTMLUListElement | null> 
   }, [ listRef ] );
 }
 
-
-export interface BlogPostListProps {
-  posts: BlogPost[]
-  page: number
-  tagId?: string
-  firstCardPriority?: boolean
-}
-
-export default function BlogPostList({ posts, page, tagId, firstCardPriority = false }: BlogPostListProps ) {
-  const listRef = useRef<HTMLUListElement>( null );
-
+function useRevealOnScroll( listRef: React.RefObject<HTMLUListElement | null>, visibleKey: unknown ) {
   useEffect( () => {
     const list = listRef.current;
     if( !list ) return;
@@ -120,47 +108,39 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
     list.querySelectorAll( "li" ).forEach( item => observer.observe( item ) );
 
     return () => observer.disconnect();
-  }, [ posts, page, tagId ] );
+  }, [ listRef, visibleKey ] );
+}
 
+
+export interface BlogPostListProps {
+  posts: BlogPost[]
+  page: number
+  firstCardPriority?: boolean
+}
+
+export default function BlogPostList({ posts, page, firstCardPriority = false }: BlogPostListProps ) {
+  const listRef = useRef<HTMLUListElement>( null );
+  const visiblePosts = [ ...posts ]
+    .sort( sortBlogPostsByDate )
+    .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page );
+  const visibleKey = visiblePosts.map( post => post.sys.id ).join( "," );
+
+  useRevealOnScroll( listRef, visibleKey );
   useCardInteractions( listRef );
+  useMasonryPlacement( listRef, visibleKey );
 
   return (
-    <ul id={ POSTS_ANCHOR } className={ styles.imageGallery } role="list" ref={ listRef }>
+    <ul id={ POSTS_ANCHOR } className={ `${styles.imageGallery} ${masonryStyles.masonry}` } role="list" ref={ listRef }>
       {
-        [ ...posts ]
-          .sort( sortBlogPostsByDate )
-          .slice( PAGE_SIZE * ( page - 1 ), PAGE_SIZE * page )
+        visiblePosts
           .map( ( post, cardIndex ) => {
-
-            const url = `/post/${post.fields.slug}`;
-            const pictureUrl = post.fields.image?.fields.file?.url || "";
-            const altText = post.fields.image?.fields.description || "";
-            const timestamp = resolvePostDate( post );
 
             return (
               <li key={ post.sys.id } style={ { viewTransitionName: `post-${post.fields.slug}` } }>
-                <figure>
-                  <Link href={ url } aria-label={ post.fields.title }>
-                    <Picture
-                      url={ pictureUrl }
-                      maxWidth={ IMAGE_WIDTH }
-                      alt={ altText }
-                      priority={ firstCardPriority && cardIndex === 0 }
-                    />
-                  </Link>
-                  <figcaption>
-                    <Link href={ url }>
-                      <h3>{ post.fields.title }</h3>
-                      <DateTimeFormat
-                        timestamp={ timestamp }
-                      />
-                    </Link>
-                  </figcaption>
-                  <Tags
-                    tags={ post.metadata.tags }
-                    tagId={ tagId }
-                  />
-                </figure>
+                <PostCard
+                  card={ cardDataFromPost( post, categoryTitleFor( post.fields.category ) ) }
+                  priority={ firstCardPriority && cardIndex === 0 }
+                />
               </li>
             );
           })

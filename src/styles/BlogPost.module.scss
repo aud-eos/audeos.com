@@ -5,19 +5,6 @@
 
   a {
     color: lightgreen;
-    @media (prefers-color-scheme: light) {
-      filter: drop-shadow(.1rem .1rem .1rem black);
-      text-shadow: -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000, 1px 1px 1px #000;
-    }
-  }
-
-  // Remove link effects from tag pills so they match the index page
-  section a {
-    @media (prefers-color-scheme: light) {
-      filter: none;
-      text-shadow: none;
-      color: inherit;
-    }
   }
 
   .postNav {
@@ -27,10 +14,6 @@
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-
-    @media (prefers-color-scheme: light) {
-      border-top-color: rgba(0, 0, 0, 0.15);
-    }
 
     a {
       display: flex;
@@ -44,9 +27,6 @@
 
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        @media (prefers-color-scheme: light) {
-          background: rgba(0, 0, 0, 0.08);
-        }
       }
 
       > span:first-child {
@@ -69,16 +49,39 @@
     }
   }
 
-  > article {
+  .postTitle {
+    margin-top: 1.5rem;
+    font-family: var(--font-mona-sans), sans-serif;
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 800;
+    font-stretch: 90%;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
 
+  .postMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin: 1rem 0 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+
+    a {
+      color: var(--accent);
+    }
+  }
+
+  > article {
     // Article Header
     > header {
-
-      > figure, h1, address, p {
-        margin-bottom: 1rem;
-      }
-
       > figure {
+        margin-bottom: 1rem;
         aspect-ratio: 4/3;
         position: relative;
         > img {
@@ -87,29 +90,9 @@
           filter: grayscale(1);
         }
       }
-      > h1 {
-        font-size: min(3rem, 8vw);
-      }
-      > address {
-        display: flex;
-        align-items: center;
-        > a {
-          display: block;
-          line-height: 0;
-        }
-        > img,
-        > a > img {
-          vertical-align: middle;
-          border-radius: 100%;
-          border: .2rem solid gold;
-          margin: 0 .5rem 0 0;
-          background: #000;
-          @media (prefers-color-scheme: light) {
-            background: #fff;
-          }
-        }
-      }
-      > p {
+
+      .postDescription {
+        margin-bottom: 1rem;
         font-size: x-large;
       }
     }

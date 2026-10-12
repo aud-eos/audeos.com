@@ -282,6 +282,25 @@ describe( "NowPlayingCard", () => {
     }
   });
 
+  it( "shows the offline state when a poll fails after an earlier success", async () => {
+    let callCount = 0;
+    vi.stubGlobal( "fetch", vi.fn( async () => {
+      callCount++;
+      if( callCount > 1 ) throw new Error( "network failure" );
+      return { ok: true, status: 200, json: async () => livePayload };
+    }) );
+    vi.useFakeTimers();
+    try {
+      render( <NowPlayingCard /> );
+      await act( async () => { await vi.advanceTimersByTimeAsync( 0 ); });
+      expect( screen.getByText( "Day Party vol. 1" ) ).toBeInTheDocument();
+      await act( async () => { await vi.advanceTimersByTimeAsync( 30_000 ); });
+      expect( screen.getByText( "● Stream offline" ) ).toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it( "renders the initial position and duration formatted as m:ss", async () => {
     mockFetchOnce({
       ...livePayload,

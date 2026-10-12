@@ -1,0 +1,8 @@
+// The shared "giant word" type recipe: Mona Sans Black, condensed, tightly tracked, uppercase.
+@mixin giant-type($letter-spacing: -0.105em) {
+  font-family: var(--font-mona-sans), sans-serif;
+  font-weight: 900;
+  font-stretch: 82%;
+  letter-spacing: $letter-spacing;
+  text-transform: uppercase;
+}

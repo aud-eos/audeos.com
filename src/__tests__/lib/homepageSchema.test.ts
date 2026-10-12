@@ -64,14 +64,14 @@ describe( "buildHomepageSchema", () => {
     expect( schema.hasPart ).toHaveLength( 3 );
     expect( schema.hasPart[0] ).toMatchObject({
       "@type": "CollectionPage",
-      "name": "Music",
-      "description": "Music posts",
-      "url": "https://www.audeos.com/category/music",
+      "name": "Events",
+      "url": "https://www.audeos.com/category/events",
     });
     expect( schema.hasPart[1] ).toMatchObject({
       "@type": "CollectionPage",
-      "name": "Events",
-      "url": "https://www.audeos.com/category/events",
+      "name": "Music",
+      "description": "Music posts",
+      "url": "https://www.audeos.com/category/music",
     });
     expect( schema.hasPart[2] ).toMatchObject({
       "@type": "CollectionPage",
@@ -93,7 +93,7 @@ describe( "buildHomepageSchema", () => {
       }) );
     }
     const schema = buildHomepageSchema({ items } as never, categoryConfig );
-    const musicSection = schema.hasPart[0];
+    const musicSection = schema.hasPart[1];
     expect( musicSection.hasPart ).toHaveLength( 6 );
     const slugs = musicSection.hasPart.map( ( post: { url: string }) => post.url );
     expect( slugs[0] ).toContain( "m8" );
@@ -121,7 +121,7 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    const musicSection = schema.hasPart[0];
+    const musicSection = schema.hasPart[1];
     expect( musicSection.hasPart[0] ).toMatchObject({
       "@type": "BlogPosting",
       "headline": "No Image",
@@ -143,7 +143,7 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    expect( schema.hasPart[1].hasPart ).toEqual( [] );
+    expect( schema.hasPart[0].hasPart ).toEqual( [] );
     expect( schema.hasPart[2].hasPart ).toEqual( [] );
   });
 
@@ -155,8 +155,8 @@ describe( "buildHomepageSchema", () => {
       ] } as never,
       categoryConfig,
     );
-    const musicSection = schema.hasPart[0];
-    const eventsSection = schema.hasPart[1];
+    const musicSection = schema.hasPart[1];
+    const eventsSection = schema.hasPart[0];
     expect( musicSection.hasPart ).toHaveLength( 1 );
     expect( musicSection.hasPart[0].url ).toContain( "m1" );
     expect( eventsSection.hasPart ).toHaveLength( 1 );

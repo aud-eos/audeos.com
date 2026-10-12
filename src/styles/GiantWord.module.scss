@@ -1,0 +1,65 @@
+@use "giant-type";
+
+.giant {
+  width: 100%;
+  overflow: clip;
+  padding: clamp(28px, 4vw, 44px) 0 clamp(28px, 4vw, 44px) 6px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.heading {
+  font: inherit;
+  line-height: 1;
+}
+
+.word {
+  display: inline-block;
+  @include giant-type.giant-type;
+  font-size: 30vw;
+  padding-right: 0.105em;
+  line-height: 1;
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+  view-transition-name: giant-word;
+  animation: giant-word-load 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes giant-word-load {
+  from { translate: 30% 0; opacity: 0; }
+}
+
+.phoneLogo {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  .giant {
+    padding-inline: 0;
+  }
+
+  .word {
+    font-size: 22vw;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .phoneLogo {
+    display: block;
+    width: calc(100% - 56px);
+    height: auto;
+    margin-inline: auto;
+    color: var(--ink);
+  }
+}
+
+// After the first client navigation the view transition morphs the word in; keep the load
+// animation off for good so it does not replay when the transition ends.
+:global(:root[data-route-transitioned]) .word {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word { animation: none; }
+}

@@ -22,6 +22,7 @@ import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getOembed as getTikTokOembed, TikTokOembed } from "@/utils/tiktok/getOembed";
 import { TikTokEmbed } from "@/components/TikTokEmbed";
 import { LocationMap } from "@/components/LocationMap";
+import { categoryTitleFor } from "@/utils/categoryTitle";
 
 
 
@@ -48,8 +49,6 @@ export const BlogPostView: FC<BlogPostViewProps> = ({ post, playlist, soundCloud
   const metaTitle = `${post.fields.title} | Audeos.com`;
   const metaImage = `https:${post.fields.image?.fields.file?.url}?w=${CONTENT_IMAGE_WIDTH}`;
   const metaImageDesc = post.fields.image?.fields.description || "";
-  const authorImageUrl = post.fields.author?.fields.image?.fields.file?.url;
-  const authorProfileImageSrc = authorImageUrl ? `https:${authorImageUrl}?w=50` : null;
   const authorName = post.fields.author?.fields.name;
   const authorSlug = post.fields.author?.fields.slug;
   const canonicalUrl = `${SITE_URL}/post/${post.fields.slug}`;
@@ -95,56 +94,28 @@ export const BlogPostView: FC<BlogPostViewProps> = ({ post, playlist, soundCloud
         <main className={ styles.main }>
           <article>
             <header>
-              <figure>
-                <Image
-                  src={ metaImage }
-                  alt={ metaImageDesc }
-                  fill
-                  priority
-                />
-                <figcaption>
-                  { metaImageDesc }
-                </figcaption>
-              </figure>
-              <h1>{ post.fields.title }</h1>
-              <address>
-                { authorProfileImageSrc && (
-                  authorSlug
-                    ? <Link href={ `/author/${authorSlug}` }>
-                      <Image
-                        src={ authorProfileImageSrc }
-                        alt={ authorName || "" }
-                        width="50"
-                        height="50"
-                        priority
-                      />
-                    </Link>
-                    : <Image
-                      src={ authorProfileImageSrc }
-                      alt={ authorName || "" }
-                      width="50"
-                      height="50"
-                      priority
-                    />
+              <h1 className={ styles.postTitle }>{ post.fields.title }</h1>
+              <p className={ styles.postMeta }>
+                <DateTimeFormat timestamp={ resolvePostDate( post ) } withDayName={ false } withTime={ false } />
+                { post.fields.category && (
+                  <Link href={ `/category/${post.fields.category}` }>
+                    { categoryTitleFor( post.fields.category ) }
+                  </Link>
                 ) }
-                <span>
-                  <DateTimeFormat timestamp={ resolvePostDate( post ) } withDayName={ false } withTime={ false } />
-                  <br />
-                  {
-                    !!authorName &&
-                      <b>
-                        By { authorSlug
-                          ? <Link rel="author" href={ `/author/${authorSlug}` }>{ authorName }</Link>
-                          : authorName
-                        }
-                      </b>
-                  }
-                </span>
-              </address>
-              <Tags tags={ post.metadata.tags } />
-              <p>
-                { post.fields.description }
+                { authorName && (
+                  <span>
+                    By { authorSlug
+                      ? <Link rel="author" href={ `/author/${authorSlug}` }>{ authorName }</Link>
+                      : authorName }
+                  </span>
+                ) }
               </p>
+              <figure>
+                <Image src={ metaImage } alt={ metaImageDesc } fill priority />
+                <figcaption>{ metaImageDesc }</figcaption>
+              </figure>
+              <Tags tags={ post.metadata.tags } />
+              <p className={ styles.postDescription }>{ post.fields.description }</p>
             </header>
             <Markdown>{ post.fields.body || "" }</Markdown>
             <Gallery items={ resolveGalleryItems( post.fields.gallery ) } />

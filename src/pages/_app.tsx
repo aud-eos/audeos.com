@@ -7,14 +7,18 @@ import Head from "next/head";
 import * as gtag from "../lib/google-analytics";
 import { GoogleAnalytics } from "@/lib/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
+import { useRouteViewTransition } from "@/lib/useRouteViewTransition";
 
-const fontMona_Sans = Mona_Sans({
-  subsets:[ "latin" ],
+const fontMonaSans = Mona_Sans({
+  subsets: [ "latin" ],
+  axes: [ "wdth" ],
+  variable: "--font-mona-sans",
 });
 
 export default function App({ Component, pageProps }: AppProps ) {
 
   const router = useRouter();
+  useRouteViewTransition();
 
   /** Google Analytics Effect */
   useEffect( () => {
@@ -31,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps ) {
       </Head>
       <CookieConsent />
       <GoogleAnalytics />
-      <div className={ fontMona_Sans.className }>
+      <div className={ `${fontMonaSans.className} ${fontMonaSans.variable}` }>
         <Component { ...pageProps } />
       </div>
     </>
