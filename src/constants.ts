@@ -14,6 +14,14 @@ export const CONTENT_IMAGE_WIDTH = 750;
 export const POSTS_PER_TAG_SECTION = 3;
 export const POSTS_PER_CATEGORY_SECTION = 12;
 export const CATEGORY_IDS = [ "music", "events", "lifestyle" ] as const;
+export type CategoryId = ( typeof CATEGORY_IDS )[number];
+// Titles are code, not content: the top bar, search page and post page need them while rendering.
+export const CATEGORY_TITLES: Record<CategoryId, string> = { music: "Music", events: "Events", lifestyle: "Lifestyle" };
+export const HIRE_PATH = "/category/events";
+
+export function isCategoryId( value: string ): value is CategoryId {
+  return CATEGORY_IDS.some( categoryId => categoryId === value );
+}
 export const STREAM_ORIGIN = "https://audeos.fm";
 export const AUTHOR_SLUG = "audeos";
 export const STREAM_CHANNEL_URL = `${STREAM_ORIGIN}/channels/main`;
