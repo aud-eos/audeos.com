@@ -18,7 +18,8 @@ Success means:
 
 These were settled with the owner during brainstorming and are not open for redesign in planning.
 
-- **Audeos is a person and an entity.** Audeos is the owner's artist name, and also AUDEOS, LLC, which runs several projects. The site promotes the owner as an artist and as a brand builder. Copy still reads as presence, not a resume or elevator pitch, and never limits Audeos to Seattle (the owner travels anywhere). A little mystery is welcome; the sections explain themselves. Search engines get the plain description from the meta description and structured data.
+- **Audeos is a person and an entity.** Audeos is the owner's artist name, and also AUDEOS, LLC, which runs several projects. The site promotes the owner as an artist and as a brand builder. Copy still reads as presence, not a resume or elevator pitch, and never limits Audeos to Seattle (the owner travels anywhere). A little mystery is welcome; the sections explain themselves.
+- **Two layers: visible copy and the search layer.** Visible copy speaks as the entity: no keyword lines such as "SEATTLE WEDDING DJ", and DJ work is one service Audeos offers, not what Audeos is. The search layer (structured data, `<title>` and meta descriptions) gives search engines as much as possible: the Seattle home base, every service with prices and service areas, every name and brand. Clients searching for a Seattle DJ are won there, without the page reading like an ad.
 - **Music first.** Categories run Music, Events, Lifestyle everywhere. Events (paid work) is reachable in one click from the home page's "DJ FOR HIRE →" link.
 - **The blog stays.** The evergreen marketing content sits on top of the existing category pages. There is no separate services section and no new top-level routes.
 - **Categories carry the evergreen content.** Events holds DJ for hire plus speaker rentals with prices. Music holds releases and audeos.fm. Lifestyle stays a plain archive. The `lifestyle` slug is unchanged.
@@ -237,13 +238,13 @@ One module, `src/lib/structuredData/identity.ts`, builds every identity record f
 - **Person** (`@id` `https://www.audeos.com/#person`): name Audeos, `alternateName` "Benjamin S. Petty", "Ben Petty" and "Benny Petty" (a constant, matching ben-petty.com), the author photo, the About URL, and `sameAs` from `SOCIAL_LINKS` without Signal (a contact link, not a profile) plus the resume URL.
 - **Organization** (`@id` `https://www.audeos.com/#organization`): name "Audeos", `legalName` "AUDEOS, LLC" (a constant), the site URL and logo, `founder` the Person, and `brand` listing every brand without `separateCompany` (audeos.fm and The North West Clothing) with name, url, description and logo.
 - **Separate-company brands** (Northwest Local Cannabis): their own Organization whose `founder` list includes the Person (the owner is a co-founder; schema.org `founder` is a list, so naming only the owner does not claim sole founding, and the other founders can be added later). Not listed as an AUDEOS, LLC brand and no licensing claim, since no license is on paper yet; adding one later is a data change.
-- **No `areaServed` or address**, so nothing limits Audeos to a city.
+- **Home base:** `address` Seattle, WA, US on the Person and the Organization, matching ben-petty.com and the Events intro.
 
 Per page:
 
 - **About:** a `ProfilePage` whose `mainEntity` is the Person, plus the Organization and separate-company records.
 - **Home:** the existing CollectionPage, reading category data from the landing entries, with the Organization as `publisher` and the full Organization record.
-- **Events:** a "DJ services" `Service` with each DJ package as an `Offer` in US dollars, and a "Speaker rental" `Service` with two offers per package (gear only, and with the owner running it), both with the Organization as `provider`.
+- **Events:** a "DJ services" `Service` with each DJ package as an `Offer` in US dollars and `areaServed` Seattle, Washington and the United States (local for Seattle searches, and the owner travels). A "Speaker rental" `Service` with two offers per package (gear only, and with the owner running it) and `areaServed` Seattle, Tacoma and Everett, since rental includes delivery. Both have the Organization as `provider`. These city names live only in structured data, never as a visible list.
 
 ### ben-petty.com
 
