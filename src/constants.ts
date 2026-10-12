@@ -25,3 +25,5 @@ export function isCategoryId( value: string ): value is CategoryId {
 export const STREAM_ORIGIN = "https://audeos.fm";
 export const AUTHOR_SLUG = "audeos";
 export const STREAM_CHANNEL_URL = `${STREAM_ORIGIN}/channels/main`;
+
+export const LIVE_LINE_PREFIX = "Now playing on audeos.fm";

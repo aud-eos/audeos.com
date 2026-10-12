@@ -21,6 +21,49 @@
   }
 }
 
+.homeIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.5rem 0.75rem 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  @media (min-width: 800px) {
+    padding-inline: 2rem;
+  }
+}
+
+.homeLines {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--ink);
+}
+
+.liveLine a {
+  color: var(--mute);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.hireLink {
+  align-self: flex-start;
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .pagination {
   display: flex;
   flex-wrap: wrap;

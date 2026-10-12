@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.scss";
 import { BlogPosts, getBlogPosts } from "@/utils/contentfulUtils";
 import { Layout } from "@/components/Layout/Layout";
 import CategoryPostSections from "@/components/Home/CategoryPostSections";
-import NowPlayingCard from "@/components/NowPlaying/NowPlayingCard";
+import HomeIntro from "@/components/Home/HomeIntro";
 import { generateFeeds } from "@/lib/generateFeeds";
 import { buildHomepageSchema } from "@/lib/homepageSchema";
 import { JsonLd } from "@/components/JsonLd";
@@ -35,7 +35,7 @@ export default function Home({ posts, home, schema }: HomeProps ) {
       <Layout isFullwidth>
         <main className={ styles.main }>
           <GiantWord text="Audeos" stackedLogoOnPhone />
-          <NowPlayingCard />
+          <HomeIntro lines={ home.lines } showNowPlaying={ home.showNowPlaying } hireLinkLabel={ home.hireLinkLabel } />
           <CategoryPostSections posts={ posts } />
           <Link href="/page/1" className={ styles.allPostsLink }>
             Browse all posts →
