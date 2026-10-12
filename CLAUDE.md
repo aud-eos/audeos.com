@@ -96,7 +96,7 @@ SCSS modules in `src/styles/`. Each page/component has a corresponding `.module.
 
 The site is **dark only** (no `prefers-color-scheme` branches). Design tokens are CSS custom properties in `globals.css`: `--ink`, `--paper`, `--mute`, `--rule`, `--accent`, `--hatch`. Mona Sans is loaded in `_app.tsx` with its `wdth` axis as `--font-mona-sans`.
 
-- **`GiantWord`** (`src/components/GiantWord/`) renders each page's `h1`, fitted by `useFitWidth` (100% of the container on phones; on desktop `DESKTOP_OVERSHOOT` (1.15) times the container, so every word crops at the right edge); with `stackedLogoOnPhone` (home) phones get the inline `AudeosLogo` instead of the text. `useRouteViewTransition` (`src/lib/`) morphs it between pages via the View Transitions API and is skipped for reduced motion.
+- **`GiantWord`** (`src/components/GiantWord/`) renders each page's `h1`, fitted by `useFitWidth` so the whole word fills the container width on every screen size; with `stackedLogoOnPhone` (home) phones get the inline `AudeosLogo` instead of the text. `useRouteViewTransition` (`src/lib/`) morphs it between pages via the View Transitions API and is skipped for reduced motion.
 - **Post grids:** `BlogPostList` (home, category, tag and archive pages) is a uniform grid of 4:3 cards with tag chips, showing the `--hatch` pattern until each image loads (`useImageLoaded` in `src/lib/`). **Search results** use masonry `PostCard`s: native `display: grid-lanes` where supported (`@supports` in `Masonry.module.scss`); otherwise `useMasonryPlacement` (`src/components/Masonry/`) places cards, re-placing when the grid width or any card height changes.
 - `useRevealOnScroll` (in `BlogPostList.tsx`) fades cards in on scroll and shows all cards at once under reduced motion.
 
