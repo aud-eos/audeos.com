@@ -26,6 +26,8 @@ make upgrade-latest  # pnpm update --latest (bumps all direct dependencies to la
 make audit           # pnpm audit
 ```
 
+Content model changes are made in Contentful (via the Contentful MCP, after showing the owner the proposed change), followed by `make types`.
+
 Contentful asset management (Makefile):
 
 ```bash
@@ -66,21 +68,21 @@ The build output goes to `dist/` (not `.next/`). Feeds (RSS/Atom/JSON) are gener
 
 ### Data flow
 
-- `src/utils/contentfulUtils.ts` wraps the Contentful SDK — all CMS access goes through `getBlogPosts()`, `getBlogPost(slug)`, `getTags()`, `getAuthors()`, and `getAuthor(slug)`.
+- `src/utils/contentfulUtils.ts` wraps the Contentful SDK — all CMS access goes through `getBlogPosts()`, `getBlogPost(slug)`, `getTags()`, `getAuthors()`, `getAuthor(slug)`, `getCategoryLandings()` and `getHomePages()`. `loadSiteContent()` in `src/lib/siteContent.ts` is the one validated load per build.
 - Pages use `getStaticProps` to fetch content at build time. No client-side data fetching from Contentful.
 - Search (`src/pages/search.tsx`) is fully client-side using Fuse.js — all posts are embedded in the page as props and searched in-browser.
 - Spotify integration (`src/utils/spotify/`) fetches data at build time and is embedded statically. Playlist JSON is cached in `data/spotify/{playlistId}.json` (committed to git). On build, only the lightweight `snapshot_id` is fetched from Spotify — the full playlist is only re-fetched when the snapshot changes. API calls use `retryRequest` with exponential backoff to handle 429 rate limits.
 - Feeds are generated in `src/lib/generateFeeds.ts` and called from `getStaticProps` in `src/pages/index.tsx`.
-- **Editorial SEO copy lives on categories, not tags.** Per-category title/description/OG image is configured in `data/categories.json`; tag pages render generic SEO (e.g. `Posts tagged {id} | Audeos.com`) by design. The per-tag JSON config (`data/tags.json`, `src/types/tagConfig.ts`, `src/utils/tagSeoConfig.ts`) was deleted in PR #89 because per-tag editorial copy didn't scale. Do not re-introduce it — if a tag needs prominence, consider whether it should be a category instead.
-- **`NowPlayingCard` is intentionally client-only** — it polls `audeos.fm/api/now-playing/main` via `useEffect` + `fetch`, with no `getStaticProps` involvement. This decouples the static export from `audeos.fm`'s availability and keeps live-stream state out of the build cache. Resist the instinct to migrate it to the build-time fetch pattern used elsewhere; it would break the live behavior.
-- **One shared now-playing poller** — `src/components/NowPlaying/nowPlayingStore.ts` is the single client-side poller of `audeos.fm/api/now-playing/main` (a `useSyncExternalStore` store: the poller fetches only while subscribed and the tab is visible, payloads validated by `isNowPlaying`, a failed poll clears the data). `NowPlayingCard` and the top-bar `OnAirWidget` both read it via `useNowPlaying()`; do not add a second `fetch` of that endpoint. The client-only rule above applies to the store.
+- **Editorial copy lives on categories, not tags.** Category search descriptions, intros, packages, booking links and footnotes live in Contentful `categoryLanding` entries (one per category, validated at build by `src/lib/siteContent.ts`). The home page's lines, live-line switch, hire label, title and meta description live in the single `homePage` entry. Category titles stay the `CATEGORY_TITLES` constant because client-rendered UI needs them. Tag pages render generic SEO (e.g. `Posts tagged {id} | Audeos.com`) by design. The per-tag JSON config (`data/tags.json`, `src/types/tagConfig.ts`, `src/utils/tagSeoConfig.ts`) was deleted in PR #89 because per-tag editorial copy didn't scale. Do not re-introduce it — if a tag needs prominence, consider whether it should be a category instead.
+- **`NowPlayingCard` is intentionally client-only** — it renders on the Music category landing (not the home page) and polls `audeos.fm/api/now-playing/main` via `useEffect` + `fetch`, with no `getStaticProps` involvement. This decouples the static export from `audeos.fm`'s availability and keeps live-stream state out of the build cache. Resist the instinct to migrate it to the build-time fetch pattern used elsewhere; it would break the live behavior.
+- **One shared now-playing poller** — `src/components/NowPlaying/nowPlayingStore.ts` is the single client-side poller of `audeos.fm/api/now-playing/main` (a `useSyncExternalStore` store: the poller fetches only while subscribed and the tab is visible, payloads validated by `isNowPlaying`, a failed poll clears the data). `NowPlayingCard`, the top-bar `OnAirWidget` and the home page's optional live line (`LiveLine`) all read it via `useNowPlaying()`; do not add a second `fetch` of that endpoint. The client-only rule above applies to the store.
 - **Frame navigation and social links** come from `src/lib/navLinks.ts` and `src/lib/socialLinks.ts`. Category display titles come from `categoryTitleFor()` in `src/utils/categoryTitle.ts`, which throws on an unknown id (a missing category fails the build rather than rendering blank).
 
 ### Routing
 
 | Route | File | Notes |
 |---|---|---|
-| `/` | `pages/index.tsx` | Category-sectioned overview (12 most recent posts per category, so every grid row fills at 2, 3 or 4 columns) with nested CollectionPage JSON-LD |
+| `/` | `pages/index.tsx` | Category-sectioned overview (12 most recent posts per category, so every grid row fills at 2, 3 or 4 columns) with nested CollectionPage JSON-LD; the home stack and hire link come from the `homePage` entry |
 | `/search` | `pages/search.tsx` | Client-side Fuse.js search |
 | `/post/[slug]` | `pages/post/[slug].tsx` | Individual blog post |
 | `/page/[page]` | `pages/page/[page].tsx` | Pagination (chronological archive) |
@@ -97,6 +99,7 @@ SCSS modules in `src/styles/`. Each page/component has a corresponding `.module.
 The site is **dark only** (no `prefers-color-scheme` branches). Design tokens are CSS custom properties in `globals.css`: `--ink`, `--paper`, `--mute`, `--rule`, `--accent`, `--hatch`. Mona Sans is loaded in `_app.tsx` with its `wdth` axis as `--font-mona-sans`.
 
 - **`GiantWord`** (`src/components/GiantWord/`) renders each page's `h1`, fitted by `useFitWidth` so the whole word fills the container width on every screen size; with `stackedLogoOnPhone` (home) phones get the inline `AudeosLogo` instead of the text. `useRouteViewTransition` (`src/lib/`) morphs it between pages via the View Transitions API and is skipped for reduced motion.
+- **Category landings:** `src/components/Landing/` holds the `CategoryLanding` dispatcher, `EventsLanding` (price lists via `PriceList`, rental section, footnote, booking link) and `MusicLanding` (player and listening links); they render only on page 1 of a category.
 - **Post grids:** `BlogPostList` (home, category, tag and archive pages) is a uniform grid of 4:3 cards with tag chips, showing the `--hatch` pattern until each image loads (`useImageLoaded` in `src/lib/`). **Search results** use masonry `PostCard`s: native `display: grid-lanes` where supported (`@supports` in `Masonry.module.scss`); otherwise `useMasonryPlacement` (`src/components/Masonry/`) places cards, re-placing when the grid width or any card height changes.
 - `useRevealOnScroll` (in `BlogPostList.tsx`) fades cards in on scroll and shows all cards at once under reduced motion.
 
@@ -117,6 +120,7 @@ This first exports the full space to `contentful/export.json` (intermediate file
 These rules must hold across changes to this repo. They encode decisions that aren't visible from any single source file — break them and you'll either ship a security hole or a broken build.
 
 - **Reject and rebuild third-party iframe `src`** — when integrating an oEmbed provider (SoundCloud, YouTube, Vimeo, Mixcloud, etc.), never render the provider's `html` field via React's raw-HTML escape hatch. Instead, parse the iframe `src` out, validate the host against a hardcoded allowlist constant (see `ALLOWED_IFRAME_HOST` in `src/components/SoundCloudEmbed.tsx` and `YouTubeEmbed.tsx`), and render a fresh `<iframe>` with explicit `allow` / `allowFullScreen` attributes. **TikTok is the documented exception**: its `embed.js` hydrates the blockquote, so the oEmbed HTML *is* injected — but `<script>` tags are scrubbed via JSDOM in `src/utils/tiktok/getOembed.ts` before reaching the component, and a fresh script element is appended client-side from `TikTokEmbed.tsx`.
+- **Content validation fails the build** — `buildLandingMap` / `buildHomeContent` throw with the category or package named; never add a fallback that renders a page without its content.
 - **Dynamic routes use `fallback: false`** — Next.js static export does not support `fallback: true` or `'blocking'`. Any `getStaticPaths` over a Contentful content type must guarantee every entry has the field used as the path param populated *before* merging the route. The build error names the missing entry only by opaque sys ID, so the trap is easier to avoid than to debug.
 
 ## Environment variables
