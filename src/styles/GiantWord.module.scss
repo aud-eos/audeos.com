@@ -54,8 +54,9 @@
   }
 }
 
-// A view transition already animates the word in; skip the load animation so they do not stack.
-:global(:root:active-view-transition) .word {
+// After the first client navigation the view transition morphs the word in; keep the load
+// animation off for good so it does not replay when the transition ends.
+:global(:root[data-route-transitioned]) .word {
   animation: none;
 }
 

@@ -54,7 +54,7 @@ nav.sections {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 
-  @media (max-width: 699px) {
+  @media (max-width: 899px) {
     justify-content: space-between;
     gap: 0.5rem;
   }
@@ -81,7 +81,7 @@ div.searchWrapper {
     position: relative;
     max-width: 400px;
 
-    @media (max-width: 699px) {
+    @media (max-width: 899px) {
         max-width: none;
     }
 }

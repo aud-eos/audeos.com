@@ -33,6 +33,9 @@ export function useRouteViewTransition(): void {
       const held = new Promise<void>( resolve => {
         finishTransition = resolve;
       });
+      // Persistent marker: lets CSS skip one-shot load animations that would otherwise
+      // replay when the transition ends. Never removed.
+      document.documentElement.dataset.routeTransitioned = "";
       const transition = document.startViewTransition( () => held );
       transition.ready.catch( ( error: unknown ) => {
         // A skipped transition rejects `ready` with an AbortError; anything else is real.

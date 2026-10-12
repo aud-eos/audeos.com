@@ -28,6 +28,7 @@ beforeEach( () => {
 afterEach( () => {
   vi.unstubAllGlobals();
   Reflect.deleteProperty( document, "startViewTransition" );
+  delete document.documentElement.dataset.routeTransitioned;
 });
 
 function fakeTransition(): ViewTransition {
@@ -82,6 +83,16 @@ describe( "useRouteViewTransition", () => {
     handlers.get( "routeChangeComplete" )?.( "/category/music" );
     await updateDone;
     expect( settled ).toBe( true );
+  });
+
+  it( "marks the root element once a view transition has started, so load animations stop replaying", () => {
+    stubStartViewTransition( () => undefined );
+    render( <Harness /> );
+    expect( document.documentElement.dataset.routeTransitioned ).toBeUndefined();
+
+    handlers.get( "routeChangeStart" )?.( "/category/music", { shallow: false });
+    handlers.get( "routeChangeComplete" )?.( "/category/music" );
+    expect( document.documentElement.dataset.routeTransitioned ).toBe( "" );
   });
 
   it( "does nothing in browsers without view transitions", () => {
