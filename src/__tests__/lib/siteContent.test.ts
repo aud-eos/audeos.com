@@ -40,6 +40,16 @@ describe( "buildLandingMap", () => {
     expect( () => buildLandingMap( allThree, [ "music", undefined ] ) ).toThrow( /missing a category/ );
   });
 
+  it( "fails when two landings name the same category", () => {
+    expect( () => buildLandingMap( [ ...allThree, landing( "events" ) ], [] ) )
+      .toThrow( /Category "events" has more than one category landing entry/ );
+  });
+
+  it( "fails when a non-events landing sets an Events-only field", () => {
+    expect( () => buildLandingMap( [ landing( "music", { footnote: "Travel extra" }), landing( "events" ), landing( "lifestyle" ) ], [] ) )
+      .toThrow( /"music" sets Events-only field\(s\): footnote/ );
+  });
+
   it( "fails when a booking link has a label but no URL", () => {
     expect( () => buildLandingMap( [ landing( "music" ), landing( "events", { ctaLabel: "Book a call →" }), landing( "lifestyle" ) ], [] ) )
       .toThrow( /events/ );

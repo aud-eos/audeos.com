@@ -1,5 +1,6 @@
 import { Markdown } from "@/components/Markdown";
 import PriceList from "@/components/Landing/PriceList";
+import { DJ_PACKAGES_HEADING } from "@/constants";
 import { LandingContent } from "@/lib/siteContent";
 import styles from "@/styles/Landing.module.scss";
 
@@ -9,7 +10,12 @@ export default function EventsLanding({ landing }: { landing: LandingContent }) 
   return (
     <section className={ styles.landing }>
       { landing.intro && <div className={ styles.intro }><Markdown>{ landing.intro }</Markdown></div> }
-      { djPackages.length > 0 && <PriceList packages={ djPackages } showOperatedPrice={ false } /> }
+      { djPackages.length > 0 && (
+        <>
+          <h2 className={ styles.visuallyHidden }>{ DJ_PACKAGES_HEADING }</h2>
+          <PriceList packages={ djPackages } showOperatedPrice={ false } />
+        </>
+      ) }
       { rentalPackages.length > 0 && (
         <section className={ styles.rental }>
           { landing.rentalHeading && <h2 className={ styles.rentalHeading }>{ landing.rentalHeading }</h2> }

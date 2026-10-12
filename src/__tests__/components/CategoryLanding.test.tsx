@@ -20,7 +20,7 @@ function landing( overrides: Partial<LandingContent> ): LandingContent {
 }
 
 describe( "CategoryLanding", () => {
-  it( "renders nothing for a landing with no intro or packages", () => {
+  it( "renders nothing for a landing with no intro or body", () => {
     const { container } = render( <CategoryLanding landing={ landing({ category: "lifestyle" }) } /> );
     expect( container ).toBeEmptyDOMElement();
   });

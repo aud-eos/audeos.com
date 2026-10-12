@@ -99,6 +99,21 @@ export function buildLandingMap( landings: LandingInput[], postCategories: ( str
     if( ( landing.ctaLabel === undefined ) !== ( landing.ctaUrl === undefined ) ) {
       throw new Error( `Category landing "${landing.category}" needs both a booking link label and URL, or neither` );
     }
+    if( byCategory.has( landing.category ) ) {
+      throw new Error( `Category "${landing.category}" has more than one category landing entry` );
+    }
+    if( landing.category !== "events" ) {
+      const eventsOnlyFields = [
+        landing.packages.length > 0 ? "packages" : null,
+        landing.rentalHeading !== undefined ? "rentalHeading" : null,
+        landing.footnote !== undefined ? "footnote" : null,
+        landing.ctaLabel !== undefined ? "ctaLabel" : null,
+        landing.ctaUrl !== undefined ? "ctaUrl" : null,
+      ].filter( field => field !== null );
+      if( eventsOnlyFields.length > 0 ) {
+        throw new Error( `Category landing "${landing.category}" sets Events-only field(s): ${eventsOnlyFields.join( ", " )}` );
+      }
+    }
     byCategory.set( landing.category, {
       category: landing.category,
       description: landing.description,

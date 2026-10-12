@@ -53,11 +53,29 @@
   color: var(--mute);
 }
 
-.prices {
+.priceBlock {
   display: flex;
   align-items: baseline;
   gap: 1.5rem;
   flex-shrink: 0;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
 
   dt {
     font-family: var(--font-mono);
@@ -74,6 +92,7 @@
 }
 
 .unit {
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--mute);

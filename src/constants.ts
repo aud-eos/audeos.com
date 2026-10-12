@@ -30,3 +30,5 @@ export const LIVE_LINE_PREFIX = "Now playing on audeos.fm";
 
 export const GEAR_ONLY_LABEL = "Gear only";
 export const WITH_ME_LABEL = "With me";
+export const PRICE_LABEL = "Price";
+export const DJ_PACKAGES_HEADING = "DJ packages";
