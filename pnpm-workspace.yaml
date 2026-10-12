@@ -1,0 +1,19 @@
+# pnpm settings for this single-package repo.
+
+# Only install versions published at least 7 days ago (minutes).
+minimumReleaseAge: 10080
+
+# Security floors for transitive dependencies.
+overrides:
+  tmp: ">=0.2.6"
+  postcss: ^8.5.23
+  uuid: ^14.0.0
+  vite: ^8.0.16
+
+# Dependency install scripts are off unless listed as true. These three
+# are not needed: prebuilt binaries cover @parcel/watcher and unrs-resolver,
+# and spawn-sync only patches itself for Node < 0.12.
+allowBuilds:
+  '@parcel/watcher': false
+  spawn-sync: false
+  unrs-resolver: false

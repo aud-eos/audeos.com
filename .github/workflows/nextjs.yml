@@ -45,19 +45,14 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: true
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
       - name: Run unit tests
-        run: yarn test
+        run: pnpm test
 
   # Build job
   build:
@@ -93,25 +88,20 @@ jobs:
             .next/build-manifest.json
             .next/prerender-manifest.json
           key: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('next.config.*') }}-${{ hashFiles('package.json') }}
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('next.config.*') }}-${{ hashFiles('package.json') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v5
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: true
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
       - name: Build with Next.js
         run: |
           echo "::group::Next.js build"
           start=$(date +%s)
-          yarn next build --turbo
+          pnpm exec next build --turbo
           end=$(date +%s)
           echo "BUILD_TIME=$((end-start))" >> $GITHUB_ENV
           echo "::endgroup::"
@@ -121,7 +111,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
       - name: Build sitemap and robots.txt
-        run: yarn next-sitemap
+        run: pnpm exec next-sitemap
       - name: Verify export output
         run: |
           if [ ! -d "dist" ]; then
