@@ -63,10 +63,9 @@ A huge word anchors the home, category and About pages: AUDEOS, MUSIC, EVENTS, L
 
 ### Diagonal hatch
 
-A faint white diagonal hatch, from the xerox-flyer direction, appears in exactly two places:
+A faint white diagonal hatch, from the xerox-flyer direction, appears in one place:
 
 1. Behind every card's image area until the image loads.
-2. Filling the full-width "All N category →" link on hover, in light green, with a light green outline.
 
 The owner rejected hatched spacer bands between sections. Sections are separated by plain rules.
 
@@ -109,9 +108,9 @@ The existing footer content, restyled: all twelve social icons, the copyright li
 2. Giant AUDEOS.
 3. Intro paragraph from Contentful, with one plain text link, "DJ FOR HIRE →", to `/category/events`. No dot, no "available for hire" label and no resume link.
 4. Three category blocks in this order: Music, Events, Lifestyle. Each has:
-   - The category name in the condensed giant-word style at section size, with a small "See all N →" link beside it.
-   - The six newest posts as masonry cards.
-   - A full-width bordered link in the condensed style, "All N events →".
+   - The category name as a plain heading linking to the category page.
+   - The twelve newest posts in the uniform card grid (12 fills every row at 2, 3 or 4 columns).
+   - A "See all {Category} →" link below the grid.
 5. Footer.
 
 The `NowPlayingCard` leaves the home page. The homepage CollectionPage JSON-LD and the feed generation stay.

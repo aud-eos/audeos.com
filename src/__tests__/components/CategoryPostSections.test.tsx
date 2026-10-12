@@ -149,16 +149,6 @@ describe( "CategoryPostSections", () => {
     expect( getByTestId( "bpl-l1" ).getAttribute( "data-priority" ) ).toBe( "false" );
   });
 
-  it( "states the category's total post count, not just the posts shown", () => {
-    const items = Array.from({ length: 8 }, ( _unused, index ) =>
-      makePost({ slug: `e${index}`, date: `2026-04-0${index + 1}`, category: "events" }) );
-    const { getByText } = render(
-      <CategoryPostSections posts={ makePosts( items ) } categoryConfig={ categoryConfig } />,
-    );
-    expect( getByText( "See all 8 →" ).getAttribute( "href" ) ).toBe( "/category/events" );
-    expect( getByText( "All 8 events →" ).getAttribute( "href" ) ).toBe( "/category/events" );
-  });
-
   it( "throws if a post category is missing from categoryConfig", () => {
     const posts = makePosts( [ makePost({ slug: "x1", date: "2026-04-01", category: "music" }) ] );
     const partialConfig: CategoryConfigMap = {

@@ -1,4 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+
+// Pin the per-section cap so this test exercises capping, not the configured number.
+vi.mock( "@/constants", async importOriginal => ({
+  ...( await importOriginal<typeof import( "@/constants" )>() ),
+  POSTS_PER_CATEGORY_SECTION: 6,
+}) );
+
 import { buildHomepageSchema } from "@/lib/homepageSchema";
 import { CategoryConfigMap } from "@/types/categoryConfig";
 import { CATEGORY_IDS } from "@/constants";

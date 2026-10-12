@@ -14,11 +14,11 @@ export interface CategoryPostSectionsProps {
 export default function CategoryPostSections({ posts, categoryConfig }: CategoryPostSectionsProps ) {
   const sections = CATEGORY_IDS
     .map( categoryId => {
-      const allInCategory = posts.items.filter( post => post.fields.category === categoryId );
-      const categoryPosts = [ ...allInCategory ]
+      const categoryPosts = posts.items
+        .filter( post => post.fields.category === categoryId )
         .sort( sortBlogPostsByDate )
         .slice( 0, POSTS_PER_CATEGORY_SECTION );
-      return { categoryId, categoryPosts, total: allInCategory.length };
+      return { categoryId, categoryPosts };
     })
     .filter( section => section.categoryPosts.length > 0 );
 
@@ -29,23 +29,30 @@ export default function CategoryPostSections({ posts, categoryConfig }: Category
         if( !config ) {
           throw new Error( `CategoryPostSections: no categoryConfig entry for "${section.categoryId}"` );
         }
-        const href = `/category/${section.categoryId}`;
         return (
-          <section key={ section.categoryId } id={ `category-${section.categoryId}` } className={ styles.categorySection }>
-            <header className={ styles.categoryHeader }>
-              <h2 className={ styles.categoryWord }>
-                <Link href={ href }>{ config.title }</Link>
+          <section
+            key={ section.categoryId }
+            id={ `category-${section.categoryId}` }
+            className={ styles.tagSection }
+          >
+            <header className={ styles.tagSectionHeader }>
+              <h2>
+                <Link href={ `/category/${section.categoryId}` }>{ config.title }</Link>
               </h2>
-              <Link href={ href } className={ styles.seeAll }>See all { section.total } →</Link>
             </header>
             <BlogPostList
               posts={ section.categoryPosts }
               page={ 1 }
               firstCardPriority={ sectionIndex === 0 }
             />
-            <Link href={ href } className={ styles.allLink }>
-              All { section.total } { config.title.toLowerCase() } →
-            </Link>
+            <div className={ styles.seeAllFooter }>
+              <Link
+                href={ `/category/${section.categoryId}` }
+                className={ styles.seeAll }
+              >
+                See all { config.title } →
+              </Link>
+            </div>
           </section>
         );
       }) }
