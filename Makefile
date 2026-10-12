@@ -36,9 +36,9 @@ types:
 	$(MAKE) format
 
 # Run a Contentful migration file against the configured space and environment.
-# Usage: make content-migration FILE=contentful/migrations/<file>.cjs
+# Usage: make content-migration FILE=contentful/migrations/<file>.js
 content-migration:
-	$(if $(FILE),,$(error FILE is required, e.g. FILE=contentful/migrations/2026-10-12-hub-content-models.cjs))
+	$(if $(FILE),,$(error FILE is required, e.g. FILE=contentful/migrations/2026-10-12-hub-content-models.js))
 	$(if $(CONTENTFUL_SPACE_ID),,$(error CONTENTFUL_SPACE_ID is not set))
 	$(if $(CONTENTFUL_ENVIRONMENT),,$(error CONTENTFUL_ENVIRONMENT is not set))
 	$(if $(CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN),,$(error CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN is not set))

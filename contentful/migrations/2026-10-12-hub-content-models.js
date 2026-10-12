@@ -1,5 +1,5 @@
 // Hub redesign PR 2 content model. Run with:
-//   make content-migration FILE=contentful/migrations/2026-10-12-hub-content-models.cjs
+//   make content-migration FILE=contentful/migrations/2026-10-12-hub-content-models.js
 module.exports = function( migration ) {
   const servicePackage = migration.createContentType( "servicePackage" )
     .name( "Service package" )
