@@ -58,22 +58,18 @@
 
 ul.imageGallery {
   list-style: none;
+  --grid-gap: 0;
+
   display: grid;
   grid-template-columns: 1fr;
-  gap: 5rem;
+  gap: var(--grid-gap);
   justify-content: center;
   width: 100%;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-left: var(--grid-gap);
+  padding-right: var(--grid-gap);
 
-  // 2-column grid — equal gaps and page margins
   @media (min-width: 800px) {
-    --grid-gap: 0;
-
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--grid-gap);
-    padding-left: var(--grid-gap);
-    padding-right: var(--grid-gap);
   }
 
   @media (min-width: 1200px) {
