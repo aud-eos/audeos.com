@@ -5,12 +5,10 @@ import Fuse from "fuse.js";
 
 import styles from "@/styles/Layout.module.scss";
 import { MAX_PREVIEW_RESULTS, SearchPost } from "@/lib/searchTypes";
-import categoriesData from "../../../data/categories.json";
-import { CategoryConfigMap } from "@/types/categoryConfig";
 import { buildNavLinks, isActivePath } from "@/lib/navLinks";
 import OnAirWidget from "@/components/Layout/OnAirWidget";
 
-const NAV_LINKS = buildNavLinks( categoriesData satisfies CategoryConfigMap );
+const NAV_LINKS = buildNavLinks();
 
 export const TopNav: FC = () => {
   const router = useRouter();

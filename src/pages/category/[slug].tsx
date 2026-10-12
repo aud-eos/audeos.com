@@ -1,18 +1,14 @@
 import FilteredArchive from "@/components/FilteredArchive/FilteredArchive";
 import { getCategoryStaticProps } from "@/components/FilteredArchive/getCategoryStaticProps";
-import { CategoryConfigMap } from "@/types/categoryConfig";
-import categoriesData from "../../../data/categories.json";
+import { CATEGORY_IDS } from "@/constants";
 
 
 export const getStaticProps = getCategoryStaticProps;
 
 
 export async function getStaticPaths() {
-  const categoryConfig: CategoryConfigMap = categoriesData satisfies CategoryConfigMap;
-  const paths = Object.keys( categoryConfig ).map( slug => ({ params: { slug } }) );
-
   return {
-    paths,
+    paths: CATEGORY_IDS.map( slug => ({ params: { slug } }) ),
     fallback: false,
   };
 }

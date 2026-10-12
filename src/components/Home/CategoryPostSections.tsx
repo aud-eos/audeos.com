@@ -1,17 +1,15 @@
 import Link from "next/link";
 import { BlogPosts } from "@/utils/contentfulUtils";
 import BlogPostList from "@/components/Home/BlogPostList";
-import { CATEGORY_IDS, POSTS_PER_CATEGORY_SECTION } from "@/constants";
+import { CATEGORY_IDS, CATEGORY_TITLES, POSTS_PER_CATEGORY_SECTION } from "@/constants";
 import { sortBlogPostsByDate } from "@/utils/blogPostUtils";
-import { CategoryConfigMap } from "@/types/categoryConfig";
 import styles from "@/styles/Home.module.scss";
 
 export interface CategoryPostSectionsProps {
   posts: BlogPosts;
-  categoryConfig: CategoryConfigMap;
 }
 
-export default function CategoryPostSections({ posts, categoryConfig }: CategoryPostSectionsProps ) {
+export default function CategoryPostSections({ posts }: CategoryPostSectionsProps ) {
   const sections = CATEGORY_IDS
     .map( categoryId => {
       const categoryPosts = posts.items
@@ -25,10 +23,7 @@ export default function CategoryPostSections({ posts, categoryConfig }: Category
   return (
     <>
       { sections.map( ( section, sectionIndex ) => {
-        const config = categoryConfig[section.categoryId];
-        if( !config ) {
-          throw new Error( `CategoryPostSections: no categoryConfig entry for "${section.categoryId}"` );
-        }
+        const title = CATEGORY_TITLES[section.categoryId];
         return (
           <section
             key={ section.categoryId }
@@ -37,7 +32,7 @@ export default function CategoryPostSections({ posts, categoryConfig }: Category
           >
             <header className={ styles.tagSectionHeader }>
               <h2>
-                <Link href={ `/category/${section.categoryId}` }>{ config.title }</Link>
+                <Link href={ `/category/${section.categoryId}` }>{ title }</Link>
               </h2>
             </header>
             <BlogPostList
@@ -50,7 +45,7 @@ export default function CategoryPostSections({ posts, categoryConfig }: Category
                 href={ `/category/${section.categoryId}` }
                 className={ styles.seeAll }
               >
-                See all { config.title } →
+                See all { title } →
               </Link>
             </div>
           </section>

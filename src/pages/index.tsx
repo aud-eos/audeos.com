@@ -8,25 +8,23 @@ import NowPlayingCard from "@/components/NowPlaying/NowPlayingCard";
 import { generateFeeds } from "@/lib/generateFeeds";
 import { buildHomepageSchema } from "@/lib/homepageSchema";
 import { JsonLd } from "@/components/JsonLd";
-import { META_DESCRIPTION, META_IMAGE, META_TITLE, SITE_URL } from "@/constants";
+import { META_IMAGE, SITE_URL } from "@/constants";
 import { SeoHead } from "@/components/SeoHead";
-import { CategoryConfigMap } from "@/types/categoryConfig";
-import categoriesData from "../../data/categories.json";
-import { validateCategoryConfig } from "@/utils/categoryConfig";
+import { HomeContent, loadSiteContent } from "@/lib/siteContent";
 
 export interface HomeProps {
   posts: BlogPosts;
-  categoryConfig: CategoryConfigMap;
+  home: HomeContent;
   schema: ReturnType<typeof buildHomepageSchema>;
 }
 
-export default function Home({ posts, categoryConfig, schema }: HomeProps ) {
+export default function Home({ posts, home, schema }: HomeProps ) {
   return (
     <>
       <SeoHead
-        title={ META_TITLE }
+        title={ home.seoTitle }
         canonicalUrl={ SITE_URL }
-        description={ META_DESCRIPTION }
+        description={ home.seoDescription }
         ogImage={ META_IMAGE }
       >
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
@@ -38,10 +36,7 @@ export default function Home({ posts, categoryConfig, schema }: HomeProps ) {
         <main className={ styles.main }>
           <GiantWord text="Audeos" stackedLogoOnPhone />
           <NowPlayingCard />
-          <CategoryPostSections
-            posts={ posts }
-            categoryConfig={ categoryConfig }
-          />
+          <CategoryPostSections posts={ posts } />
           <Link href="/page/1" className={ styles.allPostsLink }>
             Browse all posts →
           </Link>
@@ -52,22 +47,8 @@ export default function Home({ posts, categoryConfig, schema }: HomeProps ) {
 }
 
 export async function getStaticProps() {
-  const posts = await getBlogPosts();
-
-  const categoryConfig: CategoryConfigMap = categoriesData satisfies CategoryConfigMap;
-  validateCategoryConfig(
-    categoryConfig,
-    posts.items.map( post => post.fields.category ),
-  );
-
+  const [ posts, { landings, home } ] = await Promise.all( [ getBlogPosts(), loadSiteContent() ] );
   generateFeeds( posts.items );
-  const schema = buildHomepageSchema( posts, categoryConfig );
-
-  return {
-    props: {
-      posts,
-      categoryConfig,
-      schema,
-    },
-  };
+  const schema = buildHomepageSchema( posts, landings, home );
+  return { props: { posts, home, schema } };
 }

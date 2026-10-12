@@ -33,14 +33,7 @@ vi.mock( "@/components/Home/BlogPostList", () => ({
 
 import CategoryPostSections from "@/components/Home/CategoryPostSections";
 import type { BlogPost, BlogPosts } from "@/utils/contentfulUtils";
-import type { CategoryConfigMap } from "@/types/categoryConfig";
 import { makeBlogPost } from "../helpers/makeBlogPost";
-
-const categoryConfig: CategoryConfigMap = {
-  music: { title: "Music", description: "music", ogImage: null },
-  events: { title: "Events", description: "events", ogImage: null },
-  lifestyle: { title: "Lifestyle", description: "lifestyle", ogImage: null },
-};
 
 const makePost = ({
   slug,
@@ -73,10 +66,7 @@ describe( "CategoryPostSections", () => {
       makePost({ slug: "l1", date: "2026-04-03", category: "lifestyle" }),
     ] );
     const { container } = render(
-      <CategoryPostSections
-        posts={ posts }
-        categoryConfig={ categoryConfig }
-      />,
+      <CategoryPostSections posts={ posts } />,
     );
     const sections = container.querySelectorAll( "section" );
     expect( sections ).toHaveLength( 3 );
@@ -97,10 +87,7 @@ describe( "CategoryPostSections", () => {
       makePost({ slug: "m8", date: "2026-04-08", category: "music" }),
     ] );
     const { getByTestId } = render(
-      <CategoryPostSections
-        posts={ posts }
-        categoryConfig={ categoryConfig }
-      />,
+      <CategoryPostSections posts={ posts } />,
     );
     const list = getByTestId( "bpl-m8" );
     expect( list.getAttribute( "data-count" ) ).toBe( "6" );
@@ -111,23 +98,17 @@ describe( "CategoryPostSections", () => {
   it( "omits sections with zero posts", () => {
     const posts = makePosts( [ makePost({ slug: "m1", date: "2026-04-01", category: "music" }) ] );
     const { container } = render(
-      <CategoryPostSections
-        posts={ posts }
-        categoryConfig={ categoryConfig }
-      />,
+      <CategoryPostSections posts={ posts } />,
     );
     const sections = container.querySelectorAll( "section" );
     expect( sections ).toHaveLength( 1 );
     expect( sections[0].id ).toBe( "category-music" );
   });
 
-  it( "links section header to /category/[id] with config title", () => {
+  it( "links section header to /category/[id] with its category title", () => {
     const posts = makePosts( [ makePost({ slug: "m1", date: "2026-04-01", category: "music" }) ] );
     const { container } = render(
-      <CategoryPostSections
-        posts={ posts }
-        categoryConfig={ categoryConfig }
-      />,
+      <CategoryPostSections posts={ posts } />,
     );
     const heading = container.querySelector( "h2 a" );
     expect( heading?.getAttribute( "href" ) ).toBe( "/category/music" );
@@ -140,28 +121,9 @@ describe( "CategoryPostSections", () => {
       makePost({ slug: "l1", date: "2026-04-03", category: "lifestyle" }),
     ] );
     const { getByTestId } = render(
-      <CategoryPostSections
-        posts={ posts }
-        categoryConfig={ categoryConfig }
-      />,
+      <CategoryPostSections posts={ posts } />,
     );
     expect( getByTestId( "bpl-e1" ).getAttribute( "data-priority" ) ).toBe( "true" );
     expect( getByTestId( "bpl-l1" ).getAttribute( "data-priority" ) ).toBe( "false" );
-  });
-
-  it( "throws if a post category is missing from categoryConfig", () => {
-    const posts = makePosts( [ makePost({ slug: "x1", date: "2026-04-01", category: "music" }) ] );
-    const partialConfig: CategoryConfigMap = {
-      events: { title: "Events", description: "events", ogImage: null },
-      lifestyle: { title: "Lifestyle", description: "lifestyle", ogImage: null },
-    };
-    expect( () =>
-      render(
-        <CategoryPostSections
-          posts={ posts }
-          categoryConfig={ partialConfig }
-        />,
-      ),
-    ).toThrow( /no categoryConfig entry for "music"/ );
   });
 });

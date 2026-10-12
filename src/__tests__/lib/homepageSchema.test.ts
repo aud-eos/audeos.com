@@ -7,13 +7,34 @@ vi.mock( "@/constants", async importOriginal => ({
 }) );
 
 import { buildHomepageSchema } from "@/lib/homepageSchema";
-import { CategoryConfigMap } from "@/types/categoryConfig";
+import type { HomeContent, LandingContent, LandingMap } from "@/lib/siteContent";
 import { CATEGORY_IDS } from "@/constants";
 
-const categoryConfig: CategoryConfigMap = {
-  music: { title: "Music", description: "Music posts", ogImage: null },
-  events: { title: "Events", description: "Event posts", ogImage: null },
-  lifestyle: { title: "Lifestyle", description: "Lifestyle posts", ogImage: null },
+const makeLanding = ( category: LandingContent["category"], description: string ): LandingContent => ({
+  category,
+  description,
+  intro: null,
+  body: null,
+  packages: [],
+  rentalHeading: null,
+  footnote: null,
+  ctaLabel: null,
+  ctaUrl: null,
+  ogImageUrl: null,
+});
+
+const landings: LandingMap = {
+  music: makeLanding( "music", "Music posts" ),
+  events: makeLanding( "events", "Event posts" ),
+  lifestyle: makeLanding( "lifestyle", "Lifestyle posts" ),
+};
+
+const home: HomeContent = {
+  seoTitle: "Audeos",
+  seoDescription: "Listen, tune in, or book a DJ set.",
+  lines: [],
+  showNowPlaying: false,
+  hireLinkLabel: "DJ FOR HIRE →",
 };
 
 const makePost = ({
@@ -55,12 +76,13 @@ describe( "buildHomepageSchema", () => {
       { items: [
         makePost({ id: "1", slug: "m1", title: "M1", date: "2026-04-01", category: "music" }),
       ] } as never,
-      categoryConfig,
+      landings,
+      home,
     );
     expect( schema[ "@context" ] ).toBe( "https://schema.org" );
     expect( schema[ "@type" ] ).toBe( "CollectionPage" );
-    expect( schema.name ).toBeDefined();
-    expect( schema.description ).toBeDefined();
+    expect( schema.name ).toBe( "Audeos" );
+    expect( schema.description ).toBe( "Listen, tune in, or book a DJ set." );
     expect( schema.url ).toBeDefined();
     expect( schema.isPartOf ).toMatchObject({ "@type": "WebSite" });
   });
@@ -72,7 +94,8 @@ describe( "buildHomepageSchema", () => {
         makePost({ id: "2", slug: "e1", title: "E1", date: "2026-04-02", category: "events" }),
         makePost({ id: "3", slug: "l1", title: "L1", date: "2026-04-03", category: "lifestyle" }),
       ] } as never,
-      categoryConfig,
+      landings,
+      home,
     );
     expect( schema.hasPart ).toHaveLength( 3 );
     expect( schema.hasPart.map( ( section: { url: string }) => section.url ) ).toEqual(
@@ -98,7 +121,7 @@ describe( "buildHomepageSchema", () => {
         category: "music",
       }) );
     }
-    const schema = buildHomepageSchema({ items } as never, categoryConfig );
+    const schema = buildHomepageSchema({ items } as never, landings, home );
     const musicSection = sectionFor( schema, "music" );
     expect( musicSection.hasPart ).toHaveLength( 6 );
     const slugs = musicSection.hasPart.map( ( post: { url: string }) => post.url );
@@ -125,7 +148,8 @@ describe( "buildHomepageSchema", () => {
           category: "music",
         }),
       ] } as never,
-      categoryConfig,
+      landings,
+      home,
     );
     const musicSection = sectionFor( schema, "music" );
     expect( musicSection.hasPart[0] ).toMatchObject({
@@ -147,7 +171,8 @@ describe( "buildHomepageSchema", () => {
       { items: [
         makePost({ id: "1", slug: "m1", title: "M1", date: "2026-04-01", category: "music" }),
       ] } as never,
-      categoryConfig,
+      landings,
+      home,
     );
     expect( sectionFor( schema, "events" ).hasPart ).toEqual( [] );
     expect( sectionFor( schema, "lifestyle" ).hasPart ).toEqual( [] );
@@ -159,7 +184,8 @@ describe( "buildHomepageSchema", () => {
         makePost({ id: "1", slug: "m1", title: "M1", date: "2026-04-01", category: "music" }),
         makePost({ id: "2", slug: "e1", title: "E1", date: "2026-04-01", category: "events" }),
       ] } as never,
-      categoryConfig,
+      landings,
+      home,
     );
     const musicSection = sectionFor( schema, "music" );
     const eventsSection = sectionFor( schema, "events" );

@@ -1,12 +1,8 @@
-import categoriesData from "../../data/categories.json";
-import { CategoryConfigMap } from "@/types/categoryConfig";
-
-const CATEGORY_CONFIG: CategoryConfigMap = categoriesData satisfies CategoryConfigMap;
+import { CATEGORY_TITLES, isCategoryId } from "@/constants";
 
 export function categoryTitleFor( categoryId: string | undefined ): string {
-  const config = categoryId ? CATEGORY_CONFIG[categoryId] : undefined;
-  if( !config ) {
-    throw new Error( `categoryTitleFor: no category config for "${categoryId}"` );
+  if( categoryId === undefined || !isCategoryId( categoryId ) ) {
+    throw new Error( `categoryTitleFor: unknown category "${categoryId}"` );
   }
-  return config.title;
+  return CATEGORY_TITLES[categoryId];
 }
