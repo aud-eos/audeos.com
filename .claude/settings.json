@@ -4,8 +4,5 @@
       "Read(.env)",
       "Read(dist)"
     ]
-  },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
   }
 }
