@@ -1,7 +1,7 @@
 export interface YouTubeOembed {
   title: string;
   author_name: string;
-  author_url: string;
+  author_url?: string;
   html: string;
   thumbnail_url: string;
 }

@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 import Link from "next/link";
+import { OptionalLink } from "@/components/OptionalLink";
 import { TikTokOembed } from "@/utils/tiktok/getOembed";
 import styles from "@/styles/TikTokEmbed.module.scss";
 
@@ -43,11 +44,7 @@ export const TikTokEmbed: FC<TikTokEmbedProps> = ({ oembed, url }) => {
             target="_blank"
             rel="noopener noreferrer"
           >{ oembed.title }</Link>&quot; on{ " " }
-          <Link
-            href={ oembed.author_url }
-            target="_blank"
-            rel="noopener noreferrer"
-          >TikTok</Link>
+          <OptionalLink href={ oembed.author_url }>TikTok</OptionalLink>
         </h2>
       </header>
       <div

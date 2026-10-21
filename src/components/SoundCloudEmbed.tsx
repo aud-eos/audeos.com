@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { OptionalLink } from "@/components/OptionalLink";
 import { SoundCloudOembed } from "@/utils/soundcloud/getOembed";
 import styles from "@/styles/SoundCloudEmbed.module.scss";
 
@@ -39,7 +40,7 @@ export const SoundCloudEmbed: FC<SoundCloudEmbedProps> = ({ oembed, url }) => {
       <header className={ styles.soundcloudHeader }>
         <h2>
           Listen to &quot;<Link href={ url } target="_blank" rel="noopener noreferrer">{ oembed.title }</Link>&quot; on{ " " }
-          <Link href={ oembed.author_url } target="_blank" rel="noopener noreferrer">SoundCloud</Link>
+          <OptionalLink href={ oembed.author_url }>SoundCloud</OptionalLink>
         </h2>
       </header>
       <iframe

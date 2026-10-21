@@ -22,6 +22,15 @@ const MOCK_OEMBED: SoundCloudOembed = {
 };
 
 describe( "SoundCloudEmbed", () => {
+  it( "names the provider as plain text when the oEmbed has no author_url", () => {
+    const withoutAuthorUrl: SoundCloudOembed = { ...MOCK_OEMBED, author_url: undefined };
+    render( <SoundCloudEmbed oembed={ withoutAuthorUrl } url={ MOCK_SOUNDCLOUD_URL } /> );
+
+    const provider = screen.getByText( "SoundCloud" );
+    expect( provider.tagName ).toBe( "SPAN" );
+    expect( screen.getByText( "Test Track" ).closest( "a" ) ).toHaveAttribute( "href", MOCK_SOUNDCLOUD_URL );
+  });
+
   it( "renders an iframe with the src extracted from oEmbed html", () => {
     render( <SoundCloudEmbed oembed={ MOCK_OEMBED } url={ MOCK_SOUNDCLOUD_URL } /> );
 
