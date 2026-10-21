@@ -25,7 +25,7 @@ describe( "OnAirWidget", () => {
     vi.stubGlobal( "fetch", vi.fn( async () => ({ ok: true, status: 200, json: async () => payload }) ) );
     render( <OnAirWidget /> );
     const link = screen.getByRole( "link" );
-    expect( link.getAttribute( "href" ) ).toBe( "https://audeos.fm/channels/main" );
+    expect( link.getAttribute( "href" ) ).toBe( "https://audeos.fm" );
     await waitFor( () => expect( link.getAttribute( "aria-label" ) ).toContain( "Slappers by DJ Audeos" ) );
   });
 
@@ -36,7 +36,7 @@ describe( "OnAirWidget", () => {
     await waitFor( () => expect( failingFetch ).toHaveBeenCalled() );
     await act( async () => { await failingFetch.mock.results[0].value.catch( () => undefined ); });
     const link = screen.getByRole( "link", { name: /audeos\.fm, on air/i });
-    expect( link.getAttribute( "href" ) ).toBe( "https://audeos.fm/channels/main" );
+    expect( link.getAttribute( "href" ) ).toBe( "https://audeos.fm" );
   });
 
   it( "ignores a malformed payload instead of rendering it", async () => {
