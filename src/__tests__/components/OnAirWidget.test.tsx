@@ -3,11 +3,17 @@ import { render, screen, waitFor, act } from "@testing-library/react";
 import OnAirWidget from "@/components/Layout/OnAirWidget";
 
 const payload = {
-  channel: { slug: "main", name: "Audeos", description: null },
-  source: "loop_fallback",
-  track: { title: "Slappers", artist: "DJ Audeos", started_at: null, duration_ms: null, position_ms: null },
-  next_track: null,
+  slug: "main",
+  name: "Audeos",
+  description: null,
+  tier: "free",
+  access: "granted",
+  stream_url: "https://audeos.fm/channels/main/stream.m3u8",
   listener_count: 0,
+  now_playing: {
+    source: "loop_fallback",
+    track: { title: "Slappers", artist: "DJ Audeos", started_at: null, duration_ms: null, position_ms: null },
+  },
 };
 
 afterEach( () => {

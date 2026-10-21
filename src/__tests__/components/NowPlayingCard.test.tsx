@@ -1,19 +1,30 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor, act } from "@testing-library/react";
+import type { ChannelDetail, NowPlayingTrack } from "@/components/NowPlaying/nowPlayingTypes";
 
-const livePayload = {
-  channel: { slug: "main", name: "Audeos", description: "Live broadcasts and curated playlist" },
-  source: "live" as const,
-  track: {
-    title: "Day Party vol. 1",
-    artist: "DJ Audeos",
-    started_at: "2026-04-30T02:08:52Z",
-    duration_ms: 6552000,
-    position_ms: 3370644,
-  },
-  next_track: { title: "droptop hotbox", artist: "DJ Audeos" },
-  listener_count: 5,
+const liveTrack: NowPlayingTrack = {
+  title: "Day Party vol. 1",
+  artist: "DJ Audeos",
+  started_at: "2026-04-30T02:08:52Z",
+  duration_ms: 6552000,
+  position_ms: 3370644,
 };
+
+// The body of GET /api/v1/channels/main on audeos.fm.
+const livePayload = {
+  slug: "main",
+  name: "Audeos",
+  description: "Live broadcasts and curated playlist",
+  tier: "free",
+  access: "granted",
+  stream_url: "https://audeos.fm/channels/main/stream.m3u8",
+  listener_count: 5,
+  now_playing: { source: "live" as const, track: liveTrack },
+};
+
+function withNowPlaying( overrides: Partial<ChannelDetail["now_playing"]> ) {
+  return { ...livePayload, now_playing: { ...livePayload.now_playing, ...overrides } };
+}
 
 function mockFetchOnce( body: unknown, ok = true ) {
   const response = {
@@ -48,7 +59,7 @@ describe( "NowPlayingCard", () => {
     const fetchMock = vi.fn( async () => ({ ok: true, status: 200, json: async () => livePayload }) );
     vi.stubGlobal( "fetch", fetchMock );
     render( <NowPlayingCard /> );
-    expect( fetchMock ).toHaveBeenCalledWith( "https://audeos.fm/api/now-playing/main" );
+    expect( fetchMock ).toHaveBeenCalledWith( "https://audeos.fm/api/v1/channels/main" );
   });
 
   it( "renders the track title and artist after the fetch resolves", async () => {
@@ -59,25 +70,25 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "renders the source label for source=live", async () => {
-    mockFetchOnce({ ...livePayload, source: "live" });
+    mockFetchOnce( withNowPlaying({ source: "live" }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "● Live now" ) ).toBeInTheDocument();
   });
 
   it( "renders the source label for source=scheduled", async () => {
-    mockFetchOnce({ ...livePayload, source: "scheduled" });
+    mockFetchOnce( withNowPlaying({ source: "scheduled" }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "Scheduled show" ) ).toBeInTheDocument();
   });
 
   it( "renders the source label for source=loop_fallback", async () => {
-    mockFetchOnce({ ...livePayload, source: "loop_fallback" });
+    mockFetchOnce( withNowPlaying({ source: "loop_fallback" }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "On rotation" ) ).toBeInTheDocument();
   });
 
   it( "renders the source label and CTA without track UI when track is null", async () => {
-    mockFetchOnce({ ...livePayload, track: null, source: "loop_fallback" });
+    mockFetchOnce( withNowPlaying({ track: null, source: "loop_fallback" }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "On rotation" ) ).toBeInTheDocument();
     expect( screen.getByText( /Tune in/ ) ).toBeInTheDocument();
@@ -86,16 +97,9 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "renders title and artist but hides the progress bar when timing fields are null (transition holdover)", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: {
-        title: "Day Party vol. 1",
-        artist: "DJ Audeos",
-        started_at: null,
-        duration_ms: null,
-        position_ms: null,
-      },
-    });
+    mockFetchOnce( withNowPlaying({
+      track: { ...liveTrack, started_at: null, duration_ms: null, position_ms: null },
+    }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "Day Party vol. 1" ) ).toBeInTheDocument();
     expect( screen.getByText( "DJ Audeos" ) ).toBeInTheDocument();
@@ -103,7 +107,7 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "skips the artist line when track.artist is null", async () => {
-    mockFetchOnce({ ...livePayload, track: { ...livePayload.track, artist: null } });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, artist: null } }) );
     render( <NowPlayingCard /> );
     await screen.findByText( "Day Party vol. 1" );
     expect( screen.queryByText( "DJ Audeos" ) ).toBeNull();
@@ -123,32 +127,10 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "renders only the channel name when description is null", async () => {
-    mockFetchOnce({ ...livePayload, channel: { ...livePayload.channel, description: null } });
+    mockFetchOnce({ ...livePayload, description: null });
     render( <NowPlayingCard /> );
     const footer = await screen.findByTestId( "now-playing-channel-info" );
     expect( footer.textContent ).toBe( "Audeos" );
-  });
-
-  it( "renders the up-next line when next_track is present", async () => {
-    mockFetchOnce( livePayload );
-    render( <NowPlayingCard /> );
-    expect( await screen.findByText( /Up next · droptop hotbox · DJ Audeos/ ) ).toBeInTheDocument();
-  });
-
-  it( "skips the up-next line when next_track is null", async () => {
-    mockFetchOnce({ ...livePayload, next_track: null });
-    render( <NowPlayingCard /> );
-    await screen.findByText( "Day Party vol. 1" );
-    expect( screen.queryByText( /Up next/ ) ).toBeNull();
-  });
-
-  it( "renders up-next without artist when next_track.artist is null", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      next_track: { title: "droptop hotbox", artist: null },
-    });
-    render( <NowPlayingCard /> );
-    expect( await screen.findByText( "Up next · droptop hotbox" ) ).toBeInTheDocument();
   });
 
   it( "renders the offline placeholder when the fetch rejects", async () => {
@@ -302,28 +284,19 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "renders the initial position and duration formatted as m:ss", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: { ...livePayload.track, position_ms: 95_000, duration_ms: 215_000 },
-    });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, position_ms: 95_000, duration_ms: 215_000 } }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "1:35 / 3:35" ) ).toBeInTheDocument();
   });
 
   it( "formats hour-long durations as h:mm:ss", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: { ...livePayload.track, position_ms: 0, duration_ms: 3_725_000 },
-    });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, position_ms: 0, duration_ms: 3_725_000 } }) );
     render( <NowPlayingCard /> );
     expect( await screen.findByText( "0:00 / 1:02:05" ) ).toBeInTheDocument();
   });
 
   it( "advances the displayed position locally every second", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: { ...livePayload.track, position_ms: 60_000, duration_ms: 215_000 },
-    });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, position_ms: 60_000, duration_ms: 215_000 } }) );
     vi.useFakeTimers();
     try {
       render( <NowPlayingCard /> );
@@ -339,10 +312,7 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "caps the displayed position at duration", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: { ...livePayload.track, position_ms: 9_000, duration_ms: 10_000 },
-    });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, position_ms: 9_000, duration_ms: 10_000 } }) );
     vi.useFakeTimers();
     try {
       render( <NowPlayingCard /> );
@@ -362,10 +332,7 @@ describe( "NowPlayingCard", () => {
       return {
         ok: true,
         status: 200,
-        json: async () => ({
-          ...livePayload,
-          track: { ...livePayload.track, position_ms: position, duration_ms: 215_000 },
-        }),
+        json: async () => ( withNowPlaying({ track: { ...liveTrack, position_ms: position, duration_ms: 215_000 } }) ),
       };
     }) );
     vi.useFakeTimers();
@@ -381,10 +348,7 @@ describe( "NowPlayingCard", () => {
   });
 
   it( "hides the progress block when duration_ms is 0", async () => {
-    mockFetchOnce({
-      ...livePayload,
-      track: { ...livePayload.track, position_ms: 0, duration_ms: 0 },
-    });
+    mockFetchOnce( withNowPlaying({ track: { ...liveTrack, position_ms: 0, duration_ms: 0 } }) );
     render( <NowPlayingCard /> );
     await screen.findByText( "Day Party vol. 1" );
     expect( screen.queryByTestId( "now-playing-progress-fill" ) ).toBeNull();
