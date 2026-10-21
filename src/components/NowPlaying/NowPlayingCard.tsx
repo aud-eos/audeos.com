@@ -142,12 +142,6 @@ export default function NowPlayingCard() {
             ) }
           </div>
         ) }
-        { data.next_track && (
-          <p className={ styles.upNext }>
-            Up next · { data.next_track.title }
-            { data.next_track.artist && ` · ${data.next_track.artist}` }
-          </p>
-        ) }
         <div className={ styles.footer }>
           <p data-testid="now-playing-channel-info" className={ styles.channelInfo }>
             { data.channel.name }

@@ -12,8 +12,16 @@ export interface NowPlaying {
   channel: { slug: string; name: string; description: string | null };
   source: NowPlayingSource;
   track: NowPlayingTrack | null;
-  next_track: { title: string; artist: string | null } | null;
   listener_count: number;
+}
+
+/** The body of `GET /api/v1/channels/{slug}` on audeos.fm, as far as this site reads it. */
+export interface ChannelDetail {
+  slug: string;
+  name: string;
+  description: string | null;
+  listener_count: number;
+  now_playing: { source: NowPlayingSource; track: NowPlayingTrack | null };
 }
 
 const SOURCES: readonly string[] = [ "live", "scheduled", "loop_fallback" ];
@@ -39,21 +47,27 @@ function isTrack( value: unknown ): value is NowPlayingTrack {
     && isNullableNumber( value.position_ms );
 }
 
-function isNextTrack( value: unknown ): value is NowPlaying["next_track"] {
-  return value === null
-    || ( isRecord( value ) && typeof value.title === "string" && isNullableString( value.artist ) );
+function isSource( value: unknown ): value is NowPlayingSource {
+  return typeof value === "string" && SOURCES.includes( value );
 }
 
-export function isNowPlaying( value: unknown ): value is NowPlaying {
+export function isChannelDetail( value: unknown ): value is ChannelDetail {
   if( !isRecord( value ) ) return false;
-  const channel = value.channel;
-  if( !isRecord( channel ) ) return false;
-  return typeof channel.slug === "string"
-    && typeof channel.name === "string"
-    && isNullableString( channel.description )
-    && typeof value.source === "string"
-    && SOURCES.includes( value.source )
-    && ( value.track === null || isTrack( value.track ) )
-    && isNextTrack( value.next_track )
-    && typeof value.listener_count === "number";
+  const nowPlaying = value.now_playing;
+  if( !isRecord( nowPlaying ) ) return false;
+  return typeof value.slug === "string"
+    && typeof value.name === "string"
+    && isNullableString( value.description )
+    && typeof value.listener_count === "number"
+    && isSource( nowPlaying.source )
+    && ( nowPlaying.track === null || isTrack( nowPlaying.track ) );
+}
+
+export function toNowPlaying( detail: ChannelDetail ): NowPlaying {
+  return {
+    channel: { slug: detail.slug, name: detail.name, description: detail.description },
+    source: detail.now_playing.source,
+    track: detail.now_playing.track,
+    listener_count: detail.listener_count,
+  };
 }

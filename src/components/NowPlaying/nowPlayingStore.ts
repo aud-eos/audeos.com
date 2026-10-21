@@ -1,8 +1,8 @@
 import { useSyncExternalStore } from "react";
 import { STREAM_ORIGIN } from "@/constants";
-import { NowPlaying, isNowPlaying } from "@/components/NowPlaying/nowPlayingTypes";
+import { NowPlaying, isChannelDetail, toNowPlaying } from "@/components/NowPlaying/nowPlayingTypes";
 
-export const NOW_PLAYING_URL = `${STREAM_ORIGIN}/api/now-playing/main`;
+export const NOW_PLAYING_URL = `${STREAM_ORIGIN}/api/v1/channels/main`;
 const POLL_INTERVAL_MS = 30_000;
 
 export interface NowPlayingState {
@@ -26,8 +26,8 @@ async function fetchOnce() {
     const response = await fetch( NOW_PLAYING_URL );
     if( !response.ok ) throw new Error( `HTTP ${response.status}` );
     const payload: unknown = await response.json();
-    if( !isNowPlaying( payload ) ) throw new Error( "now-playing payload failed validation" );
-    if( listeners.size > 0 ) emit({ data: payload, errored: false });
+    if( !isChannelDetail( payload ) ) throw new Error( "channel payload failed validation" );
+    if( listeners.size > 0 ) emit({ data: toNowPlaying( payload ), errored: false });
   } catch {
     if( listeners.size > 0 ) emit({ data: null, errored: true });
   }
