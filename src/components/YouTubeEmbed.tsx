@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { OptionalLink } from "@/components/OptionalLink";
 import { YouTubeOembed } from "@/utils/youtube/getOembed";
 import styles from "@/styles/YouTubeEmbed.module.scss";
 
@@ -43,11 +44,7 @@ export const YouTubeEmbed: FC<YouTubeEmbedProps> = ({ oembed, url }) => {
             target="_blank"
             rel="noopener noreferrer"
           >{ oembed.title }</Link>&quot; on{ " " }
-          <Link
-            href={ oembed.author_url }
-            target="_blank"
-            rel="noopener noreferrer"
-          >YouTube</Link>
+          <OptionalLink href={ oembed.author_url }>YouTube</OptionalLink>
         </h2>
       </header>
       <div className={ styles.iframeWrapper }>
