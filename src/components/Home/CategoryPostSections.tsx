@@ -19,6 +19,10 @@ export default function CategoryPostSections({ posts }: CategoryPostSectionsProp
       return { categoryId, categoryPosts };
     })
     .filter( section => section.categoryPosts.length > 0 );
+  // Each section's first card index on the page, so the halftone colors run on across sections.
+  const colorOffsets = sections.map( ( _section, sectionIndex ) => sections
+    .slice( 0, sectionIndex )
+    .reduce( ( total, previous ) => total + previous.categoryPosts.length, 0 ) );
 
   return (
     <>
@@ -39,6 +43,7 @@ export default function CategoryPostSections({ posts }: CategoryPostSectionsProp
               posts={ section.categoryPosts }
               page={ 1 }
               firstCardPriority={ sectionIndex === 0 }
+              colorOffset={ colorOffsets[sectionIndex] }
             />
             <div className={ styles.seeAllFooter }>
               <Link

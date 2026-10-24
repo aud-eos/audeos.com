@@ -17,13 +17,16 @@ vi.mock( "@/components/Home/BlogPostList", () => ({
   default: ({
     posts,
     firstCardPriority,
+    colorOffset,
   }: {
     posts: { fields: { slug: string } }[];
     firstCardPriority?: boolean;
+    colorOffset?: number;
   }) => (
     <ul
       data-testid={ `bpl-${posts[0]?.fields.slug ?? "empty"}` }
       data-priority={ firstCardPriority ? "true" : "false" }
+      data-color-offset={ colorOffset ?? 0 }
       data-count={ posts.length }
     >
       { posts.map( post => <li key={ post.fields.slug }>{ post.fields.slug }</li> ) }
@@ -125,5 +128,19 @@ describe( "CategoryPostSections", () => {
     );
     expect( getByTestId( "bpl-e1" ).getAttribute( "data-priority" ) ).toBe( "true" );
     expect( getByTestId( "bpl-l1" ).getAttribute( "data-priority" ) ).toBe( "false" );
+  });
+
+  it( "continues the halftone color cycle from the cards above each section", () => {
+    const sectionSizes = [ 6, 3, 6 ];
+    const posts = makePosts( CATEGORY_IDS.flatMap( ( category, sectionIndex ) =>
+      Array.from({ length: sectionSizes[sectionIndex] }, ( _unused, postIndex ) =>
+        makePost({ slug: `${category}-${postIndex}`, date: `2026-04-0${postIndex + 1}`, category }),
+      ),
+    ) );
+    const { container } = render(
+      <CategoryPostSections posts={ posts } />,
+    );
+    const offsets = Array.from( container.querySelectorAll( "ul" ), list => list.getAttribute( "data-color-offset" ) );
+    expect( offsets ).toEqual( [ "0", "6", "9" ] );
   });
 });
