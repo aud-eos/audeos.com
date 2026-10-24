@@ -25,7 +25,8 @@ function enqueueDraw( draw: () => void ) {
 
 // Draws the halftone of the image inside `containerRef` onto the returned canvas once the card is
 // near the screen and its image has loaded, and redraws when the canvas resizes or the device pixel
-// ratio changes.
+// ratio changes. A card that leaves the near zone releases its bitmap, since mobile Safari caps the
+// page's total canvas memory.
 export function useHalftoneCanvas(
   containerRef: React.RefObject<HTMLElement | null>,
   tint: string,
@@ -41,9 +42,17 @@ export function useHalftoneCanvas(
     let stale = true;
 
     function draw() {
-      if( !canvas || !image ) return;
+      if( !canvas || !image || !near ) return;
       drawHalftone( canvas, image, tint );
       stale = false;
+    }
+
+    // Empties the bitmap so the card rests black rather than showing stale or stretched dots.
+    function release() {
+      if( !canvas ) return;
+      canvas.width = 0;
+      canvas.height = 0;
+      stale = true;
     }
 
     function requestDraw() {
@@ -51,13 +60,18 @@ export function useHalftoneCanvas(
     }
 
     function markStale() {
-      stale = true;
+      release();
       requestDraw();
     }
 
     const nearObserver = new IntersectionObserver( entries => {
       near = entries.some( entry => entry.isIntersecting );
-      requestDraw();
+      if( near ) {
+        requestDraw();
+      } else {
+        pendingDraws.delete( draw );
+        release();
+      }
     }, { rootMargin: NEAR_SCREEN_MARGIN });
     nearObserver.observe( canvas );
 
