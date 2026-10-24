@@ -101,7 +101,6 @@
   font-weight: 700;
 }
 
-$card-rest-opacity: 0.3;
 $card-focus-zoom: 1.08;
 $card-focus-duration: 0.3s;
 
@@ -159,6 +158,11 @@ ul.imageGallery {
     figure {
       position: relative;
 
+      > .galleryImage {
+        position: relative;
+        display: block;
+      }
+
       // Hatch behind the image until it loads.
       > .galleryImage picture {
         background-image: var(--hatch);
@@ -172,17 +176,27 @@ ul.imageGallery {
         overflow: hidden;
         display: block;
 
-        // Images rest dimmed over the black page; the focused card (useCardFocus) shows full color.
+        // Photos rest hidden under the halftone canvas; the focused card (useCardFocus) shows them.
         > img {
           display: block;
           width: 100%;
           object-fit: cover;
           aspect-ratio: 4/3;
-          opacity: $card-rest-opacity;
+          opacity: 0;
           transition:
             opacity $card-focus-duration ease,
             transform $card-focus-duration cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+      }
+
+      // The halftone (useHalftoneCanvas) stays transparent until drawn, so the hatch shows through.
+      .halftone {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: opacity $card-focus-duration ease;
       }
 
       // Centered stamp over the image; clicks outside its links fall through to the image link.
@@ -261,12 +275,17 @@ ul.imageGallery {
     }
   }
 
-  // Focused card: full color and zoom. Keyboard focus inside a card counts too.
+  // Focused card: the halftone fades to the full-color photo, which zooms in. Keyboard focus
+  // inside a card counts too.
   li.focused,
   li:focus-within {
     figure picture > img {
       opacity: 1;
       transform: scale($card-focus-zoom);
+    }
+
+    figure .halftone {
+      opacity: 0;
     }
   }
 }
@@ -279,7 +298,8 @@ ul.imageGallery {
       transform: none;
       transition: none;
 
-      figure picture > img {
+      figure picture > img,
+      figure .halftone {
         transition: none;
       }
     }

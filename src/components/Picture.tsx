@@ -7,6 +7,8 @@ export interface PictureProps {
   breakpoints?: number[],
   priority?: boolean;
   onLoad?: () => void;
+  // Lets a canvas read the image's pixels (Contentful's image CDN allows any origin).
+  crossOrigin?: "anonymous";
 }
 
 export default function Picture({
@@ -16,6 +18,7 @@ export default function Picture({
   breakpoints = [ 749, 600, 350 ],
   priority = false,
   onLoad,
+  crossOrigin,
 }: PictureProps ) {
   return (
     <picture>
@@ -39,6 +42,7 @@ export default function Picture({
         src={ getImgSrc( url, { width: maxWidth }) }
         alt={ alt }
         onLoad={ onLoad }
+        crossOrigin={ crossOrigin }
         loading={ priority ? "eager" : "lazy" }
         { ...( priority ? { fetchPriority: "high" } : {}) }
       />

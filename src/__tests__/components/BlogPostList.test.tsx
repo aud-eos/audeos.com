@@ -19,6 +19,11 @@ vi.mock( "@/components/Picture", () => ({
   ),
 }) );
 
+// jsdom can't draw on a canvas, so the halftone hook is left out of these list tests.
+vi.mock( "@/components/Home/useHalftoneCanvas", () => ({
+  useHalftoneCanvas: () => ({ current: null }),
+}) );
+
 import BlogPostList from "@/components/Home/BlogPostList";
 import { makeBlogPost } from "../helpers/makeBlogPost";
 
