@@ -9,6 +9,8 @@ import { PAGE_SIZE, POSTS_ANCHOR } from "@/constants";
 import { BlogPost } from "@/utils/contentfulUtils";
 import { useImageLoaded } from "@/lib/useImageLoaded";
 import { useCardFocus } from "@/components/Home/useCardFocus";
+import { useHalftoneCanvas } from "@/components/Home/useHalftoneCanvas";
+import { tintForCard } from "@/components/Home/halftone";
 
 const IMAGE_WIDTH = 800;
 const OBSERVER_THRESHOLD = 0.15;
@@ -49,11 +51,14 @@ interface GalleryImageLinkProps {
   pictureUrl: string
   altText: string
   priority: boolean
+  tint: string
 }
 
-// The image link shows the hatch until its picture loads.
-function GalleryImageLink({ url, title, pictureUrl, altText, priority }: GalleryImageLinkProps ) {
+// The image link shows the hatch until its picture loads, and rests as a halftone in `tint`
+// drawn over the photo; the focused card shows the photo.
+function GalleryImageLink({ url, title, pictureUrl, altText, priority, tint }: GalleryImageLinkProps ) {
   const { containerRef, loaded, markLoaded } = useImageLoaded<HTMLAnchorElement>();
+  const canvasRef = useHalftoneCanvas( containerRef, tint );
   return (
     <Link
       ref={ containerRef }
@@ -68,7 +73,9 @@ function GalleryImageLink({ url, title, pictureUrl, altText, priority }: Gallery
         alt={ altText }
         priority={ priority }
         onLoad={ markLoaded }
+        crossOrigin="anonymous"
       />
+      <canvas ref={ canvasRef } className={ styles.halftone } aria-hidden="true" />
     </Link>
   );
 }
@@ -91,9 +98,17 @@ export interface BlogPostListProps {
   page: number
   tagId?: string
   firstCardPriority?: boolean
+  // Index of this list's first card on the page, so the halftone colors run on across lists.
+  colorOffset?: number
 }
 
-export default function BlogPostList({ posts, page, tagId, firstCardPriority = false }: BlogPostListProps ) {
+export default function BlogPostList({
+  posts,
+  page,
+  tagId,
+  firstCardPriority = false,
+  colorOffset = 0,
+}: BlogPostListProps ) {
   const listRef = useRef<HTMLUListElement>( null );
   const visiblePosts = [ ...posts ]
     .sort( sortBlogPostsByDate )
@@ -117,6 +132,7 @@ export default function BlogPostList({ posts, page, tagId, firstCardPriority = f
                   pictureUrl={ post.fields.image?.fields.file?.url || "" }
                   altText={ post.fields.image?.fields.description || "" }
                   priority={ firstCardPriority && cardIndex === 0 }
+                  tint={ tintForCard( colorOffset + cardIndex ) }
                 />
                 <figcaption>
                   <Link href={ url }>
