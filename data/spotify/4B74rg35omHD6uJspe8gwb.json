@@ -30,7 +30,7 @@
   },
   "primary_color": null,
   "public": true,
-  "snapshot_id": "AAADHo3u78pGRBwxpRyxvXmai6VTvSfD",
+  "snapshot_id": "AAADH6dNdzFHKCBEodH20QZSBL7ZRtPe",
   "tracks": {
     "href": "https://api.spotify.com/v1/playlists/4B74rg35omHD6uJspe8gwb/tracks?offset=0&limit=100",
     "items": [
@@ -667,7 +667,7 @@
           "href": "https://api.spotify.com/v1/tracks/1LzNfuep1bnAUR9skqdHCK",
           "id": "1LzNfuep1bnAUR9skqdHCK",
           "name": "Fade Into You",
-          "popularity": 91,
+          "popularity": 90,
           "uri": "spotify:track:1LzNfuep1bnAUR9skqdHCK",
           "is_local": false
         },
@@ -1116,7 +1116,7 @@
           "href": "https://api.spotify.com/v1/tracks/1LzNfuep1bnAUR9skqdHCK",
           "id": "1LzNfuep1bnAUR9skqdHCK",
           "name": "Fade Into You",
-          "popularity": 91,
+          "popularity": 90,
           "uri": "spotify:track:1LzNfuep1bnAUR9skqdHCK",
           "is_local": false
         },
@@ -1584,7 +1584,7 @@
           "href": "https://api.spotify.com/v1/tracks/2cNELi1hzt3eWwYHYkJKub",
           "id": "2cNELi1hzt3eWwYHYkJKub",
           "name": "You Can Close Your Eyes - 2019 Remaster",
-          "popularity": 61,
+          "popularity": 57,
           "uri": "spotify:track:2cNELi1hzt3eWwYHYkJKub",
           "is_local": false
         },
@@ -2035,7 +2035,7 @@
           "href": "https://api.spotify.com/v1/tracks/2cNELi1hzt3eWwYHYkJKub",
           "id": "2cNELi1hzt3eWwYHYkJKub",
           "name": "You Can Close Your Eyes - 2019 Remaster",
-          "popularity": 61,
+          "popularity": 57,
           "uri": "spotify:track:2cNELi1hzt3eWwYHYkJKub",
           "is_local": false
         },
@@ -2513,7 +2513,7 @@
           "href": "https://api.spotify.com/v1/tracks/0qB213IfGN0JXXm9aRjldF",
           "id": "0qB213IfGN0JXXm9aRjldF",
           "name": "Again (with The Mellomen)",
-          "popularity": 54,
+          "popularity": 53,
           "uri": "spotify:track:0qB213IfGN0JXXm9aRjldF",
           "is_local": false
         },
@@ -2974,7 +2974,7 @@
           "href": "https://api.spotify.com/v1/tracks/0qB213IfGN0JXXm9aRjldF",
           "id": "0qB213IfGN0JXXm9aRjldF",
           "name": "Again (with The Mellomen)",
-          "popularity": 54,
+          "popularity": 53,
           "uri": "spotify:track:0qB213IfGN0JXXm9aRjldF",
           "is_local": false
         },
@@ -4335,7 +4335,7 @@
           "href": "https://api.spotify.com/v1/tracks/0XrPZPotxZNDkuvauuVO8R",
           "id": "0XrPZPotxZNDkuvauuVO8R",
           "name": "Dreams - Take 2",
-          "popularity": 48,
+          "popularity": 46,
           "uri": "spotify:track:0XrPZPotxZNDkuvauuVO8R",
           "is_local": false
         },
@@ -4760,7 +4760,7 @@
           "href": "https://api.spotify.com/v1/tracks/0XrPZPotxZNDkuvauuVO8R",
           "id": "0XrPZPotxZNDkuvauuVO8R",
           "name": "Dreams - Take 2",
-          "popularity": 48,
+          "popularity": 46,
           "uri": "spotify:track:0XrPZPotxZNDkuvauuVO8R",
           "is_local": false
         },
@@ -4863,6 +4863,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -5222,7 +5226,7 @@
           "href": "https://api.spotify.com/v1/tracks/3VWeXC8bwm6agBEkvvs9lG",
           "id": "3VWeXC8bwm6agBEkvvs9lG",
           "name": "Sleep Warm",
-          "popularity": 20,
+          "popularity": 17,
           "uri": "spotify:track:3VWeXC8bwm6agBEkvvs9lG",
           "is_local": false
         },
@@ -5308,6 +5312,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -5667,7 +5675,7 @@
           "href": "https://api.spotify.com/v1/tracks/3VWeXC8bwm6agBEkvvs9lG",
           "id": "3VWeXC8bwm6agBEkvvs9lG",
           "name": "Sleep Warm",
-          "popularity": 20,
+          "popularity": 17,
           "uri": "spotify:track:3VWeXC8bwm6agBEkvvs9lG",
           "is_local": false
         },
@@ -6310,7 +6318,7 @@
           "href": "https://api.spotify.com/v1/tracks/4PEGwWH4tL6H7dGl4uVSPg",
           "id": "4PEGwWH4tL6H7dGl4uVSPg",
           "name": "Like a Tattoo",
-          "popularity": 85,
+          "popularity": 84,
           "uri": "spotify:track:4PEGwWH4tL6H7dGl4uVSPg",
           "is_local": false
         },
@@ -6761,7 +6769,7 @@
           "href": "https://api.spotify.com/v1/tracks/4PEGwWH4tL6H7dGl4uVSPg",
           "id": "4PEGwWH4tL6H7dGl4uVSPg",
           "name": "Like a Tattoo",
-          "popularity": 85,
+          "popularity": 84,
           "uri": "spotify:track:4PEGwWH4tL6H7dGl4uVSPg",
           "is_local": false
         },
@@ -7229,7 +7237,7 @@
           "href": "https://api.spotify.com/v1/tracks/72794Eag03xdy7TO0KNuid",
           "id": "72794Eag03xdy7TO0KNuid",
           "name": "Cayendo (Side A - Acoustic)",
-          "popularity": 68,
+          "popularity": 67,
           "uri": "spotify:track:72794Eag03xdy7TO0KNuid",
           "is_local": false
         },
@@ -7680,7 +7688,7 @@
           "href": "https://api.spotify.com/v1/tracks/72794Eag03xdy7TO0KNuid",
           "id": "72794Eag03xdy7TO0KNuid",
           "name": "Cayendo (Side A - Acoustic)",
-          "popularity": 68,
+          "popularity": 67,
           "uri": "spotify:track:72794Eag03xdy7TO0KNuid",
           "is_local": false
         },
@@ -8148,7 +8156,7 @@
           "href": "https://api.spotify.com/v1/tracks/73VzVD9pHiD2ycmqQK4zZm",
           "id": "73VzVD9pHiD2ycmqQK4zZm",
           "name": "Dialing Drunk",
-          "popularity": 31,
+          "popularity": 29,
           "uri": "spotify:track:73VzVD9pHiD2ycmqQK4zZm",
           "is_local": false
         },
@@ -8599,7 +8607,7 @@
           "href": "https://api.spotify.com/v1/tracks/73VzVD9pHiD2ycmqQK4zZm",
           "id": "73VzVD9pHiD2ycmqQK4zZm",
           "name": "Dialing Drunk",
-          "popularity": 31,
+          "popularity": 29,
           "uri": "spotify:track:73VzVD9pHiD2ycmqQK4zZm",
           "is_local": false
         },
@@ -9242,7 +9250,7 @@
           "href": "https://api.spotify.com/v1/tracks/04lX4lKvDCU7z7zo73Se8S",
           "id": "04lX4lKvDCU7z7zo73Se8S",
           "name": "I Can't Find the Time",
-          "popularity": 8,
+          "popularity": 7,
           "uri": "spotify:track:04lX4lKvDCU7z7zo73Se8S",
           "is_local": false
         },
@@ -9693,7 +9701,7 @@
           "href": "https://api.spotify.com/v1/tracks/04lX4lKvDCU7z7zo73Se8S",
           "id": "04lX4lKvDCU7z7zo73Se8S",
           "name": "I Can't Find the Time",
-          "popularity": 8,
+          "popularity": 7,
           "uri": "spotify:track:04lX4lKvDCU7z7zo73Se8S",
           "is_local": false
         },
@@ -10336,7 +10344,7 @@
           "href": "https://api.spotify.com/v1/tracks/0SxFyA4FqmEQqZVuAlg8lf",
           "id": "0SxFyA4FqmEQqZVuAlg8lf",
           "name": "The First Time Ever I Saw Your Face",
-          "popularity": 66,
+          "popularity": 63,
           "uri": "spotify:track:0SxFyA4FqmEQqZVuAlg8lf",
           "is_local": false
         },
@@ -10787,7 +10795,7 @@
           "href": "https://api.spotify.com/v1/tracks/0SxFyA4FqmEQqZVuAlg8lf",
           "id": "0SxFyA4FqmEQqZVuAlg8lf",
           "name": "The First Time Ever I Saw Your Face",
-          "popularity": 66,
+          "popularity": 63,
           "uri": "spotify:track:0SxFyA4FqmEQqZVuAlg8lf",
           "is_local": false
         },
@@ -11255,7 +11263,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ey8HhYmR57lhESTf15RcF",
           "id": "6ey8HhYmR57lhESTf15RcF",
           "name": "Dream",
-          "popularity": 58,
+          "popularity": 56,
           "uri": "spotify:track:6ey8HhYmR57lhESTf15RcF",
           "is_local": false
         },
@@ -11706,7 +11714,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ey8HhYmR57lhESTf15RcF",
           "id": "6ey8HhYmR57lhESTf15RcF",
           "name": "Dream",
-          "popularity": 58,
+          "popularity": 56,
           "uri": "spotify:track:6ey8HhYmR57lhESTf15RcF",
           "is_local": false
         },
@@ -12898,7 +12906,7 @@
           "href": "https://api.spotify.com/v1/tracks/0eDVClItJH4PkfPu7dciKP",
           "id": "0eDVClItJH4PkfPu7dciKP",
           "name": "Like Someone in Love",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0eDVClItJH4PkfPu7dciKP",
           "is_local": false
         },
@@ -12983,7 +12991,7 @@
           "href": "https://api.spotify.com/v1/tracks/0eDVClItJH4PkfPu7dciKP",
           "id": "0eDVClItJH4PkfPu7dciKP",
           "name": "Like Someone in Love",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0eDVClItJH4PkfPu7dciKP",
           "is_local": false
         },
@@ -13813,7 +13821,7 @@
           "href": "https://api.spotify.com/v1/tracks/0mYslGmbnkbxuyr0ISIYtB",
           "id": "0mYslGmbnkbxuyr0ISIYtB",
           "name": "Lucky",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0mYslGmbnkbxuyr0ISIYtB",
           "is_local": false
         },
@@ -14264,7 +14272,7 @@
           "href": "https://api.spotify.com/v1/tracks/0mYslGmbnkbxuyr0ISIYtB",
           "id": "0mYslGmbnkbxuyr0ISIYtB",
           "name": "Lucky",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0mYslGmbnkbxuyr0ISIYtB",
           "is_local": false
         },
@@ -14732,7 +14740,7 @@
           "href": "https://api.spotify.com/v1/tracks/4wnvVlqdz6o7eLtbeS5sYR",
           "id": "4wnvVlqdz6o7eLtbeS5sYR",
           "name": "Luv Note",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:4wnvVlqdz6o7eLtbeS5sYR",
           "is_local": false
         },
@@ -15183,7 +15191,7 @@
           "href": "https://api.spotify.com/v1/tracks/4wnvVlqdz6o7eLtbeS5sYR",
           "id": "4wnvVlqdz6o7eLtbeS5sYR",
           "name": "Luv Note",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:4wnvVlqdz6o7eLtbeS5sYR",
           "is_local": false
         },
@@ -15651,7 +15659,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SuZuaC4BEKZpodo1r5dBT",
           "id": "4SuZuaC4BEKZpodo1r5dBT",
           "name": "For Anyone",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:4SuZuaC4BEKZpodo1r5dBT",
           "is_local": false
         },
@@ -16102,7 +16110,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SuZuaC4BEKZpodo1r5dBT",
           "id": "4SuZuaC4BEKZpodo1r5dBT",
           "name": "For Anyone",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:4SuZuaC4BEKZpodo1r5dBT",
           "is_local": false
         },
@@ -16568,7 +16576,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Bv9v9ijc0TRJppfhwZrg0",
           "id": "5Bv9v9ijc0TRJppfhwZrg0",
           "name": "I Left My Heart In San Francisco",
-          "popularity": 39,
+          "popularity": 37,
           "uri": "spotify:track:5Bv9v9ijc0TRJppfhwZrg0",
           "is_local": false
         },
@@ -17017,7 +17025,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Bv9v9ijc0TRJppfhwZrg0",
           "id": "5Bv9v9ijc0TRJppfhwZrg0",
           "name": "I Left My Heart In San Francisco",
-          "popularity": 39,
+          "popularity": 37,
           "uri": "spotify:track:5Bv9v9ijc0TRJppfhwZrg0",
           "is_local": false
         },
@@ -18571,7 +18579,7 @@
           "href": "https://api.spotify.com/v1/tracks/5ubBoJzqz6srUEpBrHmLEz",
           "id": "5ubBoJzqz6srUEpBrHmLEz",
           "name": "Father's Song",
-          "popularity": 33,
+          "popularity": 31,
           "uri": "spotify:track:5ubBoJzqz6srUEpBrHmLEz",
           "is_local": false
         },
@@ -19022,7 +19030,7 @@
           "href": "https://api.spotify.com/v1/tracks/5ubBoJzqz6srUEpBrHmLEz",
           "id": "5ubBoJzqz6srUEpBrHmLEz",
           "name": "Father's Song",
-          "popularity": 33,
+          "popularity": 31,
           "uri": "spotify:track:5ubBoJzqz6srUEpBrHmLEz",
           "is_local": false
         },
@@ -19124,7 +19132,7 @@
           "href": "https://api.spotify.com/v1/tracks/47bwlUOUckJn3WAlQyzCzi",
           "id": "47bwlUOUckJn3WAlQyzCzi",
           "name": "Dead Flowers",
-          "popularity": 11,
+          "popularity": 10,
           "uri": "spotify:track:47bwlUOUckJn3WAlQyzCzi",
           "is_local": false
         },
@@ -19209,7 +19217,7 @@
           "href": "https://api.spotify.com/v1/tracks/47bwlUOUckJn3WAlQyzCzi",
           "id": "47bwlUOUckJn3WAlQyzCzi",
           "name": "Dead Flowers",
-          "popularity": 11,
+          "popularity": 10,
           "uri": "spotify:track:47bwlUOUckJn3WAlQyzCzi",
           "is_local": false
         },
@@ -20200,7 +20208,7 @@
           "href": "https://api.spotify.com/v1/tracks/4nReGzidxUxHUZyJSevbsS",
           "id": "4nReGzidxUxHUZyJSevbsS",
           "name": "Easy To Love Me",
-          "popularity": 39,
+          "popularity": 38,
           "uri": "spotify:track:4nReGzidxUxHUZyJSevbsS",
           "is_local": false
         },
@@ -20649,7 +20657,7 @@
           "href": "https://api.spotify.com/v1/tracks/4nReGzidxUxHUZyJSevbsS",
           "id": "4nReGzidxUxHUZyJSevbsS",
           "name": "Easy To Love Me",
-          "popularity": 39,
+          "popularity": 38,
           "uri": "spotify:track:4nReGzidxUxHUZyJSevbsS",
           "is_local": false
         },
@@ -21117,7 +21125,7 @@
           "href": "https://api.spotify.com/v1/tracks/3OF9rTCYjLEplmYMynYvHG",
           "id": "3OF9rTCYjLEplmYMynYvHG",
           "name": "Night and Day",
-          "popularity": 47,
+          "popularity": 46,
           "uri": "spotify:track:3OF9rTCYjLEplmYMynYvHG",
           "is_local": false
         },
@@ -21568,7 +21576,7 @@
           "href": "https://api.spotify.com/v1/tracks/3OF9rTCYjLEplmYMynYvHG",
           "id": "3OF9rTCYjLEplmYMynYvHG",
           "name": "Night and Day",
-          "popularity": 47,
+          "popularity": 46,
           "uri": "spotify:track:3OF9rTCYjLEplmYMynYvHG",
           "is_local": false
         },
@@ -22036,7 +22044,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ilPGjQvpV8PdA2lCeCfn1",
           "id": "6ilPGjQvpV8PdA2lCeCfn1",
           "name": "Plastic",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:6ilPGjQvpV8PdA2lCeCfn1",
           "is_local": false
         },
@@ -22487,7 +22495,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ilPGjQvpV8PdA2lCeCfn1",
           "id": "6ilPGjQvpV8PdA2lCeCfn1",
           "name": "Plastic",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:6ilPGjQvpV8PdA2lCeCfn1",
           "is_local": false
         },
@@ -22955,7 +22963,7 @@
           "href": "https://api.spotify.com/v1/tracks/09kEUjIvixNShjfl3YoyWo",
           "id": "09kEUjIvixNShjfl3YoyWo",
           "name": "Simply Beautiful",
-          "popularity": 54,
+          "popularity": 52,
           "uri": "spotify:track:09kEUjIvixNShjfl3YoyWo",
           "is_local": false
         },
@@ -23406,7 +23414,7 @@
           "href": "https://api.spotify.com/v1/tracks/09kEUjIvixNShjfl3YoyWo",
           "id": "09kEUjIvixNShjfl3YoyWo",
           "name": "Simply Beautiful",
-          "popularity": 54,
+          "popularity": 52,
           "uri": "spotify:track:09kEUjIvixNShjfl3YoyWo",
           "is_local": false
         },
@@ -23872,7 +23880,7 @@
           "href": "https://api.spotify.com/v1/tracks/4Sqkfwcm0HsUMlmmmZYTim",
           "id": "4Sqkfwcm0HsUMlmmmZYTim",
           "name": "Nobody Other",
-          "popularity": 28,
+          "popularity": 27,
           "uri": "spotify:track:4Sqkfwcm0HsUMlmmmZYTim",
           "is_local": false
         },
@@ -24321,7 +24329,7 @@
           "href": "https://api.spotify.com/v1/tracks/4Sqkfwcm0HsUMlmmmZYTim",
           "id": "4Sqkfwcm0HsUMlmmmZYTim",
           "name": "Nobody Other",
-          "popularity": 28,
+          "popularity": 27,
           "uri": "spotify:track:4Sqkfwcm0HsUMlmmmZYTim",
           "is_local": false
         },
@@ -24789,7 +24797,7 @@
           "href": "https://api.spotify.com/v1/tracks/7bOFZoacE1Ss3bINTI8fOj",
           "id": "7bOFZoacE1Ss3bINTI8fOj",
           "name": "Maybe",
-          "popularity": 10,
+          "popularity": 8,
           "uri": "spotify:track:7bOFZoacE1Ss3bINTI8fOj",
           "is_local": false
         },
@@ -25240,7 +25248,7 @@
           "href": "https://api.spotify.com/v1/tracks/7bOFZoacE1Ss3bINTI8fOj",
           "id": "7bOFZoacE1Ss3bINTI8fOj",
           "name": "Maybe",
-          "popularity": 10,
+          "popularity": 8,
           "uri": "spotify:track:7bOFZoacE1Ss3bINTI8fOj",
           "is_local": false
         },
@@ -25708,7 +25716,7 @@
           "href": "https://api.spotify.com/v1/tracks/1uaquujAB3YsZFD8L0r3zw",
           "id": "1uaquujAB3YsZFD8L0r3zw",
           "name": "Tomorrow Night",
-          "popularity": 11,
+          "popularity": 9,
           "uri": "spotify:track:1uaquujAB3YsZFD8L0r3zw",
           "is_local": false
         },
@@ -26159,7 +26167,7 @@
           "href": "https://api.spotify.com/v1/tracks/1uaquujAB3YsZFD8L0r3zw",
           "id": "1uaquujAB3YsZFD8L0r3zw",
           "name": "Tomorrow Night",
-          "popularity": 11,
+          "popularity": 9,
           "uri": "spotify:track:1uaquujAB3YsZFD8L0r3zw",
           "is_local": false
         },
@@ -26627,7 +26635,7 @@
           "href": "https://api.spotify.com/v1/tracks/0i19MAZbyn8uTir7FprXId",
           "id": "0i19MAZbyn8uTir7FprXId",
           "name": "Oh! Sweet Nuthin' - 2015 Remaster",
-          "popularity": 67,
+          "popularity": 66,
           "uri": "spotify:track:0i19MAZbyn8uTir7FprXId",
           "is_local": false
         },
@@ -27078,7 +27086,7 @@
           "href": "https://api.spotify.com/v1/tracks/0i19MAZbyn8uTir7FprXId",
           "id": "0i19MAZbyn8uTir7FprXId",
           "name": "Oh! Sweet Nuthin' - 2015 Remaster",
-          "popularity": 67,
+          "popularity": 66,
           "uri": "spotify:track:0i19MAZbyn8uTir7FprXId",
           "is_local": false
         },
@@ -27204,7 +27212,7 @@
           "href": "https://api.spotify.com/v1/tracks/6uD70GfUbSsam2gk15PQH1",
           "id": "6uD70GfUbSsam2gk15PQH1",
           "name": "Sunday",
-          "popularity": 14,
+          "popularity": 11,
           "uri": "spotify:track:6uD70GfUbSsam2gk15PQH1",
           "is_local": false
         },
@@ -27313,7 +27321,7 @@
           "href": "https://api.spotify.com/v1/tracks/6uD70GfUbSsam2gk15PQH1",
           "id": "6uD70GfUbSsam2gk15PQH1",
           "name": "Sunday",
-          "popularity": 14,
+          "popularity": 11,
           "uri": "spotify:track:6uD70GfUbSsam2gk15PQH1",
           "is_local": false
         },
@@ -29064,7 +29072,7 @@
           "href": "https://api.spotify.com/v1/tracks/3uCkIqD0VzQUijbs8WIizs",
           "id": "3uCkIqD0VzQUijbs8WIizs",
           "name": "These Days",
-          "popularity": 69,
+          "popularity": 68,
           "uri": "spotify:track:3uCkIqD0VzQUijbs8WIizs",
           "is_local": false
         },
@@ -29513,7 +29521,7 @@
           "href": "https://api.spotify.com/v1/tracks/3uCkIqD0VzQUijbs8WIizs",
           "id": "3uCkIqD0VzQUijbs8WIizs",
           "name": "These Days",
-          "popularity": 69,
+          "popularity": 68,
           "uri": "spotify:track:3uCkIqD0VzQUijbs8WIizs",
           "is_local": false
         },
@@ -29953,7 +29961,7 @@
           "href": "https://api.spotify.com/v1/tracks/6WUjz18yIeTGDR1E69WHtf",
           "id": "6WUjz18yIeTGDR1E69WHtf",
           "name": "Porcelain",
-          "popularity": 61,
+          "popularity": 59,
           "uri": "spotify:track:6WUjz18yIeTGDR1E69WHtf",
           "is_local": false
         },
@@ -30376,7 +30384,7 @@
           "href": "https://api.spotify.com/v1/tracks/6WUjz18yIeTGDR1E69WHtf",
           "id": "6WUjz18yIeTGDR1E69WHtf",
           "name": "Porcelain",
-          "popularity": 61,
+          "popularity": 59,
           "uri": "spotify:track:6WUjz18yIeTGDR1E69WHtf",
           "is_local": false
         },
@@ -30840,7 +30848,7 @@
           "href": "https://api.spotify.com/v1/tracks/3NX3jLUU2sFQjvDRdoOvEN",
           "id": "3NX3jLUU2sFQjvDRdoOvEN",
           "name": "So Blue",
-          "popularity": 37,
+          "popularity": 35,
           "uri": "spotify:track:3NX3jLUU2sFQjvDRdoOvEN",
           "is_local": false
         },
@@ -31287,7 +31295,7 @@
           "href": "https://api.spotify.com/v1/tracks/3NX3jLUU2sFQjvDRdoOvEN",
           "id": "3NX3jLUU2sFQjvDRdoOvEN",
           "name": "So Blue",
-          "popularity": 37,
+          "popularity": 35,
           "uri": "spotify:track:3NX3jLUU2sFQjvDRdoOvEN",
           "is_local": false
         },
@@ -31753,7 +31761,7 @@
           "href": "https://api.spotify.com/v1/tracks/7pKfPomDEeI4TPT6EOYjn9",
           "id": "7pKfPomDEeI4TPT6EOYjn9",
           "name": "Imagine - Remastered 2010",
-          "popularity": 82,
+          "popularity": 80,
           "uri": "spotify:track:7pKfPomDEeI4TPT6EOYjn9",
           "is_local": false
         },
@@ -32202,7 +32210,7 @@
           "href": "https://api.spotify.com/v1/tracks/7pKfPomDEeI4TPT6EOYjn9",
           "id": "7pKfPomDEeI4TPT6EOYjn9",
           "name": "Imagine - Remastered 2010",
-          "popularity": 82,
+          "popularity": 80,
           "uri": "spotify:track:7pKfPomDEeI4TPT6EOYjn9",
           "is_local": false
         },
@@ -33573,7 +33581,7 @@
           "href": "https://api.spotify.com/v1/tracks/0KlruldrjiQnw4p9zrz9kh",
           "id": "0KlruldrjiQnw4p9zrz9kh",
           "name": "The Warnings Part II",
-          "popularity": 25,
+          "popularity": 23,
           "uri": "spotify:track:0KlruldrjiQnw4p9zrz9kh",
           "is_local": false
         },
@@ -34020,7 +34028,7 @@
           "href": "https://api.spotify.com/v1/tracks/0KlruldrjiQnw4p9zrz9kh",
           "id": "0KlruldrjiQnw4p9zrz9kh",
           "name": "The Warnings Part II",
-          "popularity": 25,
+          "popularity": 23,
           "uri": "spotify:track:0KlruldrjiQnw4p9zrz9kh",
           "is_local": false
         },
@@ -34123,6 +34131,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -34484,7 +34496,7 @@
           "href": "https://api.spotify.com/v1/tracks/3Yh4oIxc99pRdUM6vE8Lsx",
           "id": "3Yh4oIxc99pRdUM6vE8Lsx",
           "name": "Portrait of Tracy - Original Version",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:3Yh4oIxc99pRdUM6vE8Lsx",
           "is_local": false
         },
@@ -34570,6 +34582,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -34931,7 +34947,7 @@
           "href": "https://api.spotify.com/v1/tracks/3Yh4oIxc99pRdUM6vE8Lsx",
           "id": "3Yh4oIxc99pRdUM6vE8Lsx",
           "name": "Portrait of Tracy - Original Version",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:3Yh4oIxc99pRdUM6vE8Lsx",
           "is_local": false
         },
@@ -35769,7 +35785,7 @@
           "href": "https://api.spotify.com/v1/tracks/2CkinP4BBBT1BohhTjD350",
           "id": "2CkinP4BBBT1BohhTjD350",
           "name": "Lost in A Lonely World",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:2CkinP4BBBT1BohhTjD350",
           "is_local": false
         },
@@ -36220,7 +36236,7 @@
           "href": "https://api.spotify.com/v1/tracks/2CkinP4BBBT1BohhTjD350",
           "id": "2CkinP4BBBT1BohhTjD350",
           "name": "Lost in A Lonely World",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:2CkinP4BBBT1BohhTjD350",
           "is_local": false
         },
@@ -36688,7 +36704,7 @@
           "href": "https://api.spotify.com/v1/tracks/58VNpcJpI5dEKxYByCkbXc",
           "id": "58VNpcJpI5dEKxYByCkbXc",
           "name": "Miss Summer",
-          "popularity": 62,
+          "popularity": 59,
           "uri": "spotify:track:58VNpcJpI5dEKxYByCkbXc",
           "is_local": false
         },
@@ -37139,7 +37155,7 @@
           "href": "https://api.spotify.com/v1/tracks/58VNpcJpI5dEKxYByCkbXc",
           "id": "58VNpcJpI5dEKxYByCkbXc",
           "name": "Miss Summer",
-          "popularity": 62,
+          "popularity": 59,
           "uri": "spotify:track:58VNpcJpI5dEKxYByCkbXc",
           "is_local": false
         },
@@ -37617,7 +37633,7 @@
           "href": "https://api.spotify.com/v1/tracks/3JOVTQ5h8HGFnDdp4VT3MP",
           "id": "3JOVTQ5h8HGFnDdp4VT3MP",
           "name": "Mad World",
-          "popularity": 72,
+          "popularity": 71,
           "uri": "spotify:track:3JOVTQ5h8HGFnDdp4VT3MP",
           "is_local": false
         },
@@ -38078,7 +38094,7 @@
           "href": "https://api.spotify.com/v1/tracks/3JOVTQ5h8HGFnDdp4VT3MP",
           "id": "3JOVTQ5h8HGFnDdp4VT3MP",
           "name": "Mad World",
-          "popularity": 72,
+          "popularity": 71,
           "uri": "spotify:track:3JOVTQ5h8HGFnDdp4VT3MP",
           "is_local": false
         },
@@ -38544,7 +38560,7 @@
           "href": "https://api.spotify.com/v1/tracks/50zZ6S7YI5dVL69a7GkArx",
           "id": "50zZ6S7YI5dVL69a7GkArx",
           "name": "KRS-One",
-          "popularity": 51,
+          "popularity": 48,
           "uri": "spotify:track:50zZ6S7YI5dVL69a7GkArx",
           "is_local": false
         },
@@ -38993,7 +39009,7 @@
           "href": "https://api.spotify.com/v1/tracks/50zZ6S7YI5dVL69a7GkArx",
           "id": "50zZ6S7YI5dVL69a7GkArx",
           "name": "KRS-One",
-          "popularity": 51,
+          "popularity": 48,
           "uri": "spotify:track:50zZ6S7YI5dVL69a7GkArx",
           "is_local": false
         },
@@ -39457,7 +39473,7 @@
           "href": "https://api.spotify.com/v1/tracks/0f23gGmTozARE1nllTlNlN",
           "id": "0f23gGmTozARE1nllTlNlN",
           "name": "The Frail",
-          "popularity": 48,
+          "popularity": 47,
           "uri": "spotify:track:0f23gGmTozARE1nllTlNlN",
           "is_local": false
         },
@@ -39904,7 +39920,7 @@
           "href": "https://api.spotify.com/v1/tracks/0f23gGmTozARE1nllTlNlN",
           "id": "0f23gGmTozARE1nllTlNlN",
           "name": "The Frail",
-          "popularity": 48,
+          "popularity": 47,
           "uri": "spotify:track:0f23gGmTozARE1nllTlNlN",
           "is_local": false
         },
@@ -40372,7 +40388,7 @@
           "href": "https://api.spotify.com/v1/tracks/1v1Z3eg5qucXO2PqG6aCWy",
           "id": "1v1Z3eg5qucXO2PqG6aCWy",
           "name": "READY - Acoustic Version",
-          "popularity": 42,
+          "popularity": 41,
           "uri": "spotify:track:1v1Z3eg5qucXO2PqG6aCWy",
           "is_local": false
         },
@@ -40823,7 +40839,7 @@
           "href": "https://api.spotify.com/v1/tracks/1v1Z3eg5qucXO2PqG6aCWy",
           "id": "1v1Z3eg5qucXO2PqG6aCWy",
           "name": "READY - Acoustic Version",
-          "popularity": 42,
+          "popularity": 41,
           "uri": "spotify:track:1v1Z3eg5qucXO2PqG6aCWy",
           "is_local": false
         },
@@ -41812,7 +41828,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ReTCbOAUbnKKVBY0ckJMS",
           "id": "6ReTCbOAUbnKKVBY0ckJMS",
           "name": "Manhattan",
-          "popularity": 55,
+          "popularity": 58,
           "uri": "spotify:track:6ReTCbOAUbnKKVBY0ckJMS",
           "is_local": false
         },
@@ -42259,7 +42275,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ReTCbOAUbnKKVBY0ckJMS",
           "id": "6ReTCbOAUbnKKVBY0ckJMS",
           "name": "Manhattan",
-          "popularity": 55,
+          "popularity": 58,
           "uri": "spotify:track:6ReTCbOAUbnKKVBY0ckJMS",
           "is_local": false
         },
@@ -43839,7 +43855,7 @@
           "href": "https://api.spotify.com/v1/tracks/4o6jfrxQyekM5DpnWYLlMo",
           "id": "4o6jfrxQyekM5DpnWYLlMo",
           "name": "Kind Woman",
-          "popularity": 59,
+          "popularity": 58,
           "uri": "spotify:track:4o6jfrxQyekM5DpnWYLlMo",
           "is_local": false
         },
@@ -44288,7 +44304,7 @@
           "href": "https://api.spotify.com/v1/tracks/4o6jfrxQyekM5DpnWYLlMo",
           "id": "4o6jfrxQyekM5DpnWYLlMo",
           "name": "Kind Woman",
-          "popularity": 59,
+          "popularity": 58,
           "uri": "spotify:track:4o6jfrxQyekM5DpnWYLlMo",
           "is_local": false
         },
@@ -45396,17 +45412,17 @@
             "id": "4gjY9JfOCvVlr7yTIyl2e0",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2736f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d0000b273673264c7e65e6017ff581fec",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e026f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00001e02673264c7e65e6017ff581fec",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048516f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00004851673264c7e65e6017ff581fec",
                 "width": 64,
                 "height": 64
               }
@@ -45456,7 +45472,7 @@
           "href": "https://api.spotify.com/v1/tracks/2zLIjfjQ8kMy7WSSLmF0I2",
           "id": "2zLIjfjQ8kMy7WSSLmF0I2",
           "name": "Thank You - 2008 Remaster",
-          "popularity": 60,
+          "popularity": 59,
           "uri": "spotify:track:2zLIjfjQ8kMy7WSSLmF0I2",
           "is_local": false
         },
@@ -45847,17 +45863,17 @@
             "id": "4gjY9JfOCvVlr7yTIyl2e0",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2736f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d0000b273673264c7e65e6017ff581fec",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e026f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00001e02673264c7e65e6017ff581fec",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048516f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00004851673264c7e65e6017ff581fec",
                 "width": 64,
                 "height": 64
               }
@@ -45907,7 +45923,7 @@
           "href": "https://api.spotify.com/v1/tracks/2zLIjfjQ8kMy7WSSLmF0I2",
           "id": "2zLIjfjQ8kMy7WSSLmF0I2",
           "name": "Thank You - 2008 Remaster",
-          "popularity": 60,
+          "popularity": 59,
           "uri": "spotify:track:2zLIjfjQ8kMy7WSSLmF0I2",
           "is_local": false
         },
@@ -46918,7 +46934,7 @@
           "href": "https://api.spotify.com/v1/tracks/7x4b0UccXSKBWxWmjcrG2T",
           "id": "7x4b0UccXSKBWxWmjcrG2T",
           "name": "And I Love Her",
-          "popularity": 63,
+          "popularity": 62,
           "uri": "spotify:track:7x4b0UccXSKBWxWmjcrG2T",
           "is_local": false
         },
@@ -47367,7 +47383,7 @@
           "href": "https://api.spotify.com/v1/tracks/7x4b0UccXSKBWxWmjcrG2T",
           "id": "7x4b0UccXSKBWxWmjcrG2T",
           "name": "And I Love Her",
-          "popularity": 63,
+          "popularity": 62,
           "uri": "spotify:track:7x4b0UccXSKBWxWmjcrG2T",
           "is_local": false
         },
@@ -47745,17 +47761,17 @@
             "id": "4kINvyMdIqyuXAtpoCKGIO",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2734fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000b27320493c8d0205dfa17725e21a",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e024fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d00001e0220493c8d0205dfa17725e21a",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048514fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000485120493c8d0205dfa17725e21a",
                 "width": 64,
                 "height": 64
               }
@@ -47805,7 +47821,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SNeur5WyKRL45EcyPACJE",
           "id": "4SNeur5WyKRL45EcyPACJE",
           "name": "Lord Help Me - Mono Single Version",
-          "popularity": 27,
+          "popularity": 26,
           "uri": "spotify:track:4SNeur5WyKRL45EcyPACJE",
           "is_local": false
         },
@@ -48166,17 +48182,17 @@
             "id": "4kINvyMdIqyuXAtpoCKGIO",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2734fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000b27320493c8d0205dfa17725e21a",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e024fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d00001e0220493c8d0205dfa17725e21a",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048514fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000485120493c8d0205dfa17725e21a",
                 "width": 64,
                 "height": 64
               }
@@ -48226,7 +48242,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SNeur5WyKRL45EcyPACJE",
           "id": "4SNeur5WyKRL45EcyPACJE",
           "name": "Lord Help Me - Mono Single Version",
-          "popularity": 27,
+          "popularity": 26,
           "uri": "spotify:track:4SNeur5WyKRL45EcyPACJE",
           "is_local": false
         },
@@ -48694,7 +48710,7 @@
           "href": "https://api.spotify.com/v1/tracks/2TTZQ421MkI6XcwwnqKP8h",
           "id": "2TTZQ421MkI6XcwwnqKP8h",
           "name": "Mother Nature's Son",
-          "popularity": 29,
+          "popularity": 27,
           "uri": "spotify:track:2TTZQ421MkI6XcwwnqKP8h",
           "is_local": false
         },
@@ -49145,7 +49161,7 @@
           "href": "https://api.spotify.com/v1/tracks/2TTZQ421MkI6XcwwnqKP8h",
           "id": "2TTZQ421MkI6XcwwnqKP8h",
           "name": "Mother Nature's Son",
-          "popularity": 29,
+          "popularity": 27,
           "uri": "spotify:track:2TTZQ421MkI6XcwwnqKP8h",
           "is_local": false
         },
@@ -50528,7 +50544,7 @@
           "href": "https://api.spotify.com/v1/tracks/6zCy949WyFCLkl8nufRvZR",
           "id": "6zCy949WyFCLkl8nufRvZR",
           "name": "Man on the Moon",
-          "popularity": 21,
+          "popularity": 18,
           "uri": "spotify:track:6zCy949WyFCLkl8nufRvZR",
           "is_local": false
         },
@@ -50979,7 +50995,7 @@
           "href": "https://api.spotify.com/v1/tracks/6zCy949WyFCLkl8nufRvZR",
           "id": "6zCy949WyFCLkl8nufRvZR",
           "name": "Man on the Moon",
-          "popularity": 21,
+          "popularity": 18,
           "uri": "spotify:track:6zCy949WyFCLkl8nufRvZR",
           "is_local": false
         },
@@ -51575,7 +51591,7 @@
                 "height": 64
               }
             ],
-            "name": "Help! (Remastered)",
+            "name": "Help! (Remastered 2009)",
             "release_date": "1965-08-06",
             "release_date_precision": "day",
             "uri": "spotify:album:0PT5m6hwPRrpBwIHVnvbFX",
@@ -51620,7 +51636,7 @@
           "href": "https://api.spotify.com/v1/tracks/3BQHpFgAp4l80e1XslIjNI",
           "id": "3BQHpFgAp4l80e1XslIjNI",
           "name": "Yesterday - Remastered 2009",
-          "popularity": 80,
+          "popularity": 78,
           "uri": "spotify:track:3BQHpFgAp4l80e1XslIjNI",
           "is_local": false
         },
@@ -52024,7 +52040,7 @@
                 "height": 64
               }
             ],
-            "name": "Help! (Remastered)",
+            "name": "Help! (Remastered 2009)",
             "release_date": "1965-08-06",
             "release_date_precision": "day",
             "uri": "spotify:album:0PT5m6hwPRrpBwIHVnvbFX",
@@ -52069,7 +52085,7 @@
           "href": "https://api.spotify.com/v1/tracks/3BQHpFgAp4l80e1XslIjNI",
           "id": "3BQHpFgAp4l80e1XslIjNI",
           "name": "Yesterday - Remastered 2009",
-          "popularity": 80,
+          "popularity": 78,
           "uri": "spotify:track:3BQHpFgAp4l80e1XslIjNI",
           "is_local": false
         },
@@ -53408,7 +53424,7 @@
           "href": "https://api.spotify.com/v1/tracks/7dUuxR8ZgrZ6YL8rwdml1Y",
           "id": "7dUuxR8ZgrZ6YL8rwdml1Y",
           "name": "Crazy You",
-          "popularity": 36,
+          "popularity": 34,
           "uri": "spotify:track:7dUuxR8ZgrZ6YL8rwdml1Y",
           "is_local": false
         },
@@ -53855,7 +53871,7 @@
           "href": "https://api.spotify.com/v1/tracks/7dUuxR8ZgrZ6YL8rwdml1Y",
           "id": "7dUuxR8ZgrZ6YL8rwdml1Y",
           "name": "Crazy You",
-          "popularity": 36,
+          "popularity": 34,
           "uri": "spotify:track:7dUuxR8ZgrZ6YL8rwdml1Y",
           "is_local": false
         },
@@ -54126,7 +54142,7 @@
           "href": "https://api.spotify.com/v1/tracks/62ZYyXIsHVX5xVUj80arVu",
           "id": "62ZYyXIsHVX5xVUj80arVu",
           "name": "The Book of Love",
-          "popularity": 1,
+          "popularity": 0,
           "uri": "spotify:track:62ZYyXIsHVX5xVUj80arVu",
           "is_local": false
         },
@@ -54205,7 +54221,7 @@
           "href": "https://api.spotify.com/v1/tracks/62ZYyXIsHVX5xVUj80arVu",
           "id": "62ZYyXIsHVX5xVUj80arVu",
           "name": "The Book of Love",
-          "popularity": 1,
+          "popularity": 0,
           "uri": "spotify:track:62ZYyXIsHVX5xVUj80arVu",
           "is_local": false
         },
@@ -54673,7 +54689,7 @@
           "href": "https://api.spotify.com/v1/tracks/4sQYxrQGDgCxllDwTszdDs",
           "id": "4sQYxrQGDgCxllDwTszdDs",
           "name": "What Is Man (Acoustic Version 1)",
-          "popularity": 2,
+          "popularity": 1,
           "uri": "spotify:track:4sQYxrQGDgCxllDwTszdDs",
           "is_local": false
         },
@@ -55124,7 +55140,7 @@
           "href": "https://api.spotify.com/v1/tracks/4sQYxrQGDgCxllDwTszdDs",
           "id": "4sQYxrQGDgCxllDwTszdDs",
           "name": "What Is Man (Acoustic Version 1)",
-          "popularity": 2,
+          "popularity": 1,
           "uri": "spotify:track:4sQYxrQGDgCxllDwTszdDs",
           "is_local": false
         },
@@ -55592,7 +55608,7 @@
           "href": "https://api.spotify.com/v1/tracks/0QipPEjHjkaS5y50B9bY6H",
           "id": "0QipPEjHjkaS5y50B9bY6H",
           "name": "Turn on Your Radio",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:0QipPEjHjkaS5y50B9bY6H",
           "is_local": false
         },
@@ -56043,7 +56059,7 @@
           "href": "https://api.spotify.com/v1/tracks/0QipPEjHjkaS5y50B9bY6H",
           "id": "0QipPEjHjkaS5y50B9bY6H",
           "name": "Turn on Your Radio",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:0QipPEjHjkaS5y50B9bY6H",
           "is_local": false
         },
@@ -56511,7 +56527,7 @@
           "href": "https://api.spotify.com/v1/tracks/4A3xaD4iayHnfWJ3iTSxWU",
           "id": "4A3xaD4iayHnfWJ3iTSxWU",
           "name": "Lullaby in Ragtime",
-          "popularity": 35,
+          "popularity": 33,
           "uri": "spotify:track:4A3xaD4iayHnfWJ3iTSxWU",
           "is_local": false
         },
@@ -56962,7 +56978,7 @@
           "href": "https://api.spotify.com/v1/tracks/4A3xaD4iayHnfWJ3iTSxWU",
           "id": "4A3xaD4iayHnfWJ3iTSxWU",
           "name": "Lullaby in Ragtime",
-          "popularity": 35,
+          "popularity": 33,
           "uri": "spotify:track:4A3xaD4iayHnfWJ3iTSxWU",
           "is_local": false
         },
@@ -57605,7 +57621,7 @@
           "href": "https://api.spotify.com/v1/tracks/5UWarhuxo8QZ5lKxgw5EHv",
           "id": "5UWarhuxo8QZ5lKxgw5EHv",
           "name": "The House of the Rising Sun",
-          "popularity": 40,
+          "popularity": 38,
           "uri": "spotify:track:5UWarhuxo8QZ5lKxgw5EHv",
           "is_local": false
         },
@@ -58056,7 +58072,7 @@
           "href": "https://api.spotify.com/v1/tracks/5UWarhuxo8QZ5lKxgw5EHv",
           "id": "5UWarhuxo8QZ5lKxgw5EHv",
           "name": "The House of the Rising Sun",
-          "popularity": 40,
+          "popularity": 38,
           "uri": "spotify:track:5UWarhuxo8QZ5lKxgw5EHv",
           "is_local": false
         },
@@ -58699,7 +58715,7 @@
           "href": "https://api.spotify.com/v1/tracks/2GanylJ8C1TuwEXyHcxIzR",
           "id": "2GanylJ8C1TuwEXyHcxIzR",
           "name": "Without Her",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:2GanylJ8C1TuwEXyHcxIzR",
           "is_local": false
         },
@@ -59150,7 +59166,7 @@
           "href": "https://api.spotify.com/v1/tracks/2GanylJ8C1TuwEXyHcxIzR",
           "id": "2GanylJ8C1TuwEXyHcxIzR",
           "name": "Without Her",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:2GanylJ8C1TuwEXyHcxIzR",
           "is_local": false
         },
@@ -59618,7 +59634,7 @@
           "href": "https://api.spotify.com/v1/tracks/48zUFsio0IV0KQxnpqAaEm",
           "id": "48zUFsio0IV0KQxnpqAaEm",
           "name": "Answers Me",
-          "popularity": 38,
+          "popularity": 37,
           "uri": "spotify:track:48zUFsio0IV0KQxnpqAaEm",
           "is_local": false
         },
@@ -60069,7 +60085,7 @@
           "href": "https://api.spotify.com/v1/tracks/48zUFsio0IV0KQxnpqAaEm",
           "id": "48zUFsio0IV0KQxnpqAaEm",
           "name": "Answers Me",
-          "popularity": 38,
+          "popularity": 37,
           "uri": "spotify:track:48zUFsio0IV0KQxnpqAaEm",
           "is_local": false
         },
@@ -60537,7 +60553,7 @@
           "href": "https://api.spotify.com/v1/tracks/5y788ya4NvwhBznoDIcXwK",
           "id": "5y788ya4NvwhBznoDIcXwK",
           "name": "The Sound of Silence - Acoustic Version",
-          "popularity": 76,
+          "popularity": 74,
           "uri": "spotify:track:5y788ya4NvwhBznoDIcXwK",
           "is_local": false
         },
@@ -60988,7 +61004,7 @@
           "href": "https://api.spotify.com/v1/tracks/5y788ya4NvwhBznoDIcXwK",
           "id": "5y788ya4NvwhBznoDIcXwK",
           "name": "The Sound of Silence - Acoustic Version",
-          "popularity": 76,
+          "popularity": 74,
           "uri": "spotify:track:5y788ya4NvwhBznoDIcXwK",
           "is_local": false
         },
@@ -62827,7 +62843,7 @@
     "next": "https://api.spotify.com/v1/playlists/4B74rg35omHD6uJspe8gwb/tracks?offset=100&limit=100",
     "offset": 0,
     "previous": null,
-    "total": 449
+    "total": 450
   },
   "items": {
     "href": "https://api.spotify.com/v1/playlists/4B74rg35omHD6uJspe8gwb/items?offset=0&limit=100",
@@ -63465,7 +63481,7 @@
           "href": "https://api.spotify.com/v1/tracks/1LzNfuep1bnAUR9skqdHCK",
           "id": "1LzNfuep1bnAUR9skqdHCK",
           "name": "Fade Into You",
-          "popularity": 91,
+          "popularity": 90,
           "uri": "spotify:track:1LzNfuep1bnAUR9skqdHCK",
           "is_local": false
         },
@@ -63914,7 +63930,7 @@
           "href": "https://api.spotify.com/v1/tracks/1LzNfuep1bnAUR9skqdHCK",
           "id": "1LzNfuep1bnAUR9skqdHCK",
           "name": "Fade Into You",
-          "popularity": 91,
+          "popularity": 90,
           "uri": "spotify:track:1LzNfuep1bnAUR9skqdHCK",
           "is_local": false
         },
@@ -64382,7 +64398,7 @@
           "href": "https://api.spotify.com/v1/tracks/2cNELi1hzt3eWwYHYkJKub",
           "id": "2cNELi1hzt3eWwYHYkJKub",
           "name": "You Can Close Your Eyes - 2019 Remaster",
-          "popularity": 61,
+          "popularity": 57,
           "uri": "spotify:track:2cNELi1hzt3eWwYHYkJKub",
           "is_local": false
         },
@@ -64833,7 +64849,7 @@
           "href": "https://api.spotify.com/v1/tracks/2cNELi1hzt3eWwYHYkJKub",
           "id": "2cNELi1hzt3eWwYHYkJKub",
           "name": "You Can Close Your Eyes - 2019 Remaster",
-          "popularity": 61,
+          "popularity": 57,
           "uri": "spotify:track:2cNELi1hzt3eWwYHYkJKub",
           "is_local": false
         },
@@ -65311,7 +65327,7 @@
           "href": "https://api.spotify.com/v1/tracks/0qB213IfGN0JXXm9aRjldF",
           "id": "0qB213IfGN0JXXm9aRjldF",
           "name": "Again (with The Mellomen)",
-          "popularity": 54,
+          "popularity": 53,
           "uri": "spotify:track:0qB213IfGN0JXXm9aRjldF",
           "is_local": false
         },
@@ -65772,7 +65788,7 @@
           "href": "https://api.spotify.com/v1/tracks/0qB213IfGN0JXXm9aRjldF",
           "id": "0qB213IfGN0JXXm9aRjldF",
           "name": "Again (with The Mellomen)",
-          "popularity": 54,
+          "popularity": 53,
           "uri": "spotify:track:0qB213IfGN0JXXm9aRjldF",
           "is_local": false
         },
@@ -67133,7 +67149,7 @@
           "href": "https://api.spotify.com/v1/tracks/0XrPZPotxZNDkuvauuVO8R",
           "id": "0XrPZPotxZNDkuvauuVO8R",
           "name": "Dreams - Take 2",
-          "popularity": 48,
+          "popularity": 46,
           "uri": "spotify:track:0XrPZPotxZNDkuvauuVO8R",
           "is_local": false
         },
@@ -67558,7 +67574,7 @@
           "href": "https://api.spotify.com/v1/tracks/0XrPZPotxZNDkuvauuVO8R",
           "id": "0XrPZPotxZNDkuvauuVO8R",
           "name": "Dreams - Take 2",
-          "popularity": 48,
+          "popularity": 46,
           "uri": "spotify:track:0XrPZPotxZNDkuvauuVO8R",
           "is_local": false
         },
@@ -67661,6 +67677,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -68020,7 +68040,7 @@
           "href": "https://api.spotify.com/v1/tracks/3VWeXC8bwm6agBEkvvs9lG",
           "id": "3VWeXC8bwm6agBEkvvs9lG",
           "name": "Sleep Warm",
-          "popularity": 20,
+          "popularity": 17,
           "uri": "spotify:track:3VWeXC8bwm6agBEkvvs9lG",
           "is_local": false
         },
@@ -68106,6 +68126,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -68465,7 +68489,7 @@
           "href": "https://api.spotify.com/v1/tracks/3VWeXC8bwm6agBEkvvs9lG",
           "id": "3VWeXC8bwm6agBEkvvs9lG",
           "name": "Sleep Warm",
-          "popularity": 20,
+          "popularity": 17,
           "uri": "spotify:track:3VWeXC8bwm6agBEkvvs9lG",
           "is_local": false
         },
@@ -69108,7 +69132,7 @@
           "href": "https://api.spotify.com/v1/tracks/4PEGwWH4tL6H7dGl4uVSPg",
           "id": "4PEGwWH4tL6H7dGl4uVSPg",
           "name": "Like a Tattoo",
-          "popularity": 85,
+          "popularity": 84,
           "uri": "spotify:track:4PEGwWH4tL6H7dGl4uVSPg",
           "is_local": false
         },
@@ -69559,7 +69583,7 @@
           "href": "https://api.spotify.com/v1/tracks/4PEGwWH4tL6H7dGl4uVSPg",
           "id": "4PEGwWH4tL6H7dGl4uVSPg",
           "name": "Like a Tattoo",
-          "popularity": 85,
+          "popularity": 84,
           "uri": "spotify:track:4PEGwWH4tL6H7dGl4uVSPg",
           "is_local": false
         },
@@ -70027,7 +70051,7 @@
           "href": "https://api.spotify.com/v1/tracks/72794Eag03xdy7TO0KNuid",
           "id": "72794Eag03xdy7TO0KNuid",
           "name": "Cayendo (Side A - Acoustic)",
-          "popularity": 68,
+          "popularity": 67,
           "uri": "spotify:track:72794Eag03xdy7TO0KNuid",
           "is_local": false
         },
@@ -70478,7 +70502,7 @@
           "href": "https://api.spotify.com/v1/tracks/72794Eag03xdy7TO0KNuid",
           "id": "72794Eag03xdy7TO0KNuid",
           "name": "Cayendo (Side A - Acoustic)",
-          "popularity": 68,
+          "popularity": 67,
           "uri": "spotify:track:72794Eag03xdy7TO0KNuid",
           "is_local": false
         },
@@ -70946,7 +70970,7 @@
           "href": "https://api.spotify.com/v1/tracks/73VzVD9pHiD2ycmqQK4zZm",
           "id": "73VzVD9pHiD2ycmqQK4zZm",
           "name": "Dialing Drunk",
-          "popularity": 31,
+          "popularity": 29,
           "uri": "spotify:track:73VzVD9pHiD2ycmqQK4zZm",
           "is_local": false
         },
@@ -71397,7 +71421,7 @@
           "href": "https://api.spotify.com/v1/tracks/73VzVD9pHiD2ycmqQK4zZm",
           "id": "73VzVD9pHiD2ycmqQK4zZm",
           "name": "Dialing Drunk",
-          "popularity": 31,
+          "popularity": 29,
           "uri": "spotify:track:73VzVD9pHiD2ycmqQK4zZm",
           "is_local": false
         },
@@ -72040,7 +72064,7 @@
           "href": "https://api.spotify.com/v1/tracks/04lX4lKvDCU7z7zo73Se8S",
           "id": "04lX4lKvDCU7z7zo73Se8S",
           "name": "I Can't Find the Time",
-          "popularity": 8,
+          "popularity": 7,
           "uri": "spotify:track:04lX4lKvDCU7z7zo73Se8S",
           "is_local": false
         },
@@ -72491,7 +72515,7 @@
           "href": "https://api.spotify.com/v1/tracks/04lX4lKvDCU7z7zo73Se8S",
           "id": "04lX4lKvDCU7z7zo73Se8S",
           "name": "I Can't Find the Time",
-          "popularity": 8,
+          "popularity": 7,
           "uri": "spotify:track:04lX4lKvDCU7z7zo73Se8S",
           "is_local": false
         },
@@ -73134,7 +73158,7 @@
           "href": "https://api.spotify.com/v1/tracks/0SxFyA4FqmEQqZVuAlg8lf",
           "id": "0SxFyA4FqmEQqZVuAlg8lf",
           "name": "The First Time Ever I Saw Your Face",
-          "popularity": 66,
+          "popularity": 63,
           "uri": "spotify:track:0SxFyA4FqmEQqZVuAlg8lf",
           "is_local": false
         },
@@ -73585,7 +73609,7 @@
           "href": "https://api.spotify.com/v1/tracks/0SxFyA4FqmEQqZVuAlg8lf",
           "id": "0SxFyA4FqmEQqZVuAlg8lf",
           "name": "The First Time Ever I Saw Your Face",
-          "popularity": 66,
+          "popularity": 63,
           "uri": "spotify:track:0SxFyA4FqmEQqZVuAlg8lf",
           "is_local": false
         },
@@ -74053,7 +74077,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ey8HhYmR57lhESTf15RcF",
           "id": "6ey8HhYmR57lhESTf15RcF",
           "name": "Dream",
-          "popularity": 58,
+          "popularity": 56,
           "uri": "spotify:track:6ey8HhYmR57lhESTf15RcF",
           "is_local": false
         },
@@ -74504,7 +74528,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ey8HhYmR57lhESTf15RcF",
           "id": "6ey8HhYmR57lhESTf15RcF",
           "name": "Dream",
-          "popularity": 58,
+          "popularity": 56,
           "uri": "spotify:track:6ey8HhYmR57lhESTf15RcF",
           "is_local": false
         },
@@ -75696,7 +75720,7 @@
           "href": "https://api.spotify.com/v1/tracks/0eDVClItJH4PkfPu7dciKP",
           "id": "0eDVClItJH4PkfPu7dciKP",
           "name": "Like Someone in Love",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0eDVClItJH4PkfPu7dciKP",
           "is_local": false
         },
@@ -75781,7 +75805,7 @@
           "href": "https://api.spotify.com/v1/tracks/0eDVClItJH4PkfPu7dciKP",
           "id": "0eDVClItJH4PkfPu7dciKP",
           "name": "Like Someone in Love",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0eDVClItJH4PkfPu7dciKP",
           "is_local": false
         },
@@ -76611,7 +76635,7 @@
           "href": "https://api.spotify.com/v1/tracks/0mYslGmbnkbxuyr0ISIYtB",
           "id": "0mYslGmbnkbxuyr0ISIYtB",
           "name": "Lucky",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0mYslGmbnkbxuyr0ISIYtB",
           "is_local": false
         },
@@ -77062,7 +77086,7 @@
           "href": "https://api.spotify.com/v1/tracks/0mYslGmbnkbxuyr0ISIYtB",
           "id": "0mYslGmbnkbxuyr0ISIYtB",
           "name": "Lucky",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:0mYslGmbnkbxuyr0ISIYtB",
           "is_local": false
         },
@@ -77530,7 +77554,7 @@
           "href": "https://api.spotify.com/v1/tracks/4wnvVlqdz6o7eLtbeS5sYR",
           "id": "4wnvVlqdz6o7eLtbeS5sYR",
           "name": "Luv Note",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:4wnvVlqdz6o7eLtbeS5sYR",
           "is_local": false
         },
@@ -77981,7 +78005,7 @@
           "href": "https://api.spotify.com/v1/tracks/4wnvVlqdz6o7eLtbeS5sYR",
           "id": "4wnvVlqdz6o7eLtbeS5sYR",
           "name": "Luv Note",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:4wnvVlqdz6o7eLtbeS5sYR",
           "is_local": false
         },
@@ -78449,7 +78473,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SuZuaC4BEKZpodo1r5dBT",
           "id": "4SuZuaC4BEKZpodo1r5dBT",
           "name": "For Anyone",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:4SuZuaC4BEKZpodo1r5dBT",
           "is_local": false
         },
@@ -78900,7 +78924,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SuZuaC4BEKZpodo1r5dBT",
           "id": "4SuZuaC4BEKZpodo1r5dBT",
           "name": "For Anyone",
-          "popularity": 47,
+          "popularity": 45,
           "uri": "spotify:track:4SuZuaC4BEKZpodo1r5dBT",
           "is_local": false
         },
@@ -79366,7 +79390,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Bv9v9ijc0TRJppfhwZrg0",
           "id": "5Bv9v9ijc0TRJppfhwZrg0",
           "name": "I Left My Heart In San Francisco",
-          "popularity": 39,
+          "popularity": 37,
           "uri": "spotify:track:5Bv9v9ijc0TRJppfhwZrg0",
           "is_local": false
         },
@@ -79815,7 +79839,7 @@
           "href": "https://api.spotify.com/v1/tracks/5Bv9v9ijc0TRJppfhwZrg0",
           "id": "5Bv9v9ijc0TRJppfhwZrg0",
           "name": "I Left My Heart In San Francisco",
-          "popularity": 39,
+          "popularity": 37,
           "uri": "spotify:track:5Bv9v9ijc0TRJppfhwZrg0",
           "is_local": false
         },
@@ -81369,7 +81393,7 @@
           "href": "https://api.spotify.com/v1/tracks/5ubBoJzqz6srUEpBrHmLEz",
           "id": "5ubBoJzqz6srUEpBrHmLEz",
           "name": "Father's Song",
-          "popularity": 33,
+          "popularity": 31,
           "uri": "spotify:track:5ubBoJzqz6srUEpBrHmLEz",
           "is_local": false
         },
@@ -81820,7 +81844,7 @@
           "href": "https://api.spotify.com/v1/tracks/5ubBoJzqz6srUEpBrHmLEz",
           "id": "5ubBoJzqz6srUEpBrHmLEz",
           "name": "Father's Song",
-          "popularity": 33,
+          "popularity": 31,
           "uri": "spotify:track:5ubBoJzqz6srUEpBrHmLEz",
           "is_local": false
         },
@@ -81922,7 +81946,7 @@
           "href": "https://api.spotify.com/v1/tracks/47bwlUOUckJn3WAlQyzCzi",
           "id": "47bwlUOUckJn3WAlQyzCzi",
           "name": "Dead Flowers",
-          "popularity": 11,
+          "popularity": 10,
           "uri": "spotify:track:47bwlUOUckJn3WAlQyzCzi",
           "is_local": false
         },
@@ -82007,7 +82031,7 @@
           "href": "https://api.spotify.com/v1/tracks/47bwlUOUckJn3WAlQyzCzi",
           "id": "47bwlUOUckJn3WAlQyzCzi",
           "name": "Dead Flowers",
-          "popularity": 11,
+          "popularity": 10,
           "uri": "spotify:track:47bwlUOUckJn3WAlQyzCzi",
           "is_local": false
         },
@@ -82998,7 +83022,7 @@
           "href": "https://api.spotify.com/v1/tracks/4nReGzidxUxHUZyJSevbsS",
           "id": "4nReGzidxUxHUZyJSevbsS",
           "name": "Easy To Love Me",
-          "popularity": 39,
+          "popularity": 38,
           "uri": "spotify:track:4nReGzidxUxHUZyJSevbsS",
           "is_local": false
         },
@@ -83447,7 +83471,7 @@
           "href": "https://api.spotify.com/v1/tracks/4nReGzidxUxHUZyJSevbsS",
           "id": "4nReGzidxUxHUZyJSevbsS",
           "name": "Easy To Love Me",
-          "popularity": 39,
+          "popularity": 38,
           "uri": "spotify:track:4nReGzidxUxHUZyJSevbsS",
           "is_local": false
         },
@@ -83915,7 +83939,7 @@
           "href": "https://api.spotify.com/v1/tracks/3OF9rTCYjLEplmYMynYvHG",
           "id": "3OF9rTCYjLEplmYMynYvHG",
           "name": "Night and Day",
-          "popularity": 47,
+          "popularity": 46,
           "uri": "spotify:track:3OF9rTCYjLEplmYMynYvHG",
           "is_local": false
         },
@@ -84366,7 +84390,7 @@
           "href": "https://api.spotify.com/v1/tracks/3OF9rTCYjLEplmYMynYvHG",
           "id": "3OF9rTCYjLEplmYMynYvHG",
           "name": "Night and Day",
-          "popularity": 47,
+          "popularity": 46,
           "uri": "spotify:track:3OF9rTCYjLEplmYMynYvHG",
           "is_local": false
         },
@@ -84834,7 +84858,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ilPGjQvpV8PdA2lCeCfn1",
           "id": "6ilPGjQvpV8PdA2lCeCfn1",
           "name": "Plastic",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:6ilPGjQvpV8PdA2lCeCfn1",
           "is_local": false
         },
@@ -85285,7 +85309,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ilPGjQvpV8PdA2lCeCfn1",
           "id": "6ilPGjQvpV8PdA2lCeCfn1",
           "name": "Plastic",
-          "popularity": 45,
+          "popularity": 44,
           "uri": "spotify:track:6ilPGjQvpV8PdA2lCeCfn1",
           "is_local": false
         },
@@ -85753,7 +85777,7 @@
           "href": "https://api.spotify.com/v1/tracks/09kEUjIvixNShjfl3YoyWo",
           "id": "09kEUjIvixNShjfl3YoyWo",
           "name": "Simply Beautiful",
-          "popularity": 54,
+          "popularity": 52,
           "uri": "spotify:track:09kEUjIvixNShjfl3YoyWo",
           "is_local": false
         },
@@ -86204,7 +86228,7 @@
           "href": "https://api.spotify.com/v1/tracks/09kEUjIvixNShjfl3YoyWo",
           "id": "09kEUjIvixNShjfl3YoyWo",
           "name": "Simply Beautiful",
-          "popularity": 54,
+          "popularity": 52,
           "uri": "spotify:track:09kEUjIvixNShjfl3YoyWo",
           "is_local": false
         },
@@ -86670,7 +86694,7 @@
           "href": "https://api.spotify.com/v1/tracks/4Sqkfwcm0HsUMlmmmZYTim",
           "id": "4Sqkfwcm0HsUMlmmmZYTim",
           "name": "Nobody Other",
-          "popularity": 28,
+          "popularity": 27,
           "uri": "spotify:track:4Sqkfwcm0HsUMlmmmZYTim",
           "is_local": false
         },
@@ -87119,7 +87143,7 @@
           "href": "https://api.spotify.com/v1/tracks/4Sqkfwcm0HsUMlmmmZYTim",
           "id": "4Sqkfwcm0HsUMlmmmZYTim",
           "name": "Nobody Other",
-          "popularity": 28,
+          "popularity": 27,
           "uri": "spotify:track:4Sqkfwcm0HsUMlmmmZYTim",
           "is_local": false
         },
@@ -87587,7 +87611,7 @@
           "href": "https://api.spotify.com/v1/tracks/7bOFZoacE1Ss3bINTI8fOj",
           "id": "7bOFZoacE1Ss3bINTI8fOj",
           "name": "Maybe",
-          "popularity": 10,
+          "popularity": 8,
           "uri": "spotify:track:7bOFZoacE1Ss3bINTI8fOj",
           "is_local": false
         },
@@ -88038,7 +88062,7 @@
           "href": "https://api.spotify.com/v1/tracks/7bOFZoacE1Ss3bINTI8fOj",
           "id": "7bOFZoacE1Ss3bINTI8fOj",
           "name": "Maybe",
-          "popularity": 10,
+          "popularity": 8,
           "uri": "spotify:track:7bOFZoacE1Ss3bINTI8fOj",
           "is_local": false
         },
@@ -88506,7 +88530,7 @@
           "href": "https://api.spotify.com/v1/tracks/1uaquujAB3YsZFD8L0r3zw",
           "id": "1uaquujAB3YsZFD8L0r3zw",
           "name": "Tomorrow Night",
-          "popularity": 11,
+          "popularity": 9,
           "uri": "spotify:track:1uaquujAB3YsZFD8L0r3zw",
           "is_local": false
         },
@@ -88957,7 +88981,7 @@
           "href": "https://api.spotify.com/v1/tracks/1uaquujAB3YsZFD8L0r3zw",
           "id": "1uaquujAB3YsZFD8L0r3zw",
           "name": "Tomorrow Night",
-          "popularity": 11,
+          "popularity": 9,
           "uri": "spotify:track:1uaquujAB3YsZFD8L0r3zw",
           "is_local": false
         },
@@ -89425,7 +89449,7 @@
           "href": "https://api.spotify.com/v1/tracks/0i19MAZbyn8uTir7FprXId",
           "id": "0i19MAZbyn8uTir7FprXId",
           "name": "Oh! Sweet Nuthin' - 2015 Remaster",
-          "popularity": 67,
+          "popularity": 66,
           "uri": "spotify:track:0i19MAZbyn8uTir7FprXId",
           "is_local": false
         },
@@ -89876,7 +89900,7 @@
           "href": "https://api.spotify.com/v1/tracks/0i19MAZbyn8uTir7FprXId",
           "id": "0i19MAZbyn8uTir7FprXId",
           "name": "Oh! Sweet Nuthin' - 2015 Remaster",
-          "popularity": 67,
+          "popularity": 66,
           "uri": "spotify:track:0i19MAZbyn8uTir7FprXId",
           "is_local": false
         },
@@ -90002,7 +90026,7 @@
           "href": "https://api.spotify.com/v1/tracks/6uD70GfUbSsam2gk15PQH1",
           "id": "6uD70GfUbSsam2gk15PQH1",
           "name": "Sunday",
-          "popularity": 14,
+          "popularity": 11,
           "uri": "spotify:track:6uD70GfUbSsam2gk15PQH1",
           "is_local": false
         },
@@ -90111,7 +90135,7 @@
           "href": "https://api.spotify.com/v1/tracks/6uD70GfUbSsam2gk15PQH1",
           "id": "6uD70GfUbSsam2gk15PQH1",
           "name": "Sunday",
-          "popularity": 14,
+          "popularity": 11,
           "uri": "spotify:track:6uD70GfUbSsam2gk15PQH1",
           "is_local": false
         },
@@ -91862,7 +91886,7 @@
           "href": "https://api.spotify.com/v1/tracks/3uCkIqD0VzQUijbs8WIizs",
           "id": "3uCkIqD0VzQUijbs8WIizs",
           "name": "These Days",
-          "popularity": 69,
+          "popularity": 68,
           "uri": "spotify:track:3uCkIqD0VzQUijbs8WIizs",
           "is_local": false
         },
@@ -92311,7 +92335,7 @@
           "href": "https://api.spotify.com/v1/tracks/3uCkIqD0VzQUijbs8WIizs",
           "id": "3uCkIqD0VzQUijbs8WIizs",
           "name": "These Days",
-          "popularity": 69,
+          "popularity": 68,
           "uri": "spotify:track:3uCkIqD0VzQUijbs8WIizs",
           "is_local": false
         },
@@ -92751,7 +92775,7 @@
           "href": "https://api.spotify.com/v1/tracks/6WUjz18yIeTGDR1E69WHtf",
           "id": "6WUjz18yIeTGDR1E69WHtf",
           "name": "Porcelain",
-          "popularity": 61,
+          "popularity": 59,
           "uri": "spotify:track:6WUjz18yIeTGDR1E69WHtf",
           "is_local": false
         },
@@ -93174,7 +93198,7 @@
           "href": "https://api.spotify.com/v1/tracks/6WUjz18yIeTGDR1E69WHtf",
           "id": "6WUjz18yIeTGDR1E69WHtf",
           "name": "Porcelain",
-          "popularity": 61,
+          "popularity": 59,
           "uri": "spotify:track:6WUjz18yIeTGDR1E69WHtf",
           "is_local": false
         },
@@ -93638,7 +93662,7 @@
           "href": "https://api.spotify.com/v1/tracks/3NX3jLUU2sFQjvDRdoOvEN",
           "id": "3NX3jLUU2sFQjvDRdoOvEN",
           "name": "So Blue",
-          "popularity": 37,
+          "popularity": 35,
           "uri": "spotify:track:3NX3jLUU2sFQjvDRdoOvEN",
           "is_local": false
         },
@@ -94085,7 +94109,7 @@
           "href": "https://api.spotify.com/v1/tracks/3NX3jLUU2sFQjvDRdoOvEN",
           "id": "3NX3jLUU2sFQjvDRdoOvEN",
           "name": "So Blue",
-          "popularity": 37,
+          "popularity": 35,
           "uri": "spotify:track:3NX3jLUU2sFQjvDRdoOvEN",
           "is_local": false
         },
@@ -94551,7 +94575,7 @@
           "href": "https://api.spotify.com/v1/tracks/7pKfPomDEeI4TPT6EOYjn9",
           "id": "7pKfPomDEeI4TPT6EOYjn9",
           "name": "Imagine - Remastered 2010",
-          "popularity": 82,
+          "popularity": 80,
           "uri": "spotify:track:7pKfPomDEeI4TPT6EOYjn9",
           "is_local": false
         },
@@ -95000,7 +95024,7 @@
           "href": "https://api.spotify.com/v1/tracks/7pKfPomDEeI4TPT6EOYjn9",
           "id": "7pKfPomDEeI4TPT6EOYjn9",
           "name": "Imagine - Remastered 2010",
-          "popularity": 82,
+          "popularity": 80,
           "uri": "spotify:track:7pKfPomDEeI4TPT6EOYjn9",
           "is_local": false
         },
@@ -96371,7 +96395,7 @@
           "href": "https://api.spotify.com/v1/tracks/0KlruldrjiQnw4p9zrz9kh",
           "id": "0KlruldrjiQnw4p9zrz9kh",
           "name": "The Warnings Part II",
-          "popularity": 25,
+          "popularity": 23,
           "uri": "spotify:track:0KlruldrjiQnw4p9zrz9kh",
           "is_local": false
         },
@@ -96818,7 +96842,7 @@
           "href": "https://api.spotify.com/v1/tracks/0KlruldrjiQnw4p9zrz9kh",
           "id": "0KlruldrjiQnw4p9zrz9kh",
           "name": "The Warnings Part II",
-          "popularity": 25,
+          "popularity": 23,
           "uri": "spotify:track:0KlruldrjiQnw4p9zrz9kh",
           "is_local": false
         },
@@ -96921,6 +96945,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -97282,7 +97310,7 @@
           "href": "https://api.spotify.com/v1/tracks/3Yh4oIxc99pRdUM6vE8Lsx",
           "id": "3Yh4oIxc99pRdUM6vE8Lsx",
           "name": "Portrait of Tracy - Original Version",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:3Yh4oIxc99pRdUM6vE8Lsx",
           "is_local": false
         },
@@ -97368,6 +97396,10 @@
             "JO",
             "PS",
             "IN",
+            "BY",
+            "KZ",
+            "MD",
+            "UA",
             "AL",
             "BA",
             "HR",
@@ -97729,7 +97761,7 @@
           "href": "https://api.spotify.com/v1/tracks/3Yh4oIxc99pRdUM6vE8Lsx",
           "id": "3Yh4oIxc99pRdUM6vE8Lsx",
           "name": "Portrait of Tracy - Original Version",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:3Yh4oIxc99pRdUM6vE8Lsx",
           "is_local": false
         },
@@ -98567,7 +98599,7 @@
           "href": "https://api.spotify.com/v1/tracks/2CkinP4BBBT1BohhTjD350",
           "id": "2CkinP4BBBT1BohhTjD350",
           "name": "Lost in A Lonely World",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:2CkinP4BBBT1BohhTjD350",
           "is_local": false
         },
@@ -99018,7 +99050,7 @@
           "href": "https://api.spotify.com/v1/tracks/2CkinP4BBBT1BohhTjD350",
           "id": "2CkinP4BBBT1BohhTjD350",
           "name": "Lost in A Lonely World",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:2CkinP4BBBT1BohhTjD350",
           "is_local": false
         },
@@ -99486,7 +99518,7 @@
           "href": "https://api.spotify.com/v1/tracks/58VNpcJpI5dEKxYByCkbXc",
           "id": "58VNpcJpI5dEKxYByCkbXc",
           "name": "Miss Summer",
-          "popularity": 62,
+          "popularity": 59,
           "uri": "spotify:track:58VNpcJpI5dEKxYByCkbXc",
           "is_local": false
         },
@@ -99937,7 +99969,7 @@
           "href": "https://api.spotify.com/v1/tracks/58VNpcJpI5dEKxYByCkbXc",
           "id": "58VNpcJpI5dEKxYByCkbXc",
           "name": "Miss Summer",
-          "popularity": 62,
+          "popularity": 59,
           "uri": "spotify:track:58VNpcJpI5dEKxYByCkbXc",
           "is_local": false
         },
@@ -100415,7 +100447,7 @@
           "href": "https://api.spotify.com/v1/tracks/3JOVTQ5h8HGFnDdp4VT3MP",
           "id": "3JOVTQ5h8HGFnDdp4VT3MP",
           "name": "Mad World",
-          "popularity": 72,
+          "popularity": 71,
           "uri": "spotify:track:3JOVTQ5h8HGFnDdp4VT3MP",
           "is_local": false
         },
@@ -100876,7 +100908,7 @@
           "href": "https://api.spotify.com/v1/tracks/3JOVTQ5h8HGFnDdp4VT3MP",
           "id": "3JOVTQ5h8HGFnDdp4VT3MP",
           "name": "Mad World",
-          "popularity": 72,
+          "popularity": 71,
           "uri": "spotify:track:3JOVTQ5h8HGFnDdp4VT3MP",
           "is_local": false
         },
@@ -101342,7 +101374,7 @@
           "href": "https://api.spotify.com/v1/tracks/50zZ6S7YI5dVL69a7GkArx",
           "id": "50zZ6S7YI5dVL69a7GkArx",
           "name": "KRS-One",
-          "popularity": 51,
+          "popularity": 48,
           "uri": "spotify:track:50zZ6S7YI5dVL69a7GkArx",
           "is_local": false
         },
@@ -101791,7 +101823,7 @@
           "href": "https://api.spotify.com/v1/tracks/50zZ6S7YI5dVL69a7GkArx",
           "id": "50zZ6S7YI5dVL69a7GkArx",
           "name": "KRS-One",
-          "popularity": 51,
+          "popularity": 48,
           "uri": "spotify:track:50zZ6S7YI5dVL69a7GkArx",
           "is_local": false
         },
@@ -102255,7 +102287,7 @@
           "href": "https://api.spotify.com/v1/tracks/0f23gGmTozARE1nllTlNlN",
           "id": "0f23gGmTozARE1nllTlNlN",
           "name": "The Frail",
-          "popularity": 48,
+          "popularity": 47,
           "uri": "spotify:track:0f23gGmTozARE1nllTlNlN",
           "is_local": false
         },
@@ -102702,7 +102734,7 @@
           "href": "https://api.spotify.com/v1/tracks/0f23gGmTozARE1nllTlNlN",
           "id": "0f23gGmTozARE1nllTlNlN",
           "name": "The Frail",
-          "popularity": 48,
+          "popularity": 47,
           "uri": "spotify:track:0f23gGmTozARE1nllTlNlN",
           "is_local": false
         },
@@ -103170,7 +103202,7 @@
           "href": "https://api.spotify.com/v1/tracks/1v1Z3eg5qucXO2PqG6aCWy",
           "id": "1v1Z3eg5qucXO2PqG6aCWy",
           "name": "READY - Acoustic Version",
-          "popularity": 42,
+          "popularity": 41,
           "uri": "spotify:track:1v1Z3eg5qucXO2PqG6aCWy",
           "is_local": false
         },
@@ -103621,7 +103653,7 @@
           "href": "https://api.spotify.com/v1/tracks/1v1Z3eg5qucXO2PqG6aCWy",
           "id": "1v1Z3eg5qucXO2PqG6aCWy",
           "name": "READY - Acoustic Version",
-          "popularity": 42,
+          "popularity": 41,
           "uri": "spotify:track:1v1Z3eg5qucXO2PqG6aCWy",
           "is_local": false
         },
@@ -104610,7 +104642,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ReTCbOAUbnKKVBY0ckJMS",
           "id": "6ReTCbOAUbnKKVBY0ckJMS",
           "name": "Manhattan",
-          "popularity": 55,
+          "popularity": 58,
           "uri": "spotify:track:6ReTCbOAUbnKKVBY0ckJMS",
           "is_local": false
         },
@@ -105057,7 +105089,7 @@
           "href": "https://api.spotify.com/v1/tracks/6ReTCbOAUbnKKVBY0ckJMS",
           "id": "6ReTCbOAUbnKKVBY0ckJMS",
           "name": "Manhattan",
-          "popularity": 55,
+          "popularity": 58,
           "uri": "spotify:track:6ReTCbOAUbnKKVBY0ckJMS",
           "is_local": false
         },
@@ -106637,7 +106669,7 @@
           "href": "https://api.spotify.com/v1/tracks/4o6jfrxQyekM5DpnWYLlMo",
           "id": "4o6jfrxQyekM5DpnWYLlMo",
           "name": "Kind Woman",
-          "popularity": 59,
+          "popularity": 58,
           "uri": "spotify:track:4o6jfrxQyekM5DpnWYLlMo",
           "is_local": false
         },
@@ -107086,7 +107118,7 @@
           "href": "https://api.spotify.com/v1/tracks/4o6jfrxQyekM5DpnWYLlMo",
           "id": "4o6jfrxQyekM5DpnWYLlMo",
           "name": "Kind Woman",
-          "popularity": 59,
+          "popularity": 58,
           "uri": "spotify:track:4o6jfrxQyekM5DpnWYLlMo",
           "is_local": false
         },
@@ -108194,17 +108226,17 @@
             "id": "4gjY9JfOCvVlr7yTIyl2e0",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2736f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d0000b273673264c7e65e6017ff581fec",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e026f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00001e02673264c7e65e6017ff581fec",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048516f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00004851673264c7e65e6017ff581fec",
                 "width": 64,
                 "height": 64
               }
@@ -108254,7 +108286,7 @@
           "href": "https://api.spotify.com/v1/tracks/2zLIjfjQ8kMy7WSSLmF0I2",
           "id": "2zLIjfjQ8kMy7WSSLmF0I2",
           "name": "Thank You - 2008 Remaster",
-          "popularity": 60,
+          "popularity": 59,
           "uri": "spotify:track:2zLIjfjQ8kMy7WSSLmF0I2",
           "is_local": false
         },
@@ -108645,17 +108677,17 @@
             "id": "4gjY9JfOCvVlr7yTIyl2e0",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2736f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d0000b273673264c7e65e6017ff581fec",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e026f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00001e02673264c7e65e6017ff581fec",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048516f1ffb635f599c7cad59ceb1",
+                "url": "https://i.scdn.co/image/ab67616d00004851673264c7e65e6017ff581fec",
                 "width": 64,
                 "height": 64
               }
@@ -108705,7 +108737,7 @@
           "href": "https://api.spotify.com/v1/tracks/2zLIjfjQ8kMy7WSSLmF0I2",
           "id": "2zLIjfjQ8kMy7WSSLmF0I2",
           "name": "Thank You - 2008 Remaster",
-          "popularity": 60,
+          "popularity": 59,
           "uri": "spotify:track:2zLIjfjQ8kMy7WSSLmF0I2",
           "is_local": false
         },
@@ -109716,7 +109748,7 @@
           "href": "https://api.spotify.com/v1/tracks/7x4b0UccXSKBWxWmjcrG2T",
           "id": "7x4b0UccXSKBWxWmjcrG2T",
           "name": "And I Love Her",
-          "popularity": 63,
+          "popularity": 62,
           "uri": "spotify:track:7x4b0UccXSKBWxWmjcrG2T",
           "is_local": false
         },
@@ -110165,7 +110197,7 @@
           "href": "https://api.spotify.com/v1/tracks/7x4b0UccXSKBWxWmjcrG2T",
           "id": "7x4b0UccXSKBWxWmjcrG2T",
           "name": "And I Love Her",
-          "popularity": 63,
+          "popularity": 62,
           "uri": "spotify:track:7x4b0UccXSKBWxWmjcrG2T",
           "is_local": false
         },
@@ -110543,17 +110575,17 @@
             "id": "4kINvyMdIqyuXAtpoCKGIO",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2734fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000b27320493c8d0205dfa17725e21a",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e024fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d00001e0220493c8d0205dfa17725e21a",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048514fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000485120493c8d0205dfa17725e21a",
                 "width": 64,
                 "height": 64
               }
@@ -110603,7 +110635,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SNeur5WyKRL45EcyPACJE",
           "id": "4SNeur5WyKRL45EcyPACJE",
           "name": "Lord Help Me - Mono Single Version",
-          "popularity": 27,
+          "popularity": 26,
           "uri": "spotify:track:4SNeur5WyKRL45EcyPACJE",
           "is_local": false
         },
@@ -110964,17 +110996,17 @@
             "id": "4kINvyMdIqyuXAtpoCKGIO",
             "images": [
               {
-                "url": "https://i.scdn.co/image/ab67616d0000b2734fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000b27320493c8d0205dfa17725e21a",
                 "width": 640,
                 "height": 640
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d00001e024fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d00001e0220493c8d0205dfa17725e21a",
                 "width": 300,
                 "height": 300
               },
               {
-                "url": "https://i.scdn.co/image/ab67616d000048514fe227fca31cc64bc03ad854",
+                "url": "https://i.scdn.co/image/ab67616d0000485120493c8d0205dfa17725e21a",
                 "width": 64,
                 "height": 64
               }
@@ -111024,7 +111056,7 @@
           "href": "https://api.spotify.com/v1/tracks/4SNeur5WyKRL45EcyPACJE",
           "id": "4SNeur5WyKRL45EcyPACJE",
           "name": "Lord Help Me - Mono Single Version",
-          "popularity": 27,
+          "popularity": 26,
           "uri": "spotify:track:4SNeur5WyKRL45EcyPACJE",
           "is_local": false
         },
@@ -111492,7 +111524,7 @@
           "href": "https://api.spotify.com/v1/tracks/2TTZQ421MkI6XcwwnqKP8h",
           "id": "2TTZQ421MkI6XcwwnqKP8h",
           "name": "Mother Nature's Son",
-          "popularity": 29,
+          "popularity": 27,
           "uri": "spotify:track:2TTZQ421MkI6XcwwnqKP8h",
           "is_local": false
         },
@@ -111943,7 +111975,7 @@
           "href": "https://api.spotify.com/v1/tracks/2TTZQ421MkI6XcwwnqKP8h",
           "id": "2TTZQ421MkI6XcwwnqKP8h",
           "name": "Mother Nature's Son",
-          "popularity": 29,
+          "popularity": 27,
           "uri": "spotify:track:2TTZQ421MkI6XcwwnqKP8h",
           "is_local": false
         },
@@ -113326,7 +113358,7 @@
           "href": "https://api.spotify.com/v1/tracks/6zCy949WyFCLkl8nufRvZR",
           "id": "6zCy949WyFCLkl8nufRvZR",
           "name": "Man on the Moon",
-          "popularity": 21,
+          "popularity": 18,
           "uri": "spotify:track:6zCy949WyFCLkl8nufRvZR",
           "is_local": false
         },
@@ -113777,7 +113809,7 @@
           "href": "https://api.spotify.com/v1/tracks/6zCy949WyFCLkl8nufRvZR",
           "id": "6zCy949WyFCLkl8nufRvZR",
           "name": "Man on the Moon",
-          "popularity": 21,
+          "popularity": 18,
           "uri": "spotify:track:6zCy949WyFCLkl8nufRvZR",
           "is_local": false
         },
@@ -114373,7 +114405,7 @@
                 "height": 64
               }
             ],
-            "name": "Help! (Remastered)",
+            "name": "Help! (Remastered 2009)",
             "release_date": "1965-08-06",
             "release_date_precision": "day",
             "uri": "spotify:album:0PT5m6hwPRrpBwIHVnvbFX",
@@ -114418,7 +114450,7 @@
           "href": "https://api.spotify.com/v1/tracks/3BQHpFgAp4l80e1XslIjNI",
           "id": "3BQHpFgAp4l80e1XslIjNI",
           "name": "Yesterday - Remastered 2009",
-          "popularity": 80,
+          "popularity": 78,
           "uri": "spotify:track:3BQHpFgAp4l80e1XslIjNI",
           "is_local": false
         },
@@ -114822,7 +114854,7 @@
                 "height": 64
               }
             ],
-            "name": "Help! (Remastered)",
+            "name": "Help! (Remastered 2009)",
             "release_date": "1965-08-06",
             "release_date_precision": "day",
             "uri": "spotify:album:0PT5m6hwPRrpBwIHVnvbFX",
@@ -114867,7 +114899,7 @@
           "href": "https://api.spotify.com/v1/tracks/3BQHpFgAp4l80e1XslIjNI",
           "id": "3BQHpFgAp4l80e1XslIjNI",
           "name": "Yesterday - Remastered 2009",
-          "popularity": 80,
+          "popularity": 78,
           "uri": "spotify:track:3BQHpFgAp4l80e1XslIjNI",
           "is_local": false
         },
@@ -116206,7 +116238,7 @@
           "href": "https://api.spotify.com/v1/tracks/7dUuxR8ZgrZ6YL8rwdml1Y",
           "id": "7dUuxR8ZgrZ6YL8rwdml1Y",
           "name": "Crazy You",
-          "popularity": 36,
+          "popularity": 34,
           "uri": "spotify:track:7dUuxR8ZgrZ6YL8rwdml1Y",
           "is_local": false
         },
@@ -116653,7 +116685,7 @@
           "href": "https://api.spotify.com/v1/tracks/7dUuxR8ZgrZ6YL8rwdml1Y",
           "id": "7dUuxR8ZgrZ6YL8rwdml1Y",
           "name": "Crazy You",
-          "popularity": 36,
+          "popularity": 34,
           "uri": "spotify:track:7dUuxR8ZgrZ6YL8rwdml1Y",
           "is_local": false
         },
@@ -116924,7 +116956,7 @@
           "href": "https://api.spotify.com/v1/tracks/62ZYyXIsHVX5xVUj80arVu",
           "id": "62ZYyXIsHVX5xVUj80arVu",
           "name": "The Book of Love",
-          "popularity": 1,
+          "popularity": 0,
           "uri": "spotify:track:62ZYyXIsHVX5xVUj80arVu",
           "is_local": false
         },
@@ -117003,7 +117035,7 @@
           "href": "https://api.spotify.com/v1/tracks/62ZYyXIsHVX5xVUj80arVu",
           "id": "62ZYyXIsHVX5xVUj80arVu",
           "name": "The Book of Love",
-          "popularity": 1,
+          "popularity": 0,
           "uri": "spotify:track:62ZYyXIsHVX5xVUj80arVu",
           "is_local": false
         },
@@ -117471,7 +117503,7 @@
           "href": "https://api.spotify.com/v1/tracks/4sQYxrQGDgCxllDwTszdDs",
           "id": "4sQYxrQGDgCxllDwTszdDs",
           "name": "What Is Man (Acoustic Version 1)",
-          "popularity": 2,
+          "popularity": 1,
           "uri": "spotify:track:4sQYxrQGDgCxllDwTszdDs",
           "is_local": false
         },
@@ -117922,7 +117954,7 @@
           "href": "https://api.spotify.com/v1/tracks/4sQYxrQGDgCxllDwTszdDs",
           "id": "4sQYxrQGDgCxllDwTszdDs",
           "name": "What Is Man (Acoustic Version 1)",
-          "popularity": 2,
+          "popularity": 1,
           "uri": "spotify:track:4sQYxrQGDgCxllDwTszdDs",
           "is_local": false
         },
@@ -118390,7 +118422,7 @@
           "href": "https://api.spotify.com/v1/tracks/0QipPEjHjkaS5y50B9bY6H",
           "id": "0QipPEjHjkaS5y50B9bY6H",
           "name": "Turn on Your Radio",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:0QipPEjHjkaS5y50B9bY6H",
           "is_local": false
         },
@@ -118841,7 +118873,7 @@
           "href": "https://api.spotify.com/v1/tracks/0QipPEjHjkaS5y50B9bY6H",
           "id": "0QipPEjHjkaS5y50B9bY6H",
           "name": "Turn on Your Radio",
-          "popularity": 31,
+          "popularity": 30,
           "uri": "spotify:track:0QipPEjHjkaS5y50B9bY6H",
           "is_local": false
         },
@@ -119309,7 +119341,7 @@
           "href": "https://api.spotify.com/v1/tracks/4A3xaD4iayHnfWJ3iTSxWU",
           "id": "4A3xaD4iayHnfWJ3iTSxWU",
           "name": "Lullaby in Ragtime",
-          "popularity": 35,
+          "popularity": 33,
           "uri": "spotify:track:4A3xaD4iayHnfWJ3iTSxWU",
           "is_local": false
         },
@@ -119760,7 +119792,7 @@
           "href": "https://api.spotify.com/v1/tracks/4A3xaD4iayHnfWJ3iTSxWU",
           "id": "4A3xaD4iayHnfWJ3iTSxWU",
           "name": "Lullaby in Ragtime",
-          "popularity": 35,
+          "popularity": 33,
           "uri": "spotify:track:4A3xaD4iayHnfWJ3iTSxWU",
           "is_local": false
         },
@@ -120403,7 +120435,7 @@
           "href": "https://api.spotify.com/v1/tracks/5UWarhuxo8QZ5lKxgw5EHv",
           "id": "5UWarhuxo8QZ5lKxgw5EHv",
           "name": "The House of the Rising Sun",
-          "popularity": 40,
+          "popularity": 38,
           "uri": "spotify:track:5UWarhuxo8QZ5lKxgw5EHv",
           "is_local": false
         },
@@ -120854,7 +120886,7 @@
           "href": "https://api.spotify.com/v1/tracks/5UWarhuxo8QZ5lKxgw5EHv",
           "id": "5UWarhuxo8QZ5lKxgw5EHv",
           "name": "The House of the Rising Sun",
-          "popularity": 40,
+          "popularity": 38,
           "uri": "spotify:track:5UWarhuxo8QZ5lKxgw5EHv",
           "is_local": false
         },
@@ -121497,7 +121529,7 @@
           "href": "https://api.spotify.com/v1/tracks/2GanylJ8C1TuwEXyHcxIzR",
           "id": "2GanylJ8C1TuwEXyHcxIzR",
           "name": "Without Her",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:2GanylJ8C1TuwEXyHcxIzR",
           "is_local": false
         },
@@ -121948,7 +121980,7 @@
           "href": "https://api.spotify.com/v1/tracks/2GanylJ8C1TuwEXyHcxIzR",
           "id": "2GanylJ8C1TuwEXyHcxIzR",
           "name": "Without Her",
-          "popularity": 33,
+          "popularity": 30,
           "uri": "spotify:track:2GanylJ8C1TuwEXyHcxIzR",
           "is_local": false
         },
@@ -122416,7 +122448,7 @@
           "href": "https://api.spotify.com/v1/tracks/48zUFsio0IV0KQxnpqAaEm",
           "id": "48zUFsio0IV0KQxnpqAaEm",
           "name": "Answers Me",
-          "popularity": 38,
+          "popularity": 37,
           "uri": "spotify:track:48zUFsio0IV0KQxnpqAaEm",
           "is_local": false
         },
@@ -122867,7 +122899,7 @@
           "href": "https://api.spotify.com/v1/tracks/48zUFsio0IV0KQxnpqAaEm",
           "id": "48zUFsio0IV0KQxnpqAaEm",
           "name": "Answers Me",
-          "popularity": 38,
+          "popularity": 37,
           "uri": "spotify:track:48zUFsio0IV0KQxnpqAaEm",
           "is_local": false
         },
@@ -123335,7 +123367,7 @@
           "href": "https://api.spotify.com/v1/tracks/5y788ya4NvwhBznoDIcXwK",
           "id": "5y788ya4NvwhBznoDIcXwK",
           "name": "The Sound of Silence - Acoustic Version",
-          "popularity": 76,
+          "popularity": 74,
           "uri": "spotify:track:5y788ya4NvwhBznoDIcXwK",
           "is_local": false
         },
@@ -123786,7 +123818,7 @@
           "href": "https://api.spotify.com/v1/tracks/5y788ya4NvwhBznoDIcXwK",
           "id": "5y788ya4NvwhBznoDIcXwK",
           "name": "The Sound of Silence - Acoustic Version",
-          "popularity": 76,
+          "popularity": 74,
           "uri": "spotify:track:5y788ya4NvwhBznoDIcXwK",
           "is_local": false
         },
@@ -125625,7 +125657,7 @@
     "next": "https://api.spotify.com/v1/playlists/4B74rg35omHD6uJspe8gwb/tracks?offset=100&limit=100",
     "offset": 0,
     "previous": null,
-    "total": 449
+    "total": 450
   },
   "type": "playlist",
   "uri": "spotify:playlist:4B74rg35omHD6uJspe8gwb"
